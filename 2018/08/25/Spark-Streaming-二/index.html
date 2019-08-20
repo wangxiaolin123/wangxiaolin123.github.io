@@ -7,21 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: Spark - 林哥博客 |  菜鸟技术聚集地</title>
+<title>Spark Streaming(二) - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="记录学习技术的点点滴滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:url" content="http://iochina.top/tags/Spark/index.html">
+    <meta name="description" content="缓存与持久化机制+checkpoint机制 Spark Streaming数据流中的数据持久化到内存中 对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。 如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。   对于基于窗口的操作，比如re">
+<meta name="keywords" content="大数据,Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark Streaming(二)">
+<meta property="og:url" content="http://iochina.top/2018/08/25/Spark-Streaming-二/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="记录学习技术的点点滴滴">
+<meta property="og:description" content="缓存与持久化机制+checkpoint机制 Spark Streaming数据流中的数据持久化到内存中 对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。 如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。   对于基于窗口的操作，比如re">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iochina.top/images/og_image.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg">
+<meta property="og:updated_time" content="2019-08-20T14:17:52.914Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta name="twitter:description" content="记录学习技术的点点滴滴">
-<meta name="twitter:image" content="http://iochina.top/images/og_image.png">
+<meta name="twitter:title" content="Spark Streaming(二)">
+<meta name="twitter:description" content="缓存与持久化机制+checkpoint机制 Spark Streaming数据流中的数据持久化到内存中 对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。 如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。   对于基于窗口的操作，比如re">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg">
 
 
 
@@ -91,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                <img src="/images/logo.svg" alt="Spark Streaming(二)" height="28">
             
             </a>
         </div>
@@ -142,22 +144,11 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Spark</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2018/08/25/Spark-Streaming-二/" class="image is-7by1">
+        <span  class="image is-7by1">
             <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(二)">
-        </a>
+        </span>
     </div>
     
     <div class="card-content article ">
@@ -179,7 +170,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2018/08/25/Spark-Streaming-二/">Spark Streaming(二)</a>
+                Spark Streaming(二)
             
         </h1>
         <div class="content">
@@ -382,75 +373,70 @@ val uniqueId = generateUniqueId(time.milliseconds, partitionId)
 
         </div>
         
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2018/08/20/Spark-Streaming-一/" class="image is-7by1">
-            <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(一)">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2018-08-20T01:13:08.000Z">2018-08-20</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    28 分钟 读完 (大约 4238 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2018/08/20/Spark-Streaming-一/">Spark Streaming(一)</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h1><ul>
-<li><p>SparkStreaming是Spark CoreAPI的一种扩展，它可以用于进行大规模、高吞吐量、容错的实时数据流的处理。</p>
-</li>
-<li><p>支持从很多数据源中读取数据，比如Kafka、Flume、Twitter、ZeroMQ、Kinesis或者TCP Socket。</p>
-</li>
-<li><p>可以使用类似高阶函数的复杂算法来进行数据处理，比如map、reduce、join、window。处理后的数据可以被保存到文件系统、数据库、Dashboard等存储中。</p></li></ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2018/08/20/Spark-Streaming-一/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Spark/">Spark</a>, <a class="has-link-grey -link" href="/tags/大数据/">大数据</a>
                 </div>
             </div>
         </div>
         
         
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/gallery/aliPay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/gallery/wxPay.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/08/20/Spark-Streaming-一/">
+                <span class="level-item">Spark Streaming(一)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -866,7 +852,7 @@ val uniqueId = generateUniqueId(time.milliseconds, partitionId)
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                    <img src="/images/logo.svg" alt="Spark Streaming(二)" height="28">
                 
                 </a>
                 <p class="is-size-7">
