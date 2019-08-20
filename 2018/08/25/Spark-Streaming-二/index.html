@@ -10,19 +10,19 @@
 <title>Spark Streaming(二) - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="缓存与持久化机制+checkpoint机制 Spark Streaming数据流中的数据持久化到内存中 对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。 如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。   对于基于窗口的操作，比如re">
+    <meta name="description" content="缓存与持久化机制+checkpoint机制 Spark Streaming数据流中的数据持久化到内存中  对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。 如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。   对于基于窗口的操作，比如r">
 <meta name="keywords" content="大数据,Spark">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spark Streaming(二)">
 <meta property="og:url" content="http://iochina.top/2018/08/25/Spark-Streaming-二/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="缓存与持久化机制+checkpoint机制 Spark Streaming数据流中的数据持久化到内存中 对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。 如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。   对于基于窗口的操作，比如re">
+<meta property="og:description" content="缓存与持久化机制+checkpoint机制 Spark Streaming数据流中的数据持久化到内存中  对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。 如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。   对于基于窗口的操作，比如r">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg">
-<meta property="og:updated_time" content="2019-08-20T14:17:52.914Z">
+<meta property="og:updated_time" content="2019-08-20T14:20:47.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spark Streaming(二)">
-<meta name="twitter:description" content="缓存与持久化机制+checkpoint机制 Spark Streaming数据流中的数据持久化到内存中 对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。 如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。   对于基于窗口的操作，比如re">
+<meta name="twitter:description" content="缓存与持久化机制+checkpoint机制 Spark Streaming数据流中的数据持久化到内存中  对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。 如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。   对于基于窗口的操作，比如r">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg">
 
 
@@ -161,7 +161,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    42 分钟 读完 (大约 6314 个字)
+                    42 分钟 读完 (大约 6315 个字)
                 </span>
                 
                 
@@ -175,14 +175,20 @@
         </h1>
         <div class="content">
             <h2 id="缓存与持久化机制-checkpoint机制"><a href="#缓存与持久化机制-checkpoint机制" class="headerlink" title="缓存与持久化机制+checkpoint机制"></a>缓存与持久化机制+checkpoint机制</h2><ul>
-<li>Spark Streaming数据流中的数据持久化到内存中<ul>
+<li><p>Spark Streaming数据流中的数据持久化到内存中</p>
+<ul>
 <li>对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。</li>
 <li>如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。</li>
 </ul>
 </li>
-<li>对于基于窗口的操作，比如reduceByWindow、reduceByKeyAndWindow,以及基于状态的操作，比如updateStateByKey，默认就隐式开启了持久化机制。即Spark Streaming默认就会将基于窗口创建的DStrean中的数据缓存到内存中，不需要我们手动调用persist()方法。</li>
-<li>对于通过网络接收数据的输入流，比如socket、Kafka等，默认的持久化级别，是将数据复制一份，以便容错。类似于MEMORY_ONLY_SER_2.</li>
-<li>与RDD不同的是，DStream中默认的持久化级别，统一都是要序列化的。</li>
+<li><p>对于基于窗口的操作，比如reduceByWindow、reduceByKeyAndWindow,以及基于状态的操作，比如updateStateByKey，默认就隐式开启了持久化机制。即Spark Streaming默认就会将基于窗口创建的DStrean中的数据缓存到内存中，不需要我们手动调用persist()方法。</p>
+</li>
+<li><p>对于通过网络接收数据的输入流，比如socket、Kafka等，默认的持久化级别，是将数据复制一份，以便容错。类似于MEMORY_ONLY_SER_2.</p>
+</li>
+<li><p>与RDD不同的是，DStream中默认的持久化级别，统一都是要序列化的。</p>
+<a id="more"></a>
+
+</li>
 </ul>
 <h3 id="CheckPoint机制概述1"><a href="#CheckPoint机制概述1" class="headerlink" title="CheckPoint机制概述1"></a>CheckPoint机制概述1</h3><ul>
 <li><p>实时计算程序的特点就是持续不断的对数据进行计算</p>
