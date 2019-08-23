@@ -7,13 +7,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>归档: 2018 - 林哥博客 |  菜鸟技术聚集地</title>
+<title>标签: Spark优化 - 林哥博客 |  菜鸟技术聚集地</title>
 
 
     <meta name="description" content="记录学习技术的点点滴滴">
 <meta property="og:type" content="website">
 <meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:url" content="http://iochina.top/archives/2018/index.html">
+<meta property="og:url" content="http://iochina.top/tags/Spark优化/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
 <meta property="og:description" content="记录学习技术的点点滴滴">
 <meta property="og:locale" content="zh-CN">
@@ -141,81 +141,76 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
-
-<div class="card widget">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2018
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
-                
-                <a href="/2018/08/25/Spark-Streaming-二/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(二)">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2018-08-25T01:00:00.000Z">2018-08-25</time>
-                        <a href="/2018/08/25/Spark-Streaming-二/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(二)</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2018/08/22/Spark优化/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark优化">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2018-08-22T13:57:05.000Z">2018-08-22</time>
-                        <a href="/2018/08/22/Spark优化/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark优化</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2018/08/20/Spark-Streaming-一/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(一)">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2018-08-20T01:13:08.000Z">2018-08-20</time>
-                        <a href="/2018/08/20/Spark-Streaming-一/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(一)</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-        </div>
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Spark优化</a></li>
+        </ul>
+        </nav>
     </div>
 </div>
+
+    <div class="card">
+    
+    <div class="card-image">
+        <a href="/2018/08/22/Spark优化/" class="image is-7by1">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark优化">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-22T13:57:05.000Z">2018-08-22</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 186 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2018/08/22/Spark优化/">Spark优化</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Spark-性能优化分析"><a href="#Spark-性能优化分析" class="headerlink" title="Spark 性能优化分析"></a>Spark 性能优化分析</h1><ul>
+<li>Spark的性能优化，主要手段包括<ol>
+<li>使用高性能序列化类库，如使用kryo来代替java序列化</li>
+<li>优化数据结构（算子函数内部使用到的局部数据或者算子函数外部的数据都可以进行数据结构的优化，优化以后，都会减少对内存的消耗和占用。）</li>
+<li>对多次使用的RDD进行持久化/Checkpoint，避免后面使用需要重复计算，降低性能</li>
+<li>使用序列化的持久化级别</li>
+<li>Java虚拟机垃圾回收优化</li>
+<li>提高并行度</li>
+<li>广播共享数据</li>
+<li>数据本地化</li>
+<li>reduceByKey和groupByKey的适当使用</li>
+<li>Shuffle调优</li>
+</ol>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
 
 
 </div>

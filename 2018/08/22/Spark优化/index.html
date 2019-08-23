@@ -7,21 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>归档: 2018 - 林哥博客 |  菜鸟技术聚集地</title>
+<title>Spark优化 - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="记录学习技术的点点滴滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:url" content="http://iochina.top/archives/2018/index.html">
+    <meta name="description" content="Spark 性能优化分析 Spark的性能优化，主要手段包括 使用高性能序列化类库，如使用kryo来代替java序列化 优化数据结构（算子函数内部使用到的局部数据或者算子函数外部的数据都可以进行数据结构的优化，优化以后，都会减少对内存的消耗和占用。） 对多次使用的RDD进行持久化/Checkpoint，避免后面使用需要重复计算，降低性能 使用序列化的持久化级别 Java虚拟机垃圾回收优化 提高并行">
+<meta name="keywords" content="大数据,Spark优化,Scala">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark优化">
+<meta property="og:url" content="http://iochina.top/2018/08/22/Spark优化/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="记录学习技术的点点滴滴">
+<meta property="og:description" content="Spark 性能优化分析 Spark的性能优化，主要手段包括 使用高性能序列化类库，如使用kryo来代替java序列化 优化数据结构（算子函数内部使用到的局部数据或者算子函数外部的数据都可以进行数据结构的优化，优化以后，都会减少对内存的消耗和占用。） 对多次使用的RDD进行持久化/Checkpoint，避免后面使用需要重复计算，降低性能 使用序列化的持久化级别 Java虚拟机垃圾回收优化 提高并行">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iochina.top/images/og_image.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg">
+<meta property="og:updated_time" content="2019-08-23T08:59:02.994Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta name="twitter:description" content="记录学习技术的点点滴滴">
-<meta name="twitter:image" content="http://iochina.top/images/og_image.png">
+<meta name="twitter:title" content="Spark优化">
+<meta name="twitter:description" content="Spark 性能优化分析 Spark的性能优化，主要手段包括 使用高性能序列化类库，如使用kryo来代替java序列化 优化数据结构（算子函数内部使用到的局部数据或者算子函数外部的数据都可以进行数据结构的优化，优化以后，都会减少对内存的消耗和占用。） 对多次使用的RDD进行持久化/Checkpoint，避免后面使用需要重复计算，降低性能 使用序列化的持久化级别 Java虚拟机垃圾回收优化 提高并行">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg">
 
 
 
@@ -91,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                <img src="/images/logo.svg" alt="Spark优化" height="28">
             
             </a>
         </div>
@@ -141,83 +143,149 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark优化">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-22T13:57:05.000Z">2018-08-22</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 分钟 读完 (大约 186 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Spark优化
+            
+        </h1>
+        <div class="content">
+            <h1 id="Spark-性能优化分析"><a href="#Spark-性能优化分析" class="headerlink" title="Spark 性能优化分析"></a>Spark 性能优化分析</h1><ul>
+<li>Spark的性能优化，主要手段包括<ol>
+<li>使用高性能序列化类库，如使用kryo来代替java序列化</li>
+<li>优化数据结构（算子函数内部使用到的局部数据或者算子函数外部的数据都可以进行数据结构的优化，优化以后，都会减少对内存的消耗和占用。）</li>
+<li>对多次使用的RDD进行持久化/Checkpoint，避免后面使用需要重复计算，降低性能</li>
+<li>使用序列化的持久化级别</li>
+<li>Java虚拟机垃圾回收优化</li>
+<li>提高并行度</li>
+<li>广播共享数据</li>
+<li>数据本地化</li>
+<li>reduceByKey和groupByKey的适当使用</li>
+<li>Shuffle调优</li>
+</ol>
+</li>
+</ul>
 
-<div class="card widget">
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Scala/">Scala</a>, <a class="has-link-grey -link" href="/tags/Spark优化/">Spark优化</a>, <a class="has-link-grey -link" href="/tags/大数据/">大数据</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
     <div class="card-content">
-        <h3 class="tag is-link">
-        2018
-        </h3>
-        <div class="timeline">
-        
-            <article class="media">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
                 
-                <a href="/2018/08/25/Spark-Streaming-二/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(二)">
-                    </p>
-                </a>
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/gallery/aliPay.jpg" alt="支付宝"></div>
+</a>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2018-08-25T01:00:00.000Z">2018-08-25</time>
-                        <a href="/2018/08/25/Spark-Streaming-二/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(二)</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
                 
-                <a href="/2018/08/22/Spark优化/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark优化">
-                    </p>
-                </a>
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/gallery/wxPay.jpg" alt="微信"></div>
+</a>
+
                 
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2018-08-22T13:57:05.000Z">2018-08-22</time>
-                        <a href="/2018/08/22/Spark优化/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark优化</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
-            <article class="media">
-                
-                <a href="/2018/08/20/Spark-Streaming-一/" class="media-left">
-                    <p class="image is-64x64">
-                        <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(一)">
-                    </p>
-                </a>
-                
-                <div class="media-content">
-                    <div class="content">
-                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2018-08-20T01:13:08.000Z">2018-08-20</time>
-                        <a href="/2018/08/20/Spark-Streaming-一/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(一)</a>
-                        <div class="level article-meta is-mobile">
-                            <div class="level-left">
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        
         </div>
     </div>
 </div>
 
 
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/08/25/Spark-Streaming-二/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Spark Streaming(二)</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2018/08/20/Spark-Streaming-一/">
+                <span class="level-item">Spark Streaming(一)</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'CNIaUCTekqhuwaIw4DYBECp1-MdYXbMMI',
+        app_key: 'jvTg96TjioRr2zOhuCcj3tam',
+        placeholder: 'Say something...'
+    });
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -662,7 +730,7 @@
             <div class="level-start has-text-centered-mobile">
                 <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                    <img src="/images/logo.svg" alt="Spark优化" height="28">
                 
                 </a>
 				
