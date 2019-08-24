@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Spark Streaming(一) - 林哥博客 |  菜鸟技术聚集地</title>
+
+
+    <meta name="description" content="Spark Streaming SparkStreaming是Spark CoreAPI的一种扩展，它可以用于进行大规模、高吞吐量、容错的实时数据流的处理。  支持从很多数据源中读取数据，比如Kafka、Flume、Twitter、ZeroMQ、Kinesis或者TCP Socket。  可以使用类似高阶函数的复杂算法来进行数据处理，比如map、reduce、join、window。处理后的数据可">
+<meta name="keywords" content="大数据,Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark Streaming(一)">
+<meta property="og:url" content="http://iochina.top/2018/08/20/Spark-Streaming-一/index.html">
+<meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
+<meta property="og:description" content="Spark Streaming SparkStreaming是Spark CoreAPI的一种扩展，它可以用于进行大规模、高吞吐量、容错的实时数据流的处理。  支持从很多数据源中读取数据，比如Kafka、Flume、Twitter、ZeroMQ、Kinesis或者TCP Socket。  可以使用类似高阶函数的复杂算法来进行数据处理，比如map、reduce、join、window。处理后的数据可">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg">
+<meta property="og:updated_time" content="2019-08-20T05:17:50.526Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spark Streaming(一)">
+<meta name="twitter:description" content="Spark Streaming SparkStreaming是Spark CoreAPI的一种扩展，它可以用于进行大规模、高吞吐量、容错的实时数据流的处理。  支持从很多数据源中读取数据，比如Kafka、Flume、Twitter、ZeroMQ、Kinesis或者TCP Socket。  可以使用类似高阶函数的复杂算法来进行数据处理，比如map、reduce、join、window。处理后的数据可">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="Spark Streaming(一)" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="My GitHub" href="https://github.com/wangxiaolin123">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(一)">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2018-08-20T01:13:08.000Z">2018-08-20</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    28 分钟 读完 (大约 4238 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                Spark Streaming(一)
+            
+        </h1>
+        <div class="content">
+            <h1 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h1><ul>
+<li><p>SparkStreaming是Spark CoreAPI的一种扩展，它可以用于进行大规模、高吞吐量、容错的实时数据流的处理。</p>
+</li>
+<li><p>支持从很多数据源中读取数据，比如Kafka、Flume、Twitter、ZeroMQ、Kinesis或者TCP Socket。</p>
+</li>
+<li><p>可以使用类似高阶函数的复杂算法来进行数据处理，比如map、reduce、join、window。处理后的数据可以被保存到文件系统、数据库、Dashboard等存储中。</p>
+<a id="more"></a>
+
+</li>
+</ul>
+<h2 id="DStream以及基本工作原理"><a href="#DStream以及基本工作原理" class="headerlink" title="DStream以及基本工作原理"></a>DStream以及基本工作原理</h2><ul>
+<li>接收实时输入数据流，然后将数据拆分成多个batch，比如每收集1秒的数据封装为一个batch，然后将每个batch交给Spark的计算引擎进行处理，最后会生产出一个结果数据流，其中的数据，也是由一个一个的batch所组成的。</li>
+<li>Spark Streaming提供了一种高级的抽象，叫做DStream（Discretized Stream “离散流”），代表一个持续不断的数据流<ul>
+<li>DStream可以通过输入数据源来创建比如Kafka、也可以通过对其他DStream应用高阶函数来创建如map、reduce、join、window。</li>
+<li>DStream的内部，其实是一系列不断产生的RDD。RDD是Spark Core的核心抽象——不可变的、分布式的数据集。DStream中每个RDD都包含了一个时间段内的数据。</li>
+</ul>
+</li>
+<li>对DStream应用的算子，比如map其实在底层会被翻译成对DStream中每个RDD的操作。比如对一个Dstream执行一个map操作，会产生一个新的DStream。但是，在底层，其实其原理为：对输入DStream中每个时间段的RDD，都应用一边map操作，然后生成新的RDD，即作为新的DStream中的个时间端的一个RDD。底层的RDD的transformation操作，其实，还是由Spark Core的计算引擎来实现的。Spark Streaming对Spark Core进行了一层封装，隐藏了细节，然后对开发人员提供了方便易用的高层次的API。</li>
+</ul>
+<h2 id="与Storm的对比分析"><a href="#与Storm的对比分析" class="headerlink" title="与Storm的对比分析"></a>与Storm的对比分析</h2><table>
+<thead>
+<tr>
+<th>对比点</th>
+<th>Storm</th>
+<th>Spark Streaming</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>实时计算模型</td>
+<td>纯实时，来一条处理一条</td>
+<td>准实时，对一个时间段内的数据收集起来，作为一个RDD再处理</td>
+</tr>
+<tr>
+<td>实时计算延迟度</td>
+<td>毫秒级</td>
+<td>秒级</td>
+</tr>
+<tr>
+<td>吞吐量</td>
+<td>低</td>
+<td>高</td>
+</tr>
+<tr>
+<td>事务机制</td>
+<td>支持完善</td>
+<td>支持，但不完善</td>
+</tr>
+<tr>
+<td>健壮性/容错性</td>
+<td>Zoookeeper，Acker，非常强</td>
+<td>CheckPoint，WAL，一般</td>
+</tr>
+<tr>
+<td>动态调整并行度</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+</tbody></table>
+<ul>
+<li>SparkStreaming 与Sorm的优劣分析<ul>
+<li>两个框架再实时计算领域中都很优秀，只是擅长的领域不同</li>
+<li>Spark Streaming仅仅在吞吐量上要比Storm要优秀。但不是所有场景下都注重吞吐量。</li>
+<li>Storm在实时延迟度上，比Spark Streaming好多了，前者是纯实时，后者是准实时。而且Storm的事务机制、健壮性/容错性、动态调整并行度等特性，都要比Spark Streaming更加优秀。</li>
+<li>但是Spark Streaming，位于Spark生态技术栈中，因此SparkStreaming可以和Spark Core、Spark SQL无缝整合，我们可以实时处理出来的中间数据，立即在程序中无缝进行延迟批操作、交互式查询等操作。这个特点大大增强了Streaming的优势和功能。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Spark-Streaming-与Storm的应用场景"><a href="#Spark-Streaming-与Storm的应用场景" class="headerlink" title="Spark Streaming 与Storm的应用场景"></a>Spark Streaming 与Storm的应用场景</h3><ul>
+<li>对于Storm来说：<ul>
+<li>建议在需要纯实时，不能忍受1秒以上延迟的场景使用，比如实时金融系统、要求纯实时进行金融交易和分析。</li>
+<li>对于实时计算的功能中，要求可靠的事务机制和可靠性机制，即数据的完全精准，一条也不能多不能少，考虑使用storm</li>
+<li>如果还需要针对高低峰时间段动态调整计算程序的并行度，以最大限度利用集群资源（小公司，集群资源紧张）。</li>
+<li>对一个大数据应用系统，它就是纯粹的实时计算，不需要在中间执行SQL交互式查询、复杂的transformation算子等。</li>
+</ul>
+</li>
+<li>对于Spark Streaming来说<ul>
+<li>如果对于上述适合Storm的三点（纯实时，事务机制和可靠性、动态调整并行度），一条都不满足的实时场景（不要求纯实时，不要求强大可靠的事务机制、不要求动态调整并行度），可以考虑使用Spark Streaming。</li>
+<li>考虑使用Spark Streaming的最主要一个因素，应该对整个项目进行宏观的考虑，即如果一个项目除了实时计算之外，还包括了离线批处理、交互式查询、等业务功能，而且实时计算中可能会牵扯到高延迟批处理、交互式查询等功能，那么就应该首选Spark生态，用Spark Core开发离线批处理，用Spark SQL开发交互式查询，用Spark Streaming开发实时计算，三者可以无缝整合，给系统提供非常高的可扩展性。</li>
+</ul>
+</li>
+</ul>
+<h2 id="StreamingContext详解"><a href="#StreamingContext详解" class="headerlink" title="StreamingContext详解"></a>StreamingContext详解</h2><ul>
+<li>有两种创建StreamingContext的方式<ul>
+<li>第一种<ul>
+<li><code>val conf = new SparkConf().setAppName(appName).setMaster(&quot;local[2]&quot;)</code></li>
+<li><code>val ssc = new StreamingContext(conf,Seconds(1))</code></li>
+</ul>
+</li>
+<li>第二种<ul>
+<li>SptreamingContext还可以使用已有的SparkContext来创建</li>
+<li><code>val sc = new SparkContext(conf)</code></li>
+<li><code>val ssc = new StreamingContext(sc,Seconds(1))</code></li>
+</ul>
+</li>
+<li>appName,是用来在Spark UI上显示的应用名称。master，是一个Spark、Mesos或者Yarn集群的URL或者是local[*]</li>
+<li>batch interval 可以格局你的应用程序的延迟要求以及可用的集群资源情况来设置。</li>
+</ul>
+</li>
+<li>一个StreamingConext定义以后，必须做以下几件事情：<ul>
+<li>1通过创建DStream来创建数据源</li>
+<li>2通过对DStream定义transformatition和output算子操作，来定义实时计算逻辑</li>
+<li>3 调用StreamingContext的start()方法，来开始实时处理数据。</li>
+<li>4通过StreamingContext的awaitTermination（）方法，来等待应用程序的终止。</li>
+<li>5 也可以通过调用StreamingContext的stop（）方法，来停止应用程序。</li>
+</ul>
+</li>
+<li>需要注意的要点；<ul>
+<li>1只要一个StreamingContext启动后，就不能再往里面添加计算逻辑，即执行start()方法后，不能再增加任何任何算子了。</li>
+<li>2 一个StreamingContext停止之后，是肯定不能够重启的。调用stop（）方法后，不能再调用start()</li>
+<li>3一个JVM同时只能有一个StreamingContext启动。在你的应用程序中，不能创建两个StreamingContext。</li>
+<li>4 调用stop()方法时，会同时停止内部的SparkContext，如果不希望如此，还希望后面继续使用SparkContext，可以使用stop(false)。</li>
+<li>一个SparkContext可以创建多个StreamingContext，只要上一个先用stop(false)停止，再创建下一个即可。</li>
+</ul>
+</li>
+</ul>
+<h2 id="DStream和Receiver详解"><a href="#DStream和Receiver详解" class="headerlink" title="DStream和Receiver详解"></a>DStream和Receiver详解</h2><ul>
+<li>DStream 代表了来自数据源的输入数据流。除了文件数据流之外，所有的输入DStream都会绑定一个Receiver对象，该对象是一个关键的组件，用来从数据源接收数据，并将其存储在Spark的内存中，以供后续处理。</li>
+<li>Spark Streamig提供了两种内置的数据源支持：<ul>
+<li>1基础数据源：StreamingContext API中直接提供了对这些数据源的支持，比如文件、socket。</li>
+<li>2高级数据源：诸如Kafka、Flume、Kinesis、Twitter等数据源，通过第三方工具类提供支持。这些数据源的使用，需要引用其依赖。</li>
+<li>3自定义数据源：我们可以自己定义数据源，来决定如何接受和存储数据。</li>
+</ul>
+</li>
+<li>如果想要在实时计算应用中并行接收多条数据流，可以创建多个输入DStream。这样就会创建多个Receiver，从而并行地接收多个数据流。注意，一个Spark Streaming Application的Executor，是一个长时间运行的任务，因此它会独占分配给Spark Streaming Application的cpu core。从而只要Spark Streaming运行起来以后，它使用的cpu core就没法给其他应用使用了。</li>
+<li>使用本地模式运行程序时，绝对不能用local或local[1],因为那样的话，只会给执行输入Dstream的executor分配一个线程。而Spark Streaming底层的原理是，至少要有两条线程，一条线程用来分配Receiver接收数据，一条线程用来处理接收到的数据，因此必须使用local[n]，n&gt;=2的模式。</li>
+</ul>
+<h2 id="DStream-Kafka数据源-Receiver方式"><a href="#DStream-Kafka数据源-Receiver方式" class="headerlink" title="DStream Kafka数据源 Receiver方式"></a>DStream Kafka数据源 Receiver方式</h2><ul>
+<li>这种方式使用Receiver来获取数据，Receiver是使用Kafka的高层次Consumer API来实现的。Receiver从Kafka中获取的数据都是存储在Spark Executor的内存中的，然后Spark Straming启动的job会去处理那些数据。</li>
+<li>默认配置下，这种方式可能会因为底层的失败而丢失数据。如果要启用高可靠机制，让数据零丢失，就必须启用Spark Streaming的预写日志机制（WAL)。让该机制会同步地接收到的Kafka数据写入分布式文件系统如（HDFS)上的预写日志中。所以，即使底层节点出现了失败，也可以使用日志中的数据进行回复。</li>
+<li>注意事项<ul>
+<li>1此时Kafka中的topic的partition与Spark中的RDD的partition是没有关系的。所以在KafkaUtils.createStream()中，提高partition的数量，只会增加一个Receiver中读取partition的线程的数量。不会增加Spark处理数据的并行度。</li>
+<li>2<strong>可以创建多个Kafka输入DStream，使用相同的consumer group和topic，来通过多个receiver并行接收数据。</strong></li>
+<li>3 如果基于容错的文件系统，比如HDFS，启用了预写日志机制，接收到的数据会被复制到预写日志中。因此，在KafkaUtils。createStream()中，设置的持久化级别是StorageLevel.MEMORY_AND_DISJ_SER.</li>
+</ul>
+</li>
+</ul>
+<h2 id="DStream-Kafka数据源-Direct方式"><a href="#DStream-Kafka数据源-Direct方式" class="headerlink" title="DStream Kafka数据源 Direct方式"></a>DStream Kafka数据源 Direct方式</h2><ul>
+<li>Spark1.3引入了不基于Receiver的直接方式，从而能够确保更加健壮的机制。替代掉使用Receiver来接收数据后，这种方式会周期性地查询Kafka，来获得每个topic+partition的最新offset，从而定义每个batch的offset的范围。当处理数据的job启动时，就会使用Kafka的简单consumer api来获取Kafka指定offset范围的数据。</li>
+<li>Driect优点<ul>
+<li>1简化并行读取：如果要读取多个partition，不需要创建多个输入DStream然后对他们进行union操作。Spark会创建跟Kafka partition一样多的RDD partition，并且会并行从Kafka中读取数据。所以在Kafka partition和RDD partition之间，有一个一对一的映射关系</li>
+<li>2高性能：如果要保证零数据丢失，在基于receiver的方式中，需要开启WAL机制。这种方式其实效率低下，因为数据实际被复制了两份，Kafka自身就有高可靠的机制，只要Kafka中做了数据的复制，那么就可以通过Kafka的副本进行恢复。</li>
+<li>3 一次且仅一次的事务机制：<ul>
+<li>基于receiver的方式，是使用Kafka的高阶API来在ZooKeeper中保存消费过的offset的。这是消费Kafka数据的传统方式。这种方式配合着WAL机制可以保证数据零丢失的高可靠性，但是无法保证数据被处理一次且仅一次，可能会处理两次。因为Spark和ZooKepper之间是不同步的。</li>
+<li>基于Direct的方式，是使用Kafka的简单api，Spark Streaming自己就负责追踪消费offset，并且保存在checkpoint中。Spark自己一定是同步的，因此可以保证数据是消费一次且仅消费一次。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="DStream的transform操作概览"><a href="#DStream的transform操作概览" class="headerlink" title="DStream的transform操作概览"></a>DStream的transform操作概览</h3><table>
+<thead>
+<tr>
+<th>Transformation</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>map</td>
+<td>对传入的每个元素，返回一个</td>
+</tr>
+<tr>
+<td>flatMap</td>
+<td>对传入的每个元素，返回一个或多个元素</td>
+</tr>
+<tr>
+<td>filter</td>
+<td>对传入的元素返回true或false，返回false的元素被过滤掉</td>
+</tr>
+<tr>
+<td>union</td>
+<td>将两个DStream进行合并</td>
+</tr>
+<tr>
+<td>count</td>
+<td>返回元素的个数</td>
+</tr>
+<tr>
+<td>reduce</td>
+<td>对所有values进行聚合</td>
+</tr>
+<tr>
+<td>countByValue</td>
+<td>对元素按照值进行分组，对每个组进行技术，最后返回&lt;K,V&gt;的格式</td>
+</tr>
+<tr>
+<td>reduceBYKey</td>
+<td>对key对应的values进行聚合</td>
+</tr>
+<tr>
+<td>cogroup</td>
+<td>对两个Dstream进行连接操作，一个key连接起来的两个RDD的数据，都会以Iterable<v>的形式，出现在一个Tuple中</v></td>
+</tr>
+<tr>
+<td>join</td>
+<td>对两个Dstream进行join操作，每个连接起来的pair，作为DStream的RDD的一个元素</td>
+</tr>
+<tr>
+<td>transform</td>
+<td>对数据进行转换操作【当DStream的API不够用的时候使用这个函数把DStream转成RDD来操作，最后再返回一个新的RDD】</td>
+</tr>
+<tr>
+<td>updateStateByKey</td>
+<td>为每个key维护一份state，并进行更新</td>
+</tr>
+<tr>
+<td>window</td>
+<td>对滑动窗口数据执行操作（实时计算中最有特点的一种操作）</td>
+</tr>
+</tbody></table>
+<h3 id="DStream的transformation操作"><a href="#DStream的transformation操作" class="headerlink" title="DStream的transformation操作"></a>DStream的transformation操作</h3><p>​    </p>
+<table>
+<thead>
+<tr>
+<th>Output</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>print</td>
+<td>打印每个batch中前10个元素，主要用于测试，或者是不需要执行什么output操作时，用于简单触发一些job。</td>
+</tr>
+<tr>
+<td>saveAsTextFile(prefix,[suffix])</td>
+<td>将每个batch的数据保存到文件中。每个batch的文件命名格式为：prefix-TIME_IN_MS[.suffix]</td>
+</tr>
+<tr>
+<td>saveAsObjectFile</td>
+<td>同上，但是将每个batch的数据以序列化对象的方式，保存到SequenceFile中。</td>
+</tr>
+<tr>
+<td>saveHadoopFile</td>
+<td>同上，将数据保存到Hadoop文件中。</td>
+</tr>
+<tr>
+<td><strong>foreachRDD</strong></td>
+<td>最常用的output操作，遍历DStream中的每个产生的RDD，进行处理。可以将每个RDD中的数据写入外部存储，比如文件、数据库、缓存等。通常在其中是针对RDD执行action操作的，比如foreach。<br>【和transform实现的功能类似，都可以操作RDD，区别是transform有返回值，foreachRDD没有返回值】</td>
+</tr>
+</tbody></table>
+<h3 id="output操作"><a href="#output操作" class="headerlink" title="output操作"></a>output操作</h3><ul>
+<li>DStream中所有的计算，都是由output操作触发的，比如print().如果没有任何output操作，那么压根就不会执行定义的计算逻辑。</li>
+<li>使用foreachRDD outprint操作，也必须在里面对RDD执行action操作，才能触发对每一个batch的计算逻辑。否则，光影foreachRDD output操作，在里面没有对RDD执行action操作，也不会触发任何逻辑。</li>
+</ul>
+<h3 id="ForeachRDD-详解"><a href="#ForeachRDD-详解" class="headerlink" title="ForeachRDD 详解"></a>ForeachRDD 详解</h3><ul>
+<li>通常在foreachRDD中，就会创建一个Conection，比如JDBC Connection，然后通过Connection将数据写入外部存储。<ul>
+<li>误区1：在RDD的foreach外部，创建Connection<ul>
+<li>它会导致Connection对象被序列化后传输到每个Task中。而这种Connection对象，实际上一般是不支持序列化的，也就无法被传输。</li>
+</ul>
+</li>
+<li>误区2：在RDD的foreach操作内部，创建Connection<ul>
+<li>这种方式是可以的，但是效率低下。因为它会导致对于RDD的每一条数据，都创建一个Connection对象，通常来说，Connection的创建是很消耗性能的。</li>
+</ul>
+</li>
+<li>合理方式1：使用RDD的foreachPartition操作，并且在该操作内部，创建Connection对象，这样就相当于是，为RDD的每个partition创建一个Connection对象，节省资源的多了。</li>
+<li>合理方式二：自己手动封装一个静态连接池，使用RDD的foreachPartition操作，并且在该操作内部，从静态连接池中，通过静态方法，获取到一个连接，使用之后再还回去。这样的话，甚至在多个RDD的partition之间，也可以复用连接了。而且可以让连接池采取懒创建的策略，并且空闲一段时间后，将其释放掉。</li>
+</ul>
+</li>
+</ul>
+<h3 id="window滑动窗口操作"><a href="#window滑动窗口操作" class="headerlink" title="window滑动窗口操作"></a>window滑动窗口操作</h3><p>​        </p>
+<table>
+<thead>
+<tr>
+<th>Transform</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>window</td>
+<td>对每个滑动窗口的数据执行自定义的计算。</td>
+</tr>
+<tr>
+<td>countByWindow</td>
+<td>对每个滑动窗口的数据执行count操作。</td>
+</tr>
+<tr>
+<td>reduceByWindow</td>
+<td>对每个滑动窗口的数据执行reduce操作。</td>
+</tr>
+<tr>
+<td>reduceByKeyAndWindow</td>
+<td>对每个滑动窗口的数据执行reduceByKey操作。</td>
+</tr>
+<tr>
+<td>countByValueAndWindow</td>
+<td>对每个滑动窗口的数据执行countByValue操作。</td>
+</tr>
+</tbody></table>
+<h2 id="缓存与持久化机制-checkpoint机制"><a href="#缓存与持久化机制-checkpoint机制" class="headerlink" title="缓存与持久化机制+checkpoint机制"></a>缓存与持久化机制+checkpoint机制</h2><h2 id="容错机制和事务语义详解"><a href="#容错机制和事务语义详解" class="headerlink" title="容错机制和事务语义详解"></a>容错机制和事务语义详解</h2><h2 id="性能调优"><a href="#性能调优" class="headerlink" title="性能调优"></a>性能调优</h2>
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Spark/">Spark</a>, <a class="has-link-grey -link" href="/tags/大数据/">大数据</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/gallery/aliPay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/gallery/wxPay.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2018/08/22/Spark优化/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">Spark优化</span>
+            </a>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'CNIaUCTekqhuwaIw4DYBECp1-MdYXbMMI',
+        app_key: 'jvTg96TjioRr2zOhuCcj3tam',
+        placeholder: '看了这么久不评价一下吗？'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/pht.jpg" alt="lin">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        lin
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        IT菜鸟
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        3
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        4
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/wangxiaolin123" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/wangxiaolin123">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://fastflink.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Zhao Blog</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">fastflink.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://sparkfuns.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Spark 社区</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">sparkfuns.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.zrahh.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">左岸博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.zrahh.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/08/25/Spark-Streaming-二/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(二)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-25T01:00:00.000Z">2018-08-25</time></div>
+                    <a href="/2018/08/25/Spark-Streaming-二/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(二)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/08/22/Spark优化/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark优化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-22T13:57:05.000Z">2018-08-22</time></div>
+                    <a href="/2018/08/22/Spark优化/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark优化</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/08/20/Spark-Streaming-一/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(一)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-20T01:13:08.000Z">2018-08-20</time></div>
+                    <a href="/2018/08/20/Spark-Streaming-一/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(一)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scala/">
+                        <span class="tag">Scala</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spark/">
+                        <span class="tag">Spark</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spark优化/">
+                        <span class="tag">Spark优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/大数据/">
+                        <span class="tag">大数据</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2018/08/25/Spark-Streaming-二/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(二)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-25T01:00:00.000Z">2018-08-25</time></div>
+                    <a href="/2018/08/25/Spark-Streaming-二/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(二)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/08/22/Spark优化/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark优化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-22T13:57:05.000Z">2018-08-22</time></div>
+                    <a href="/2018/08/22/Spark优化/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark优化</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2018/08/20/Spark-Streaming-一/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(一)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2018-08-20T01:13:08.000Z">2018-08-20</time></div>
+                    <a href="/2018/08/20/Spark-Streaming-一/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(一)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2018/08/">
+                <span class="level-start">
+                    <span class="level-item">八月 2018</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">3</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scala/">
+                        <span class="tag">Scala</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spark/">
+                        <span class="tag">Spark</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spark优化/">
+                        <span class="tag">Spark优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/大数据/">
+                        <span class="tag">大数据</span>
+                        <span class="tag is-grey">3</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+	
+	
+        <div class="level">
+
+            <div class="level-start has-text-centered-mobile">
+             <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="Spark Streaming(一)" height="28">
+                
+                </a> 
+						
+							<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277959244'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277959244%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+							
+
+				
+                <p class="is-size-7">
+               &copy; 2019 lin
+			  	  
+			  <br>
+									
+			   
+               <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
+               <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+               访问量<span id="busuanzi_value_site_pv"></span>次  <i class="fa fa-user-md"></i>  访客数<span id="busuanzi_value_site_uv"></span>人
+                </p>
+				 <p class="is-size-7">
+					<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+							<script>
+								var now = new Date(); 
+								function createtime() { 
+									var grt= new Date("1/1/2018 12:00:00");//此处修改你的建站时间或者网站上线时间 
+									now.setTime(now.getTime()+250); 
+									days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+									hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+									if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+									mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+									seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+									snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+									document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+									document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+								} 
+								setInterval("createtime()",250);
+							</script>
+				 </p>
+            </div>
+
+			
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+				
+			
+        </div>
+		
+
+		
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
