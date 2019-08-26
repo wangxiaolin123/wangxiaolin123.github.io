@@ -7,21 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: Spark - 林哥博客 |  菜鸟技术聚集地</title>
+<title>ELK全量日志查询浅析 - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="记录学习技术的点点滴滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:url" content="http://iochina.top/tags/Spark/index.html">
+    <meta name="description" content="ELK 全量日志查询项目需求由来1. 开发人员不能登录线上服务器查看详细日志，经过运维周转费时费力 2. 日志散落在多个系统上，难以查找和整合。 3. 日志数量巨大，查询速度太慢，难以满足需求。 4. 无法全局掌握项目运行情况 5. 日志数据查询不够实时 6. 数据分析人员不会写代码，无法分析统计数据。 7. .......">
+<meta name="keywords" content="大数据,Logstash,ElasicSearch,Kibana">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ELK全量日志查询浅析">
+<meta property="og:url" content="http://iochina.top/2019/02/26/ELK全量日志查询浅析/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="记录学习技术的点点滴滴">
+<meta property="og:description" content="ELK 全量日志查询项目需求由来1. 开发人员不能登录线上服务器查看详细日志，经过运维周转费时费力 2. 日志散落在多个系统上，难以查找和整合。 3. 日志数量巨大，查询速度太慢，难以满足需求。 4. 无法全局掌握项目运行情况 5. 日志数据查询不够实时 6. 数据分析人员不会写代码，无法分析统计数据。 7. .......">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iochina.top/images/og_image.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/ELK.jpg">
+<meta property="og:updated_time" content="2019-08-26T09:28:28.336Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta name="twitter:description" content="记录学习技术的点点滴滴">
-<meta name="twitter:image" content="http://iochina.top/images/og_image.png">
+<meta name="twitter:title" content="ELK全量日志查询浅析">
+<meta name="twitter:description" content="ELK 全量日志查询项目需求由来1. 开发人员不能登录线上服务器查看详细日志，经过运维周转费时费力 2. 日志散落在多个系统上，难以查找和整合。 3. 日志数量巨大，查询速度太慢，难以满足需求。 4. 无法全局掌握项目运行情况 5. 日志数据查询不够实时 6. 数据分析人员不会写代码，无法分析统计数据。 7. .......">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/ELK.jpg">
 
 
 
@@ -91,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                <img src="/images/logo.svg" alt="ELK全量日志查询浅析" height="28">
             
             </a>
         </div>
@@ -142,35 +144,24 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Spark</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/01/22/Spark-Streaming-二/" class="image is-7by1">
-            <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(二)">
-        </a>
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/ELK.jpg" alt="ELK全量日志查询浅析">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-22T01:00:00.000Z">2019-01-22</time>
+                <time class="level-item has-text-grey" datetime="2019-02-26T08:18:18.000Z">2019-02-26</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    42 分钟 读完 (大约 6315 个字)
+                    6 分钟 读完 (大约 942 个字)
                 </span>
                 
                 
@@ -179,103 +170,239 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/01/22/Spark-Streaming-二/">Spark Streaming(二)</a>
+                ELK全量日志查询浅析
             
         </h1>
         <div class="content">
-            <h2 id="缓存与持久化机制-checkpoint机制"><a href="#缓存与持久化机制-checkpoint机制" class="headerlink" title="缓存与持久化机制+checkpoint机制"></a>缓存与持久化机制+checkpoint机制</h2><ul>
-<li><p>Spark Streaming数据流中的数据持久化到内存中</p>
+            <h1 id="ELK-全量日志查询项目"><a href="#ELK-全量日志查询项目" class="headerlink" title="ELK 全量日志查询项目"></a>ELK 全量日志查询项目</h1><h2 id="需求由来"><a href="#需求由来" class="headerlink" title="需求由来"></a>需求由来</h2><pre><code>1. 开发人员不能登录线上服务器查看详细日志，经过运维周转费时费力
+2. 日志散落在多个系统上，难以查找和整合。
+3. 日志数量巨大，查询速度太慢，难以满足需求。
+4. 无法全局掌握项目运行情况
+5. 日志数据查询不够实时
+6. 数据分析人员不会写代码，无法分析统计数据。
+7. .......</code></pre><a id="more"></a>
+
+<h2 id="ELK全量日志查询"><a href="#ELK全量日志查询" class="headerlink" title="ELK全量日志查询"></a>ELK全量日志查询</h2><ul>
+<li><p>Logstash+ElasticSearch+Kibana（分布式日志系统）</p>
 <ul>
-<li>对DStream调用persist()方法，就可以让Spark Streaming自动将该数据流中的所有产生的RDD都持久化到内存中。</li>
-<li>如果要对一个Dstream多次执行操作，那么对DStream持久化是非常有用的。因为多次操作可以共享使用内存中的一份缓存数据。</li>
+<li>Logstash:监控，过滤，收集日志</li>
+<li>Elasticsearch：存储日志，提供查询功能。</li>
+<li>Kibana： 提供web界面，支持查询统计和图表展现。</li>
+<li>filebeat： 轻量级的日志收集工具。</li>
 </ul>
 </li>
-<li><p>对于基于窗口的操作，比如reduceByWindow、reduceByKeyAndWindow,以及基于状态的操作，比如updateStateByKey，默认就隐式开启了持久化机制。即Spark Streaming默认就会将基于窗口创建的DStrean中的数据缓存到内存中，不需要我们手动调用persist()方法。</p>
+</ul>
+<h2 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h2><ul>
+<li>使用filebeat<ul>
+<li>filebeat（1.3）–&gt; logstash(parse) –&gt; es –&gt;kibana –ngix<ul>
+<li>如果logstash出现问题会导致filebeat收集的数据丢失</li>
+</ul>
 </li>
-<li><p>对于通过网络接收数据的输入流，比如socket、Kafka等，默认的持久化级别，是将数据复制一份，以便容错。类似于MEMORY_ONLY_SER_2.</p>
+<li>filebeat(1.3) –&gt; logstash(parse)[loadbalance] –&gt; es –&gt;kibana–mgix<ul>
+<li>filebeat和logstash耦合性太高</li>
+</ul>
 </li>
-<li><p>与RDD不同的是，DStream中默认的持久化级别，统一都是要序列化的。</p></li></ul>
+<li>filebeat(1.3) –&gt; redis –&gt; logstash(parse)–&gt;es–&gt;kibana–ngix<ul>
+<li>里面redis是一个单线程的实例，redis单线程每秒处理能力一般是10W次左右，相对于kafka来说不值得一提，遇到数据量特别巨大情况可能会发生问题。</li>
+</ul>
+</li>
+<li>filebeat –&gt;kafka –&gt;logstash(parse)–es–&gt;kibana –ngix<ul>
+<li>kafka可以水平扩展，使用多分区，支持多线程并行执行。</li>
+<li>在应用端收集日志的话，logstash比较重量级，性能消耗比filebeat大。</li>
+</ul>
+</li>
+<li>filebeat用于日志收集和传输，相比Logstash更加轻量级和易部署，对系统资源开销更小。</li>
+<li>logstash与filebeat来说，支持的数据源更多，且可以对数据进行过滤。</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装部署"><a href="#安装部署" class="headerlink" title="安装部署"></a>安装部署</h2><ul>
+<li><p>filebeat，轻量级日志收集工具，使用go语言开发。</p>
+<ol>
+<li>下载</li>
+<li>解压 tar</li>
+<li>配置filebeat.yml（输入数据源和输出）</li>
+<li>常见命令<ol>
+<li>前台启动： ./filebeat -c filebeat.yml</li>
+<li>后台运行命令： nohup ./filebeat -c filebeat.yml &gt;/dev/null 2&gt;&amp;1 &amp;</li>
+<li>帮助命令: ./filebeat -h</li>
+</ol>
+</li>
+<li>input和output<ol>
+<li>input 通过path指定要监控的数据<ul>
+<li><a href="https://www.elastic.co/guide/en/beats/filebeat/6.4/configuration-filebeat-options.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/beats/filebeat/6.4/configuration-filebeat-options.html</a></li>
+</ul>
+</li>
+<li>output 指定数据输出<ul>
+<li>elasticsearch</li>
+<li>logstash</li>
+<li>redis</li>
+<li>kafka</li>
+<li>file</li>
+<li>console</li>
+<li><a href="https://www.elastic.co/guide/en/beats/filebeat/6.4/configuring-output.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/beats/filebeat/6.4/configuring-output.html</a></li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Logstash 是一个采集日志和事件的工具</p>
+<ol>
+<li>安装jdk</li>
+<li>解压 tar</li>
+<li>使用 bin/logstash -e ‘input { stdin { } } output { stdout {} }’ 测试运行</li>
+<li>使用bin/logsatsh -f 配置文件  来运行</li>
+<li>具体数据源和数据输出参考官网</li>
+</ol>
+</li>
+<li><p>elasticsearch 基于lucene的开源搜索引擎，是一个分布式的搜索分析系统。</p>
+<ol>
+<li>下载 <a href="https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-6.4.3.tar.gz" target="_blank" rel="noopener">https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-6.4.3.tar.gz</a></li>
+<li>解压 tar -zxvf elasticsearch-6.4.3.tar.gz</li>
+<li>启动 bin/elasticsearch</li>
+<li>测试 <a href="http://localhost:9200/" target="_blank" rel="noopener">http://localhost:9200/</a></li>
+</ol>
+</li>
+<li><p>kibana </p>
+<ol>
+<li>下载</li>
+<li>启动 bin/kibana</li>
+<li>测试 <a href="http://localhost:5601" target="_blank" rel="noopener">http://localhost:5601</a></li>
+</ol>
+<h2 id="使用ELK的优点"><a href="#使用ELK的优点" class="headerlink" title="使用ELK的优点"></a>使用ELK的优点</h2><ol>
+<li>Logstash 提供了大量插件，通过配置就可以完成各种不同日志处理需求。</li>
+<li>有统一的查看界面(kibana),减少代码量。</li>
+<li>有助于开发人员分析排查问题。</li>
+</ol>
+</li>
+</ul>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><ol>
+<li><p>logstash的时区问题，logstash中的@timestamp时间比我们当前时间相差8个小时</p>
+<ul>
+<li>原因，默认情况下logstash生成的时间是使用UTC时间，我们是在UTC+8时区。</li>
+<li>解决方案：kibana，在kibana显示的时候会读取浏览器的当前时区，然后在页面上转换时间内容的显示。</li>
+</ul>
+</li>
+<li><p>multiline异常信息整合 </p>
+<ul>
+<li><p>原因： 使用filebeat收集日志会出现一个问题，filebeat默认按行进行日志收集，如果出现一条异常信息占多行，就会把异常信息按行存储。</p>
+</li>
+<li><p>解决方案： 修改filebeat.yml文件</p>
+<ul>
+<li><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mutiline:</span><br><span class="line"><span class="hljs-meta">	#</span> 匹配以20开头以后的信息</span><br><span class="line">	parttern: ^20</span><br><span class="line">	negate: true</span><br><span class="line">	match: after</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/01/22/Spark-Streaming-二/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/ElasicSearch/">ElasicSearch</a>, <a class="has-link-grey -link" href="/tags/Kibana/">Kibana</a>, <a class="has-link-grey -link" href="/tags/Logstash/">Logstash</a>, <a class="has-link-grey -link" href="/tags/大数据/">大数据</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/gallery/aliPay.jpg" alt="支付宝"></div>
+</a>
 
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/gallery/wxPay.jpg" alt="微信"></div>
+</a>
 
-
-
-
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/01/20/Spark-Streaming-一/" class="image is-7by1">
-            <img class="thumbnail" src="https://raw.githubusercontent.com/wangxiaolin123/bigData/master/img/Spark.jpg" alt="Spark Streaming(一)">
-        </a>
+                
+        </div>
     </div>
-    
-    <div class="card-content article ">
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
         
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-20T01:13:08.000Z">2019-01-20</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    28 分钟 读完 (大约 4238 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/01/20/Spark-Streaming-一/">Spark Streaming(一)</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h1><ul>
-<li><p>SparkStreaming是Spark CoreAPI的一种扩展，它可以用于进行大规模、高吞吐量、容错的实时数据流的处理。</p>
-</li>
-<li><p>支持从很多数据源中读取数据，比如Kafka、Flume、Twitter、ZeroMQ、Kinesis或者TCP Socket。</p>
-</li>
-<li><p>可以使用类似高阶函数的复杂算法来进行数据处理，比如map、reduce、join、window。处理后的数据可以被保存到文件系统、数据库、Dashboard等存储中。</p></li></ul>
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/25/数据库三大范式浅析/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">数据库三大范式浅析</span>
+            </a>
         </div>
         
         
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/01/20/Spark-Streaming-一/#more">阅读更多</a>
-                </div>
-            </div>
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/01/22/Spark优化/">
+                <span class="level-item">Spark优化</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
         </div>
-        
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'CNIaUCTekqhuwaIw4DYBECp1-MdYXbMMI',
+        app_key: 'jvTg96TjioRr2zOhuCcj3tam',
+        placeholder: '看了这么久不评价一下吗？'
+    });
+</script>
 
-
-
-
-
+    </div>
+</div>
 </div>
                 
 
@@ -926,7 +1053,7 @@
             <div class="level-start has-text-centered-mobile">
              <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                    <img src="/images/logo.svg" alt="ELK全量日志查询浅析" height="28">
                 
                 </a> 
 						
