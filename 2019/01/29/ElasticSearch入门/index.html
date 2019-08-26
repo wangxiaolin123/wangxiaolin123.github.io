@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html  lang="zh">
+<head>
+    <meta charset="utf-8" />
+
+<meta name="generator" content="Hexo 3.9.0" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>ElasticSearch入门 - 林哥博客 |  菜鸟技术聚集地</title>
+
+
+    <meta name="description" content="ElasticSearchElasticsearch简介及安装部署 ElasticSearch是一个实时的分布式的搜索和分析引擎。它是对lucene进行封装。能够达到实时搜索、稳定可靠、快速等特点。基于REST接口（API）  普通接口请求是…get?a=1 rest接口请求是…get/a/1   ElasticSearch的用户  GitHUb、WiKIpedia、eBay等。">
+<meta name="keywords" content="大数据,ElasticSearch,搜索引擎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElasticSearch入门">
+<meta property="og:url" content="http://iochina.top/2019/01/29/ElasticSearch入门/index.html">
+<meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
+<meta property="og:description" content="ElasticSearchElasticsearch简介及安装部署 ElasticSearch是一个实时的分布式的搜索和分析引擎。它是对lucene进行封装。能够达到实时搜索、稳定可靠、快速等特点。基于REST接口（API）  普通接口请求是…get?a=1 rest接口请求是…get/a/1   ElasticSearch的用户  GitHUb、WiKIpedia、eBay等。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://iochina.top/t_img/elasticsearch.jpg">
+<meta property="og:updated_time" content="2019-08-26T12:55:01.642Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ElasticSearch入门">
+<meta name="twitter:description" content="ElasticSearchElasticsearch简介及安装部署 ElasticSearch是一个实时的分布式的搜索和分析引擎。它是对lucene进行封装。能够达到实时搜索、稳定可靠、快速等特点。基于REST接口（API）  普通接口请求是…get?a=1 rest接口请求是…get/a/1   ElasticSearch的用户  GitHUb、WiKIpedia、eBay等。">
+<meta name="twitter:image" content="http://iochina.top/t_img/elasticsearch.jpg">
+
+
+
+
+
+
+
+<link rel="icon" href="/images/favicon.ico">
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css">
+
+
+    
+    
+    
+    <style>body>.footer,body>.navbar,body>.section{opacity:0}</style>
+    
+
+    
+    
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css">
+    
+
+    
+    
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.css">
+
+
+    
+    
+    
+    
+
+<link rel="stylesheet" href="/css/back-to-top.css">
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+<link rel="stylesheet" href="/css/progressbar.css">
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+    
+    
+    
+
+
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="is-3-column">
+    <nav class="navbar navbar-main">
+    <div class="container">
+        <div class="navbar-brand is-flex-center">
+            <a class="navbar-item navbar-logo" href="/">
+            
+                <img src="/images/logo.svg" alt="ElasticSearch入门" height="28">
+            
+            </a>
+        </div>
+        <div class="navbar-menu">
+            
+            <div class="navbar-start">
+                
+                <a class="navbar-item"
+                href="/">主页</a>
+                
+                <a class="navbar-item"
+                href="/archives">归档</a>
+                
+                <a class="navbar-item"
+                href="/categories">分类</a>
+                
+                <a class="navbar-item"
+                href="/tags">标签</a>
+                
+                <a class="navbar-item"
+                href="/about">关于</a>
+                
+            </div>
+            
+            <div class="navbar-end">
+                
+                    
+                    
+                    <a class="navbar-item" target="_blank" title="My GitHub" href="https://github.com/wangxiaolin123">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                    
+                
+                
+                
+                <a class="navbar-item search" title="搜索" href="javascript:;">
+                    <i class="fas fa-search"></i>
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</nav>
+    
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    
+    <div class="card-image">
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/t_img/elasticsearch.jpg" alt="ElasticSearch入门">
+        </span>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-01-29T12:47:32.000Z">2019-01-29</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    1 小时 读完 (大约 6825 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                ElasticSearch入门
+            
+        </h1>
+        <div class="content">
+            <h1 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h1><h2 id="Elasticsearch简介及安装部署"><a href="#Elasticsearch简介及安装部署" class="headerlink" title="Elasticsearch简介及安装部署"></a>Elasticsearch简介及安装部署</h2><ul>
+<li><p>ElasticSearch是一个实时的分布式的搜索和分析引擎。它是对lucene进行封装。能够达到实时搜索、稳定可靠、快速等特点。基于REST接口（API）</p>
+<ul>
+<li>普通接口请求是…get?a=1</li>
+<li>rest接口请求是…get/a/1</li>
+</ul>
+</li>
+<li><p>ElasticSearch的用户</p>
+<ul>
+<li><p>GitHUb、WiKIpedia、eBay等。</p>
+<a id="more"></a>
+</li>
+</ul>
+</li>
+<li><p>全文检索工具</p>
+<ul>
+<li>Lucene<ul>
+<li>Java的一个开源搜索引擎，在java世界中是标准的全文检索程序，提供了完整的查询引擎和搜索引擎。<a href="http://lucene.apache.org/" target="_blank" rel="noopener">http://lucene.apache.org/</a></li>
+</ul>
+</li>
+<li>solr（solr.4.x solrcloud）<ul>
+<li>solr是一个用java开发的独立的企业级的搜索应用服务器，提供了类时于Web-service的API接口，它是基于Lucene的全文检索服务器。<a href="http://lucene.apache.org/solr/" target="_blank" rel="noopener">http://lucene.apache.org/solr/</a> </li>
+</ul>
+</li>
+<li>ElasticSearch<ul>
+<li>ElasticSearch是一个采用java语言开发的基于Lucene构造的开源的、分布式的搜索引擎，能够实现实时搜索。<a href="http://lucene.apache.org/solr/" target="_blank" rel="noopener">http://lucene.apache.org/solr/</a> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>MySQL和ES区别</p>
+<table>
+<thead>
+<tr>
+<th>MySQL</th>
+<th>elasticsearch</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>database(数据库)</td>
+<td>index(索引库)</td>
+</tr>
+<tr>
+<td>table（表）</td>
+<td>type(类型)</td>
+</tr>
+<tr>
+<td>row(行)</td>
+<td>document(文档)</td>
+</tr>
+<tr>
+<td>column(列)</td>
+<td>field(字段)</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="Elasticsearch的基本操作"><a href="#Elasticsearch的基本操作" class="headerlink" title="Elasticsearch的基本操作"></a>Elasticsearch的基本操作</h2><ul>
+<li><p>curl 命令</p>
+<ul>
+<li>-x 指定http请求的方法 （GET POST PUT DELETE）</li>
+<li>-d 指定要传递的参数</li>
+<li>-H header信息</li>
+</ul>
+</li>
+<li><p>curl 命令简单使用</p>
+<ul>
+<li><p>curl 创建索引库</p>
+<ul>
+<li><code>curl -XPUT &#39;http://hadoop128:9200/test/&#39;</code></li>
+<li>PUT/POST都可以</li>
+</ul>
+</li>
+<li><p>curl 创建索引</p>
+<ul>
+<li><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">curl -H "Content-Type:application/json" </span><br><span class="line">-XPOST http://hadoop128:9200/test/emp/1</span><br><span class="line">-d '&#123;</span><br><span class="line">    "name":"tom",</span><br><span class="line">    "age":25</span><br><span class="line">&#125;'</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意</p>
+<ol>
+<li><p>索引库名称必须小写，不能以[_ - +]开头，也不能包含逗号</p>
+</li>
+<li><p>如果没有明确指定索引数据id，es会自动生成一个随机的ID(仅能使用POST参数) </p>
+<figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -H "Content-Type:application/json" -XPOST http://hadoop128:9200/test/emp/ -d '&#123; "name":"tom", "age":25 &#125;'</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果想要确定我们创建的都是全新的数据</p>
+<ol>
+<li><p>使用随机ID（POST）方式</p>
+</li>
+<li><p>在url后面添加参数</p>
+<p>​    <code>curl -H &quot;Content-Type:application/json&quot; -XPUT http://hadoop128:9200/test/emp/2/_create -d &#39;{ &quot;name&quot;:&quot;tom&quot;, &quot;age&quot;:25 }&#39;</code></p>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>curl 查询索引——GET</p>
+<ul>
+<li>根据id进行查询<ul>
+<li><code>curl -XGET http://hadoop128:9200/test/emp/1?pretty</code></li>
+<li>引号最好加上有时候可以不加，在任意的查询字符串添加pretty（pretty=true的缩写）参数，es可以得到易于识别的json结果</li>
+</ul>
+</li>
+<li>检索文档中的一部分，显示指定字段<ul>
+<li><code>curl -XGET &#39;http://hadoop128:9200/test/emp/1?_source=name&amp;pretty&#39;</code></li>
+</ul>
+</li>
+<li>查询指定索引库的所有数据<ul>
+<li><code>curl -XGET &#39;http://hadoop128:9200/test/emp/_search?pretty&#39;</code> </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>curl 更新</p>
+<ul>
+<li><p>es可以使用put和post对文档进行更新（全部更新），如果指定文档已经存在，则执行更新操作</p>
+<ul>
+<li><code>curl -XPOST -H &quot;Content-Type:application/json&quot; -XPOST http://hadoop128:9200/test/emp/1/ -d &#39;{ &quot;stu&quot;:&quot;ac&quot;, &quot;score&quot;:20 }&#39;</code></li>
+<li>执行更新操作的时候</li>
+</ul>
+<ol>
+<li>es首先将旧的文档标记为删除状态</li>
+<li>添加新文档，此时旧的文档不会立即消失，但是你也无法访问</li>
+<li>ES会在你继续添加更多数据的时候，后台字都清理已经标记为删除状态的文档</li>
+</ol>
+</li>
+<li><p>局部更新，可以添加新字段或更新已经存在的字段（必须使用POST）</p>
+<ul>
+<li><code>curl -XPOST -H &quot;Content-Type:application/json&quot; -XPOST http://hadoop128:9200/test/emp/1/_update -d &#39;{&quot;doc&quot;:{ &quot;stu&quot;:&quot;alice&quot;}}&#39;</code></li>
+<li>doc 为文档</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>ucrl 删除</p>
+<ul>
+<li><code>curl -XDELETE http://hadoop128:9200/test/emp/1</code></li>
+<li>如果文档存在，es会返回200 ok状态码，found属性值为true，_version属性值+1</li>
+<li>如果文档不存在，es会返回404 not found，found属性为false,_version属性值+1，这是内部管理的一部分，保证了我们在多个节点间的不同操作顺序都被正确标记了</li>
+<li>删除一个文档也不会立即生效，它只是被标记成已删除状态。ES会在之后添加大量数据的时候，在后台清理标记为删除状态的内容。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>批量操作-bulk</p>
+<ul>
+<li><p>bulk API可以同时执行多个请求</p>
+</li>
+<li><p>格式</p>
+<ul>
+<li><figure class="highlight javascript hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">action:index/create/update/<span class="hljs-keyword">delete</span></span><br><span class="line">metadata:_index,_type,_id</span><br><span class="line">request body:_source（删除操作不需要）</span><br><span class="line">&#123;<span class="hljs-attr">action</span>:&#123;metadata&#125;&#125;</span><br><span class="line">&#123;request body &#125;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>create和index的区别</p>
+<ul>
+<li>如果数据存在，使用create操作失败，会提示文档已经存在，使用index则可以成功执行。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用文件的方式</p>
+<ul>
+<li><p><code>vi requests</code></p>
+</li>
+<li><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123; "index" : &#123; "_index" : "test1", "_type" : "type1", "_id" : "1" &#125; &#125;</span><br><span class="line">&#123; "field1" : "value1" &#125;</span><br><span class="line"></span><br><span class="line">&#123; "index" : &#123; "_index" : "test1", "_type" : "type1", "_id" : "2" &#125; &#125;</span><br><span class="line">&#123; "field1" : "value1" &#125;</span><br><span class="line"></span><br><span class="line">&#123; "delete" : &#123; "_index" : "test1", "_type" : "type1", "_id" : "2" &#125; &#125;</span><br><span class="line"></span><br><span class="line">&#123; "create" : &#123; "_index" : "test1", "_type" : "type1", "_id" : "3" &#125; &#125;</span><br><span class="line">&#123; "field1" : "value3" &#125;</span><br><span class="line"></span><br><span class="line">&#123; "update" : &#123;"_index" : "test1", "_type" : "type1","_id" : "1" &#125; &#125;</span><br><span class="line">&#123; "doc" : &#123;"field2" : "value2"&#125; &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>curl -XPOST -H &quot;Content-Type:application/json&quot; -XPOST hadoop128:9200/test1/emp/_bulk --data-binary @requests</code></p>
+</li>
+<li><p>bulk 请求可以在URL中声明/_index或者 _index/ _type</p>
+</li>
+<li><p>bulk最大处理多少数据</p>
+<ul>
+<li>bulk会把将要处理的数据载入到内存中，所有数据量是有限制的</li>
+<li>最佳的数据量不是一个确定的数值，它取决于你的硬件、你的文档大小以及复杂性，你的索引以及ES的负载</li>
+<li>一般建议是1000-5000个文档，如果文档很大，可以适当减少队列，大小建议是5-15MB，默认不能超过100M，可以在es的配置文件中修改这个值http.max.content_length:100mb【不建议修改，太大的话bulk也会慢】</li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/modules-http.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/6.4/modules-http.html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Elasticsearch插件介绍"><a href="#Elasticsearch插件介绍" class="headerlink" title="Elasticsearch插件介绍"></a>Elasticsearch插件介绍</h2><ul>
+<li>ElasticSearch Head Plugin<ul>
+<li>很方便对es进行各种操作的客户端</li>
+</ul>
+</li>
+<li>按照步骤参考某度和某歌</li>
+</ul>
+<h2 id="Elasticsearch配置参数详解"><a href="#Elasticsearch配置参数详解" class="headerlink" title="Elasticsearch配置参数详解"></a>Elasticsearch配置参数详解</h2><ul>
+<li><p>elasticsearch.yml</p>
+<ul>
+<li><p>es已经为大多数参数设置合理的默认值</p>
+</li>
+<li><p>这个文件是yml格式文件</p>
+<ol>
+<li><p>属性顶格写，不能有空格</p>
+</li>
+<li><p>缩放一定不能使用tab制表符，只能使用空格</p>
+</li>
+<li><p>属性和值之间的：后面需要空格</p>
+<p>network.host: 192.168.1.4</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>部分参数介绍</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数: 值</th>
+<th>介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cluster.name: my-application</td>
+<td>集群名称，默认是elasticsearch</td>
+</tr>
+<tr>
+<td>node.name: node-1</td>
+<td>节点名称，如不指定 默认字段生成</td>
+</tr>
+<tr>
+<td>path.data: /path/to/data</td>
+<td>es数据存储目录，默认存储在es_home/data目录下</td>
+</tr>
+<tr>
+<td>path.logs: /path/to/logs</td>
+<td>es日志存储目录， 默认存储在es_home/logs目录下</td>
+</tr>
+<tr>
+<td>bootstrap.memory_lock: true</td>
+<td>锁定物理内存地址，防止elasticsearch内存被交换出去，也就是避免es使用swap分区</td>
+</tr>
+<tr>
+<td>network.host: 192.168.0.1</td>
+<td>本机ip，es1.x绑定的是0.0.0.0不需要自己配置，es2.x起默认绑定127.0.0.1，需要修改</td>
+</tr>
+<tr>
+<td>http.port: 9200</td>
+<td>es 服务端口</td>
+</tr>
+<tr>
+<td>discovery.zen.ping.unicast.hosts: [“host1”, “host2”]</td>
+<td>启动新节点，通过这个ip列表发现组件集群</td>
+</tr>
+<tr>
+<td>discovery.zen.minimum_master_nodes:</td>
+<td>防止集群脑裂现象 （九群总节点数量/2）+1</td>
+</tr>
+<tr>
+<td>gateway.recover_after_nodes: 3</td>
+<td>一个集群n个基点启动后，才允许进行数据恢复处理，默认是1</td>
+</tr>
+<tr>
+<td>action.destructive_requires_name: true</td>
+<td>设置是否可以通过正则或_all删除或者关闭索引库，默认true表示必须要显式指定索引库名称，生产环境建议设置为true，删除索引库时必须显式指定，否则可能会误删索引库中的索引库</td>
+</tr>
+</tbody></table>
+<h2 id="Elasticsearch核心概念"><a href="#Elasticsearch核心概念" class="headerlink" title="Elasticsearch核心概念"></a>Elasticsearch核心概念</h2><ul>
+<li>cluster<ul>
+<li>代表一个集群，集群中有多个节点，其中一个为主节点，这个主节点是可以通过选举产生的，主从节点是对于集群内部来说的，从外部看es集群，在逻辑上是个整体，与任何一个节点和通信和与整个集群通信是等价的。</li>
+<li>主节点的职责是负责管理集群状态，包括管理分片的状态和副本的状态，以及节点的发现和删除。</li>
+<li>注意：主节点不负责对数据的增删改查请求进行处理，只负责维护集群相关状态信息。</li>
+</ul>
+</li>
+<li>集群配置（修改conf/elasticsearch,yml）<ul>
+<li>discovery.zen.ping.unicast.hosts: [“host1”, “host2:9300”]</li>
+</ul>
+</li>
+<li>集群状态查看<ul>
+<li><a href="http://hadoop128:9200/_cluster/health?pretty" target="_blank" rel="noopener">http://hadoop128:9200/_cluster/health?pretty</a></li>
+</ul>
+</li>
+<li>shards<ul>
+<li>代表索引分片，es可以把一个完整的索引分成多个分片，这样的好处是可以把一个大的索引水平拆分成多个，分布到不同的节点上。构成分布式搜索，提高性能和吞吐量。</li>
+<li>分片的数量只能在创建索引库时指定，索引库创建后不能更改。<ul>
+<li><code>curl -H &quot;Content-Type:application/json&quot; -XPUT &#39;hadoop128:9200/test2/&#39; -d &#39;{&quot;settings&quot;:{&quot;number_of_shards&quot;:3}}&#39;</code>(此处只能用PUT)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>replicas<ul>
+<li>代表分片的副本，es可以给索引分片设置副本，副本的作用一是提高系统的容错性，当某个节点某个分片损坏或丢失时可以从副本中恢复。二是提高es的查询效率，es会自动对搜索请求进行负责均衡(副本数量可以随时修改)</li>
+<li>可以在创建索引库的时候指定<ul>
+<li><code>curl -XPUT &#39;hadoop128:9200/test/&#39; -d&#39;{&quot;settings&quot;:{&quot;number_of_replicas&quot;:2}}&#39;</code></li>
+</ul>
+</li>
+<li>默认一个分片有一个副本<ul>
+<li>index.number_of_replicas:1</li>
+</ul>
+</li>
+<li>注意：主分片和副本不会存放在一个节点中。</li>
+<li>recovery<ul>
+<li>代表数据恢复或者叫数据重新分布，es在有节点加入或退出时会根据机器的负载对索引分片进行重新分配，挂掉的节点重新启动时也会进行数据恢复。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Elasticsearch-javaapi操作"><a href="#Elasticsearch-javaapi操作" class="headerlink" title="Elasticsearch javaapi操作"></a>Elasticsearch javaapi操作</h2><ul>
+<li><p>添加maven依赖</p>
+<ul>
+<li><figure class="highlight hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.elasticsearch.client&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;transport&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;6.4.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>连接es集群</p>
+<ul>
+<li><p>1 通过TransportClient这个类，指定es集群中其中一台或者多台机器的ip地址和端口</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TransportClient client = <span class="hljs-keyword">new</span> PreBuiltTransportClient(Settings.EMPTY).addTransportAddress(<span class="hljs-keyword">new</span> TransportAddress(InetAddress.getByName(<span class="hljs-string">"host1"</span>), <span class="hljs-number">9300</span>)).addTransportAddress(<span class="hljs-keyword">new</span> TransportAddress(InetAddress.getByName(<span class="hljs-string">"host2"</span>), <span class="hljs-number">9300</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2 添加其他配置</p>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Settings settings = Settings.builder()</span><br><span class="line">    .put(<span class="hljs-string">"cluster.name"</span>, <span class="hljs-string">"myClusterName"</span>) <span class="hljs-comment">//集群名称</span></span><br><span class="line">    .put(<span class="hljs-string">"client.transport.sniff"</span>, <span class="hljs-keyword">true</span>)  <span class="hljs-comment">//打开嗅探，es会自动把集群其他机器ip地址加到客户端</span></span><br><span class="line">    .build();</span><br><span class="line">TransportClient client = <span class="hljs-keyword">new</span> PreBuiltTransportClient(settings).addTransportAddress(<span class="hljs-keyword">new</span> TransportAddress(InetAddress.getByName(<span class="hljs-string">"host1"</span>), <span class="hljs-number">9300</span>)).addTransportAddress(<span class="hljs-keyword">new</span> TransportAddress(InetAddress.getByName(<span class="hljs-string">"host2"</span>), <span class="hljs-number">9300</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3 es-java客户端操作</p>
+<ul>
+<li><p>索引Index（json，map，bean，es helper）</p>
+<ul>
+<li><code>IndexResponse response = client.prepareIndex(&quot;test&quot;, &quot;emp&quot;, &quot;1&quot;).setSource().get()</code> //建立索引</li>
+</ul>
+</li>
+<li><p>查询 Get</p>
+<ul>
+<li><code>GetResponse response = client.prepareGet(&quot;test&quot;, &quot;emp&quot;, &quot;1&quot;).get();</code></li>
+</ul>
+</li>
+<li><p>更新update</p>
+<ul>
+<li><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UpdateResponse response4 = client.prepareUpdate(index, type, <span class="hljs-string">"101"</span>)</span><br><span class="line">        .setDoc(<span class="hljs-string">"&#123;\"age\":180&#125;"</span>, XContentType.JSON)</span><br><span class="line">        .get();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>删除delete</p>
+<ul>
+<li><code>DeleteResponse response5 = client.prepareDelete(index, type, &quot;101&quot;).get();</code></li>
+</ul>
+</li>
+<li><p>批量操作</p>
+<ul>
+<li><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">BulkRequestBuilder bulkRequestBuilder = client.prepareBulk();</span><br><span class="line"> </span><br><span class="line">IndexRequest indexRequest = <span class="hljs-keyword">new</span> IndexRequest(index, type);</span><br><span class="line">indexRequest.source(<span class="hljs-string">"&#123;\"name\":\"zs8888\"&#125;"</span>,XContentType.JSON);</span><br><span class="line"> </span><br><span class="line"><span class="hljs-comment">//  执行批量操作</span></span><br><span class="line">       BulkResponse bulkItemResponses = bulkRequestBuilder.get();</span><br><span class="line">       <span class="hljs-comment">//  因为这一批数据在执行的时候，有可能会有一部分数据执行失败，所以在执行之后可以获取一些失败信息</span></span><br><span class="line">       <span class="hljs-keyword">if</span>(bulkItemResponses.hasFailures())&#123;</span><br><span class="line">           <span class="hljs-comment">//  如果有失败进行，则为true</span></span><br><span class="line">           <span class="hljs-comment">//  获取失败信息</span></span><br><span class="line">           BulkItemResponse[] items = bulkItemResponses.getItems();</span><br><span class="line">           <span class="hljs-keyword">for</span> (BulkItemResponse item: items) &#123;</span><br><span class="line">               <span class="hljs-comment">//  打印具体的失败消息</span></span><br><span class="line">               System.out.println(item.getFailureMessage());</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;<span class="hljs-keyword">else</span>&#123;</span><br><span class="line">           System.out.println(<span class="hljs-string">"全部执行成功!!!"</span>);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>查询类型searchType</p>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>query_then_fetch</td>
+<td>查询是针对所有的块执行的，但是返回的是足够的信息，而不是文档内容（Documnet）。结果会被排序和分级，基于此，只有相关的块的文档对象会被返回。由于被取到的仅仅是这些，故返回的hit的大小正好等于指定的size。这对于有许多块的index来说是很便利的（返回结果不会有重复的。因为块被分组了）。</td>
+</tr>
+<tr>
+<td>query_and_fetch</td>
+<td>最原始(也可能是最快的)实现就是简单的在所有相关的shard上执行检索并返回结果。每个shard返回一定尺寸的结果。由于shard已经返回一定尺寸的hit，这种类型实际上是返回多个shard的一定尺寸的结果给调用者。</td>
+</tr>
+<tr>
+<td>dfs_query_then_fetch</td>
+<td>与query_then_fench相同，预期一个初始散射相伴用来更为准确的score计算分配了的term频率</td>
+</tr>
+<tr>
+<td>dfs_query_and_fetch</td>
+<td>与query_and_fetch相同，预期一个初始散射相伴用来更为准确的score计算分配了的term频率</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>- es搜索有四种
+
+  - query and fetch（速度最快）（返回N倍数据量）
+  - query then fetch (默认的搜索方式)
+  - DFS query and fetch
+  - DFS query then fetch(更精确的控制搜索打分和排名)
+
+- 总结
+
+  - 从性能考虑来说，Query_AND_FETCH 是最快的，DFS_QUERY_THEN_FETCH是最慢的。
+  - 从搜索的准确度来说，DFS要比非DFS的准确度要高。
+
+- 注
+
+  - DFS ，Distributed frequency Scatter，分布式词频率和分布式文档散发的缩写。
+  - 初始化过程：初始化散发就是在进行真正的查询之前，先把各个分片的词频率和文档频率收集一下，然后进行词搜索的时候，各分片依据全局的词频率和文档频率进行搜索和排名。如果使用DFS_QUERY_THEN_FETCH这种查询方式，效率是最低的，因为一个搜索可能要请求3次分片。但是用DFS方法搜索精度应该是最高的。</code></pre><h2 id="Elasticsearch-分词详解-整合ik分词器-自定义词库-热更新词库"><a href="#Elasticsearch-分词详解-整合ik分词器-自定义词库-热更新词库" class="headerlink" title="Elasticsearch 分词详解(整合ik分词器,自定义词库,热更新词库)"></a>Elasticsearch 分词详解(整合ik分词器,自定义词库,热更新词库)</h2><ul>
+<li>es搜索系统的索引结构是倒排索引</li>
+<li>结构（</li>
+<li>单词ID：记录每个单词的单词编号</li>
+<li>单词： 对应单词</li>
+<li>文档频率： 代表文档集合中有多少文档包含某单词</li>
+<li>倒排列表： 包含单词ID以及其他必要信息<ul>
+<li>Docld： 单词出现的文档id</li>
+<li>TF：单词在某个文档中出现的次数</li>
+<li>POS: 单词在文档中出现的位置</li>
+</ul>
+</li>
+<li>）</li>
+</ul>
+<h3 id="分词器"><a href="#分词器" class="headerlink" title="分词器"></a>分词器</h3><ul>
+<li>分词器是把一段文本中的词按一定规则进行切分。对应的是Analyzer类，这是一个抽象类，具体规则是由子类实现的，所以对于不同的语言，要用不同的分词器，不同语言的分词器是不同的。</li>
+<li>在创建索引时会用到分词器，在搜索时也会用到分词器，两个地方要是使用同一个分词器，否则可能会搜索不出结果。</li>
+<li>工作流程<ul>
+<li>1切分关键词</li>
+<li>2去除停用词(a,an,the of，的了 ) <ul>
+<li>英文停用词 <a href="http://www.ranks.nl/stopwords" target="_blank" rel="noopener">http://www.ranks.nl/stopwords</a></li>
+<li>中文停用词 <a href="http://www.ranks.nl/stopwords/chinese-stopwords" target="_blank" rel="noopener">http://www.ranks.nl/stopwords/chinese-stopwords</a></li>
+</ul>
+</li>
+<li>3 对于英文，全部转小写（搜索时不区分大小写）</li>
+</ul>
+</li>
+<li>中文分词有 单词分词，二分分词，词库分词<ul>
+<li>几个重要分词器<ul>
+<li>StandardAnalyzer 单字分词</li>
+<li>ChinessAnalyzer 单字分词</li>
+<li>CJKAnzlyzer 二分分词</li>
+<li>IKAnalyzer 词库分词</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ES中文分词插件-es-ik"><a href="#ES中文分词插件-es-ik" class="headerlink" title="ES中文分词插件 es-ik"></a>ES中文分词插件 es-ik</h3><ul>
+<li>es官方默认分词器 对中文分词效果不理想</li>
+<li>集成ik分词工具<ul>
+<li>下载es的ik插件 <a href="https://github.com/medcl/elasticsearch-analysis-ik/releases" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik/releases</a></li>
+<li>解压到es_home/plugins/ik目录下 unzip</li>
+<li>重启es</li>
+<li>测试分词效果 curl -H “Content-Type: application/json” ‘<a href="http://localhost:9200/test/_analyze?pretty=true&#39;" target="_blank" rel="noopener">http://localhost:9200/test/_analyze?pretty=true&#39;</a> -d ‘{“text”:”我们是中国人”,”tokenizer”:”ik_max_word”}’<ul>
+<li>分词模式：<ul>
+<li>ik_max_word:会将文本做最细颗粒度的拆分，会穷尽各种可能的组合</li>
+<li>ik_smart: 会做最粗粒度的拆分。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>es-ik 自定义词库<ul>
+<li>自定义词库<ul>
+<li>在ik目录下面创建一个custom目录，创建一个my.dic文件,放入不想被切分的词</li>
+<li>编辑config/IKAnalyzer.cfg.xml文件</li>
+<li><code>&lt;entry key=&quot;ext_stopwords&quot;&gt;custom/my.dic&lt;/entry&gt;</code></li>
+<li>重启es</li>
+</ul>
+</li>
+<li>热更新ik词库<ul>
+<li>编辑onfig/IKAnalyzer.cfg.xml文件</li>
+<li><code>&lt;entry key=&quot;remote_ext_dict&quot;&gt;网络位置&lt;/entry&gt;</code></li>
+<li>可以从网络中添加一个文件作为词典如<a href="http://192.168.80.100:8080/hot.dic" target="_blank" rel="noopener">http://192.168.80.100:8080/hot.dic</a></li>
+</ul>
+</li>
+<li>词典文件必须是utf8 无bom的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Elasticsearch-查询详解-置顶查询-高亮-聚合等…"><a href="#Elasticsearch-查询详解-置顶查询-高亮-聚合等…" class="headerlink" title="Elasticsearch 查询详解(置顶查询,高亮,聚合等…)"></a>Elasticsearch 查询详解(置顶查询,高亮,聚合等…)</h2><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">SearchResponse searchResponse = client.prepareSearch(index)</span><br><span class="line"></span><br><span class="line">               .setQuery(QueryBuilders.matchAllQuery()) <span class="hljs-comment">// 查询所有数据</span></span><br><span class="line">               <span class="hljs-comment">//.setQuery(QueryBuilders.matchQuery("name","tom")) // 根据某一列进行模糊查询，不支持通配符</span></span><br><span class="line">              <span class="hljs-comment">// .setQuery(QueryBuilders.multiMatchQuery("tom","name","dada"))// 根据多列进行模糊查询</span></span><br><span class="line">              <span class="hljs-comment">// .setQuery(QueryBuilders.queryStringQuery("name:to*")) //lucene语法，支持*？通配符</span></span><br><span class="line">            <span class="hljs-comment">/*   .setQuery(QueryBuilders.boolQuery()</span></span><br><span class="line"><span class="hljs-comment">               .should(QueryBuilders.matchQuery("name","tom")).boost(5.0f)</span></span><br><span class="line"><span class="hljs-comment">                       .should(QueryBuilders.matchQuery("age",45)).boost(1.0f)</span></span><br><span class="line"><span class="hljs-comment">               )*/</span></span><br><span class="line">               <span class="hljs-comment">// .setQuery(QueryBuilders.termQuery("name","tom"))//默认会分词</span></span><br><span class="line">               <span class="hljs-comment">// 默认索引库分词，termQuery查不到数据</span></span><br><span class="line">               <span class="hljs-comment">//.setQuery(QueryBuilders.queryStringQuery("name:\"tom train\""))</span></span><br><span class="line">               .setSize(<span class="hljs-number">5</span>) <span class="hljs-comment">//一次获取多少条数据，默认10</span></span><br><span class="line">               .setFrom(<span class="hljs-number">0</span>) <span class="hljs-comment">// 表示从哪一条数据开始，默认角标为0</span></span><br><span class="line">               .addSort(<span class="hljs-string">"age"</span>,SortOrder.DESC) <span class="hljs-comment">// 指定字段进行排序</span></span><br><span class="line">               .setPostFilter(QueryBuilders.rangeQuery(<span class="hljs-string">"age"</span>).from(<span class="hljs-number">15</span>).to(<span class="hljs-number">20</span>))<span class="hljs-comment">//对数据进行过滤</span></span><br><span class="line">               .setExplain(<span class="hljs-keyword">true</span>) <span class="hljs-comment">// 根据数据匹配度返回数据</span></span><br><span class="line">               .get();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       SearchHits hits = searchResponse.getHits();</span><br><span class="line">       <span class="hljs-comment">// 获取查询数据的总条数</span></span><br><span class="line">       <span class="hljs-keyword">long</span> totalHits = hits.getTotalHits();</span><br><span class="line">       System.out.println(<span class="hljs-string">"数据总条数"</span>+totalHits);</span><br><span class="line"></span><br><span class="line">       <span class="hljs-keyword">for</span>(SearchHit item:hits)&#123;</span><br><span class="line">           System.out.println(item.getSourceAsString());</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>统计 使用aggregations </p>
+<ul>
+<li>根据字段进行分组统计</li>
+<li>根据字段分组，统计其他字段的值</li>
+<li>size设置为0，会获取所有数据，否则，默认返回前10个分组的数据。</li>
+</ul>
+<figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     * 聚合，aggregation 分组求sum</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> client</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testAggSum</span><span class="hljs-params">(TransportClient client)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        SearchResponse searchResponse = client.prepareSearch(<span class="hljs-string">"test"</span>)<span class="hljs-comment">//   指定索引库信息。可以指定多个，中间用逗号隔开</span></span><br><span class="line">                .setQuery(QueryBuilders.matchAllQuery())<span class="hljs-comment">//  指定查询规则</span></span><br><span class="line">                .addAggregation(AggregationBuilders.terms(<span class="hljs-string">"name_term"</span>).field(<span class="hljs-string">"name.keyword"</span>)<span class="hljs-comment">//默认name是Text类型，这个类型不支持排序，所以需要使用这个字段的keyword类型</span></span><br><span class="line">                        .subAggregation(AggregationBuilders.sum(<span class="hljs-string">"score_sum"</span>).field(<span class="hljs-string">"score"</span>))</span><br><span class="line">                )<span class="hljs-comment">// 指定分组字段和聚合字段信息</span></span><br><span class="line">                .get();</span><br><span class="line">        <span class="hljs-comment">//  获取分组信息</span></span><br><span class="line">        Terms name_term = searchResponse.getAggregations().get(<span class="hljs-string">"name_term"</span>);</span><br><span class="line">        List&lt;? extends Terms.Bucket&gt; buckets = name_term.getBuckets();</span><br><span class="line">        <span class="hljs-keyword">for</span> (Terms.Bucket bk: buckets) &#123;</span><br><span class="line">            <span class="hljs-comment">//  获取分值的和</span></span><br><span class="line">            Sum score_sum = bk.getAggregations().get(<span class="hljs-string">"score_sum"</span>);</span><br><span class="line">            System.out.println(bk.getKey()+<span class="hljs-string">"----"</span>+score_sum.getValue());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="hljs-comment">/**</span></span><br><span class="line"><span class="hljs-comment">     *  统计相同年龄学员的个数</span></span><br><span class="line"><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> client</span></span><br><span class="line"><span class="hljs-comment">     */</span></span><br><span class="line">    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testAggcount</span><span class="hljs-params">(TransportClient client)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        SearchResponse searchResponse = client.prepareSearch(index)</span><br><span class="line">                .setQuery(QueryBuilders.matchAllQuery())</span><br><span class="line">                .addAggregation(AggregationBuilders.terms(<span class="hljs-string">"age_term"</span>).field(<span class="hljs-string">"age"</span>))</span><br><span class="line">                .get();</span><br><span class="line">        Terms age_term = searchResponse.getAggregations().get(<span class="hljs-string">"age_term"</span>);</span><br><span class="line">        List&lt;? extends Terms.Bucket&gt; buckets = age_term.getBuckets();</span><br><span class="line">        <span class="hljs-keyword">for</span> (Terms.Bucket bk:</span><br><span class="line">             buckets) &#123;</span><br><span class="line">            System.out.println(bk.getKey()+<span class="hljs-string">"__"</span>+bk.getDocCount());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="ES-删除索引库"><a href="#ES-删除索引库" class="headerlink" title="ES 删除索引库"></a>ES 删除索引库</h3><ul>
+<li>curl -XDELETE ‘<a href="http://localhost:9200/test&#39;" target="_blank" rel="noopener">http://localhost:9200/test&#39;</a></li>
+<li>transportClient.admin().indices().prepareDelete(“test”).get();</li>
+<li>注意：这样会把索引库及索引库中的所有数据都删掉，慎用。</li>
+</ul>
+<h3 id="ES-分页"><a href="#ES-分页" class="headerlink" title="ES 分页"></a>ES 分页</h3><ul>
+<li>与SQL使用LIMIT来控制单”页“数量类似，Elasticsearch使用的是form以及size两个参数：<ul>
+<li>from：从哪条结果开始，默认值为0</li>
+<li>size：每次返回多少个结果，默认为10</li>
+</ul>
+</li>
+<li>假设每页显示5条结果，1页至3页的请求就是：<ul>
+<li>GET /_search?size=5</li>
+<li>GET /_search?size=5&amp;from=5</li>
+<li>GET /_search?size=5&amp;from=10</li>
+</ul>
+</li>
+<li>注意： 不要一次请求过多或者页码过大的结果，这么做会对服务器造成很大压力。因为它们会在返回前排序。一个请求会经过多个分片。每个分片都会生成自己的排序结果。然后再集中进行整理，以确保最终结果的正确性。</li>
+</ul>
+<h2 id="Elasticsearch的settings和mappings详解"><a href="#Elasticsearch的settings和mappings详解" class="headerlink" title="Elasticsearch的settings和mappings详解"></a>Elasticsearch的settings和mappings详解</h2><ul>
+<li>settings修改索引库默认配置<ul>
+<li>如分片数量、副本数量。</li>
+<li>查看：<code>curl -XGET http://localhost:9200/test/_settings?pretty</code></li>
+<li>操作不存在索引：<code>curl -H &quot;Content-Type: application/json&quot; -XPUT &#39;localhost:9200/test1/&#39; -d&#39;{&quot;settings&quot;:{&quot;number_of_shards&quot;:3,&quot;number_of_replicas&quot;:0}}&#39;</code></li>
+<li>操作已经存在索引：<code>curl -H &quot;Content-Type: application/json&quot; -XPUT &#39;localhost:9200/test1/_settings&#39; -d&#39;{&quot;index&quot;:{&quot;number_of_replicas&quot;:1}}&#39;</code></li>
+</ul>
+</li>
+<li>Mapping,就是对索引库中索引的字段名称以及数据类型进行定义，类似于mysql的表结构信息。不过es的mapping比数据库灵活很多，它可以动态识别字段。一般不需要指定mapping都可以。因为es会自动根据数据格式识别它的类型，如果你需要对某些字段添加特殊属性（定义使用其它分词器、是否分词、是否存储），就必须手动添加mapping。<ul>
+<li>查询索引库的mapping信息<ul>
+<li><code>curl -XGET http://localhost:9200/test/emp/_mapping?pretty</code></li>
+</ul>
+</li>
+<li>指定分词器<ul>
+<li><code>curl -H &quot;Content-Type: application/json&quot; -XPUT &#39;localhost:9200/test2&#39; -d&#39;{&quot;mappings&quot;:{&quot;emp&quot;:{&quot;properties&quot;:{&quot;name&quot;:{&quot;type&quot;:&quot;text&quot;,&quot;analyzer&quot;: &quot;ik_max_word&quot;}}}}}&#39;</code></li>
+</ul>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h2 id="Elasticsearch的分片查询方式"><a href="#Elasticsearch的分片查询方式" class="headerlink" title="Elasticsearch的分片查询方式"></a>Elasticsearch的分片查询方式</h2><ul>
+<li>默认randomize across shards<ul>
+<li>随机读取，表示随机从分片中读取数据。</li>
+</ul>
+</li>
+<li>_local:指查询操作会优先在本地节点有的分片进行查询，没有的话再去其他节点查询。</li>
+<li>_only_local:指查询只会在本地节点有的分片中查询。</li>
+<li>_primary: 指查询只在主分片中查询。</li>
+<li>_replica:指查询只在副本中查询</li>
+<li>_primary_first: 指查询会先在主分片中查询，如果主分片找不到(挂了),再去副本中查询。</li>
+<li>_replica_first: 指查询会先在副本中查询，如果副本找不到了(挂了),就会在主分片中查询。</li>
+<li>_only_node: 指在指定id的节点里面进行查询，如果该节点只要有查询索引的部分分片，就会在这部分分片中查找，所以查询结果可能不完整。</li>
+<li>_only_nodes: 指定多个节点id，查询多个节点的数据。</li>
+<li>_prefer_node:nodeid 优先在指定的节点上查询</li>
+<li>_shards:0,1,2,3：查询指定分片的数据。</li>
+</ul>
+<h2 id="Elasticsearch的脑裂问题分析"><a href="#Elasticsearch的脑裂问题分析" class="headerlink" title="Elasticsearch的脑裂问题分析"></a>Elasticsearch的脑裂问题分析</h2><ul>
+<li>同一个集群中的不同节点对集群的状态有了不一样的理解。</li>
+<li>discovery.zen.minimum_master_nodes<ul>
+<li>用于控制选举行为发生的最小集群节点数量。推荐设为大于1的数值，因为只有在2个以上节点的集群中，主节点才是有意义的。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Elasticsearch扩展之索引模板和索引别名"><a href="#Elasticsearch扩展之索引模板和索引别名" class="headerlink" title="Elasticsearch扩展之索引模板和索引别名"></a>Elasticsearch扩展之索引模板和索引别名</h2><ul>
+<li><p>在实际工作中针对一批大量数据存储的时候需要使用多个索引库，如果手工指定每个索引库的配置信息(settings和mappings)的话就很麻烦了。</p>
+<ul>
+<li><p>创建模板 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/indices-templates.html" target="_blank" rel="noopener">https://www.elastic.co/guide/en/elasticsearch/reference/6.4/indices-templates.html</a></p>
+<ul>
+<li><figure class="highlight shell hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">curl -H "Content-Type: application/json" -XPUT localhost:9200/_template/template_1 -d '</span><br><span class="line">&#123;</span><br><span class="line">    "template" : "*",</span><br><span class="line">    "order" : 0,</span><br><span class="line">    "settings" : &#123;</span><br><span class="line">        "number_of_shards" : 1</span><br><span class="line">    &#125;,</span><br><span class="line">    "mappings" : &#123;</span><br><span class="line">        "type1" : &#123;</span><br><span class="line">            "_source" : &#123; "enabled" : false &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">'</span><br><span class="line">curl -XPUT localhost:9200/_template/template_2 -d '</span><br><span class="line">&#123;</span><br><span class="line">    "template" : "te*",</span><br><span class="line">    "order" : 1,</span><br><span class="line">    "settings" : &#123;</span><br><span class="line">        "number_of_shards" : 1</span><br><span class="line">    &#125;,</span><br><span class="line">    "mappings" : &#123;</span><br><span class="line">        "type1" : &#123;</span><br><span class="line">            "_source" : &#123; "enabled" : true &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">'</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意 order值大的模板内容会覆盖order值小的。</p>
+</li>
+</ul>
+</li>
+<li><p>查看模板： <code>curl -XGET localhost:9200/_template/temp*?pretty</code></p>
+</li>
+<li><p>删除模板： <code>curl -XDELETE localhost:9200/_template/temp_1</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ES扩展之index-alias"><a href="#ES扩展之index-alias" class="headerlink" title="ES扩展之index alias"></a>ES扩展之index alias</h3><ul>
+<li>索引别名的应用场景：</li>
+<li>公司使用es收集应用的运行日志，每个星期创建一个索引库，这样时间长了就会创建很多的索引库，操作和管理的时候很不方便。</li>
+<li>由于新增索引数据只会操作当前这个星期的索引库，所以就创建了两个别名<ul>
+<li>curr_week：这个别名指向这个星期的索引库，新增数据操作这个索引</li>
+<li>last_3_month：这个别名指向最近三个月的所有索引库，因为我们的需求是查询最近三个月的日志信息。后期只需要修改这两个别名和索引库之间的指向关系即可。应用层代码不需要任何改动。<br>还要把三个月以前的索引库close掉，留存最近一年的日志数据，一年以前的数据删除掉。</li>
+</ul>
+</li>
+<li>ES默认对查询的索引的分片总数量有限制，默认是1000个，使用通配符查询多个索引库的时候会这个问题，通过别名可以解决这个问题</li>
+</ul>
+<h2 id="Elasticsearch参数优化"><a href="#Elasticsearch参数优化" class="headerlink" title="Elasticsearch参数优化"></a>Elasticsearch参数优化</h2><h3 id="优化1"><a href="#优化1" class="headerlink" title="优化1"></a>优化1</h3><ol>
+<li><p>解决启动的警告信息</p>
+<ol>
+<li><p>max file descriptors [4096] for elasticsearch process likely too low, consider increasing to at least [65536]</p>
+<ol start="2">
+<li>vi /etc/security/limits.conf 添加下面两行(使用root用户)</li>
+</ol>
+<ul>
+<li>* soft nofile 65536</li>
+<li>* hard nofile 131071</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>修改配置文件调整ES的JVM内存大小</p>
+<ol>
+<li><p>修改bin/elasticsearch.in.sh中ES_MIN_MEM和ES_MAX_MEM的大小，建议设置一样大，避免频繁分配内存，根据服务器内存大小，一般分配60%左右（默认256M）</p>
+</li>
+<li><p>内存最大不要超过32G</p>
+<p>一旦你越过这个神奇的32 GB边界，指针会切换回普通对象指针.。每个指针的大小增加，使用更多的CPU内存带宽。事实上，你使用40~50G的内存和使用32G的内存效果是一样的。</p>
+</li>
+</ol>
+</li>
+<li><p>设置memory_lock来锁定进程的物理内存地址</p>
+<ol>
+<li>避免交换(swapped)，来提高性能<ol start="2">
+<li>修改文件conf/elasticsearch.yml<ol start="3">
+<li>bootstrap.memory_lock:true<ol start="4">
+<li>需要根据es启动日志修改/etc/security/limits.conf文件(重启系统)</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="优化2"><a href="#优化2" class="headerlink" title="优化2"></a>优化2</h3><ol>
+<li><p>分片多的话，可以提升索引的能力，5-20个比较合适</p>
+<ol>
+<li>如果分片数过少或过多，都会导致检索比较慢。<ol start="2">
+<li>分片数过多会导致检索时打开比较多的文件，另外也会导致多台服务器之间大量通讯。<ol start="3">
+<li>而分片数量过少导致单个分片索引过大，所以检索速度也会慢。<ol start="4">
+<li>建议单个分片存储20G左右的索引数据【最高也不要超过50G,否则性能会很差】，所以分片数量=数据总量/20G</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>副本过多的话，可以提升搜索的能力，但是如果设置很多副本的话，也会对服务器造成额外的压力，因为主分片需要给所有副本同步数据。所以建议最多设置1-2个即可。</li>
+</ol>
+<p>查看索引库某个分片占用磁盘空间大小</p>
+<p>​    <code>curl -XGET  &quot;localhost:9200/_cat/segments/test?v&amp;h=shard,segment,size&quot;</code></p>
+</li>
+</ol>
+<h3 id="ES-优化3"><a href="#ES-优化3" class="headerlink" title="ES 优化3"></a>ES 优化3</h3><ul>
+<li>要定时对索引进行合并优化，不然segment越多，占用的segment memory越多，查询的性能也越差<ul>
+<li>索引量不是很大的情况下可以将segment设置为1</li>
+<li>es2.1.0以前调用_optimize接口，后期改为_forcemerge接口</li>
+<li><code>curl -XPOST &#39;http://localhost:9200/test/_forcemerge?max_num_segments=1&#39;</code></li>
+<li><code>client.admin().indices().prepareForceMerge(&quot;test&quot;).setMaxNumSegments(1).get();</code></li>
+<li>索引合并是针对分片的。segment设置为1，则每个分片都有一个索引片段。</li>
+</ul>
+</li>
+<li>针对不使用的index，建议close，减少内存占用。因为之一索引处于open状态，索引库中的segement就会占用内存，close之后就只会占用磁盘空间了。<ul>
+<li><code>curl -XPOST &#39;localhost:9200/test/_close&#39;</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ES-优化4"><a href="#ES-优化4" class="headerlink" title="ES 优化4"></a>ES 优化4</h3><ul>
+<li>删除文档： 在es中删除文档，数据不会马上在硬盘中除去，而是在es索引中产生一个.del的文件，而在检索中这部分数据也会参与检索，es在检索过程会判断是否删除了，如果删除了再过滤掉。这样会降低检索效率。所以可以执行清除删除文档</li>
+<li><code>curl -XPOST &#39;http://localhost:9200/test/_forcemerge?only_expunge_deletes=true&#39;</code></li>
+<li><code>client.admin().indices().prepareForceMerge(&quot;test&quot;).setOnlyExpungeDeletes(true).get();</code></li>
+</ul>
+<h3 id="ES-优化5"><a href="#ES-优化5" class="headerlink" title="ES 优化5"></a>ES 优化5</h3><ul>
+<li>如果在项目开始的时候需要批量入库大量数据的话，建议将副本数设置为0<ul>
+<li>因为es在索引数据的时候，如果有副本存在，数据包也会马上同步到副本中，这样会对es增加压力。可以等索引完成后将副本按需要改回来，这样可以提高索引效率。</li>
+</ul>
+</li>
+</ul>
+<h3 id="ES需要注意的问题"><a href="#ES需要注意的问题" class="headerlink" title="ES需要注意的问题"></a>ES需要注意的问题</h3><p>使用java操作es集群的时候要保证本地使用的es的版本和集群上es的版本保持一致。</p>
+<p>​    es集群的jdk版本不一致可能会导致 org.elasticsearch.transport.RemoteTransportException: Failed to deserialize exception response from stream</p>
+<h2 id="Elasticsearch源码分析"><a href="#Elasticsearch源码分析" class="headerlink" title="Elasticsearch源码分析"></a>Elasticsearch源码分析</h2><ul>
+<li>elasticsearch在建立索引时，根据id或(id，类型)进行hash，得到hash值之后再与该索引的分片数量取模，取模的值即为存入的分片编号。</li>
+<li>可以指定把数据存储到某一个分片中，通过routing参数<ul>
+<li><code>curl -XPOST &#39;localhost:9200/yehua/emp?routing=rout_param&#39; -d &#39;{&quot;name&quot;:&quot;zs&quot;,&quot;age&quot;:20}&#39;</code></li>
+<li>routing（路由参数）</li>
+</ul>
+</li>
+<li>注意： 显著提高查询性能，routing，(急速查询)</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/ElasticSearch/">ElasticSearch</a>, <a class="has-link-grey -link" href="/tags/大数据/">大数据</a>, <a class="has-link-grey -link" href="/tags/搜索引擎/">搜索引擎</a>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/gallery/aliPay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/gallery/wxPay.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/02/26/ELK全量日志查询浅析/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">ELK全量日志查询浅析</span>
+            </a>
+        </div>
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/01/22/Spark优化/">
+                <span class="level-item">Spark优化</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'CNIaUCTekqhuwaIw4DYBECp1-MdYXbMMI',
+        app_key: 'jvTg96TjioRr2zOhuCcj3tam',
+        placeholder: '看了这么久不评价一下吗？'
+    });
+</script>
+
+    </div>
+</div>
+</div>
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <nav class="level">
+            <div class="level-item has-text-centered" style="flex-shrink: 1">
+                <div>
+                    
+                        <img class="image is-128x128 has-mb-6" src="/images/pht.jpg" alt="lin">
+                    
+                    
+                    <p class="is-size-4 is-block">
+                        lin
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-block">
+                        IT菜鸟
+                    </p>
+                    
+                    
+                    <p class="is-size-6 is-flex is-flex-center has-text-grey">
+                        <i class="fas fa-map-marker-alt has-mr-7"></i>
+                        <span>China</span>
+                    </p>
+                    
+                </div>
+            </div>
+        </nav>
+        <nav class="level is-mobile">
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        文章
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        6
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        分类
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        0
+                    </p>
+                </div>
+            </div>
+            <div class="level-item has-text-centered is-marginless">
+                <div>
+                    <p class="heading">
+                        标签
+                    </p>
+                    <p class="title has-text-weight-normal">
+                        9
+                    </p>
+                </div>
+            </div>
+        </nav>
+        <div class="level">
+            <a class="level-item button is-link is-rounded" href="https://github.com/wangxiaolin123" target="_blank">
+                关注我</a>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Github" href="https://github.com/wangxiaolin123">
+                
+                <i class="fab fa-github"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Facebook" href="https://facebook.com">
+                
+                <i class="fab fa-facebook"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Twitter" href="https://twitter.com">
+                
+                <i class="fab fa-twitter"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="Dribbble" href="https://dribbble.com">
+                
+                <i class="fab fa-dribbble"></i>
+                
+            </a>
+            
+            <a class="level-item button is-white is-marginless" target="_blank"
+                title="RSS" href="/">
+                
+                <i class="fas fa-rss"></i>
+                
+            </a>
+            
+        </div>
+        
+    </div>
+</div>
+    
+        
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                分类
+            </h3>
+            <ul class="menu-list">
+            
+            </ul>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            标签云
+        </h3>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a>
+    </div>
+</div>
+
+    
+        
+
+<div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            链接
+        </h3>
+        <ul class="menu-list">
+        
+            <li>
+                <a class="level is-mobile" href="https://fastflink.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Zhao Blog</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">fastflink.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="http://sparkfuns.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">Spark 社区</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">sparkfuns.com</span>
+                    </span>
+                </a>
+            </li>
+        
+            <li>
+                <a class="level is-mobile" href="https://www.zrahh.com" target="_blank">
+                    <span class="level-left">
+                        <span class="level-item">左岸博客</span>
+                    </span>
+                    <span class="level-right">
+                        <span class="level-item tag">www.zrahh.com</span>
+                    </span>
+                </a>
+            </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+
+
+    
+    
+        <div class="column-right-shadow is-hidden-widescreen is-sticky">
+        
+            
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/03/25/数据库三大范式浅析/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/SQL.jpg" alt="数据库三大范式浅析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-25T13:59:05.000Z">2019-03-25</time></div>
+                    <a href="/2019/03/25/数据库三大范式浅析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">数据库三大范式浅析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/26/ELK全量日志查询浅析/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/ELK.jpg" alt="ELK全量日志查询浅析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-26T08:18:18.000Z">2019-02-26</time></div>
+                    <a href="/2019/02/26/ELK全量日志查询浅析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">ELK全量日志查询浅析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/01/29/ElasticSearch入门/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/elasticsearch.jpg" alt="ElasticSearch入门">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-29T12:47:32.000Z">2019-01-29</time></div>
+                    <a href="/2019/01/29/ElasticSearch入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">ElasticSearch入门</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/01/22/Spark优化/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/Spark.jpg" alt="Spark优化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-22T13:57:05.000Z">2019-01-22</time></div>
+                    <a href="/2019/01/22/Spark优化/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark优化</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/01/22/Spark-Streaming-二/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/Spark.jpg" alt="Spark Streaming(二)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-22T01:00:00.000Z">2019-01-22</time></div>
+                    <a href="/2019/01/22/Spark-Streaming-二/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(二)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+        
+            <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ElasicSearch/">
+                        <span class="tag">ElasicSearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ElasticSearch/">
+                        <span class="tag">ElasticSearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kibana/">
+                        <span class="tag">Kibana</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logstash/">
+                        <span class="tag">Logstash</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scala/">
+                        <span class="tag">Scala</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spark/">
+                        <span class="tag">Spark</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spark优化/">
+                        <span class="tag">Spark优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/大数据/">
+                        <span class="tag">大数据</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/搜索引擎/">
+                        <span class="tag">搜索引擎</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        
+        </div>
+    
+</div>
+
+                
+
+
+
+
+<div class="column is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only has-order-3 column-right is-sticky">
+    
+        
+<div class="card widget">
+    <div class="card-content">
+        <h3 class="menu-label">
+            最新文章
+        </h3>
+        
+        <article class="media">
+            
+            <a href="/2019/03/25/数据库三大范式浅析/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/SQL.jpg" alt="数据库三大范式浅析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-25T13:59:05.000Z">2019-03-25</time></div>
+                    <a href="/2019/03/25/数据库三大范式浅析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">数据库三大范式浅析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/02/26/ELK全量日志查询浅析/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/ELK.jpg" alt="ELK全量日志查询浅析">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-26T08:18:18.000Z">2019-02-26</time></div>
+                    <a href="/2019/02/26/ELK全量日志查询浅析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">ELK全量日志查询浅析</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/01/29/ElasticSearch入门/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/elasticsearch.jpg" alt="ElasticSearch入门">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-29T12:47:32.000Z">2019-01-29</time></div>
+                    <a href="/2019/01/29/ElasticSearch入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">ElasticSearch入门</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/01/22/Spark优化/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/Spark.jpg" alt="Spark优化">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-22T13:57:05.000Z">2019-01-22</time></div>
+                    <a href="/2019/01/22/Spark优化/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark优化</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/01/22/Spark-Streaming-二/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/Spark.jpg" alt="Spark Streaming(二)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-22T01:00:00.000Z">2019-01-22</time></div>
+                    <a href="/2019/01/22/Spark-Streaming-二/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark Streaming(二)</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+    </div>
+</div>
+
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+        <h3 class="menu-label">
+            归档
+        </h3>
+        <ul class="menu-list">
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/02/">
+                <span class="level-start">
+                    <span class="level-item">二月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
+            <a class="level is-marginless" href="/archives/2019/01/">
+                <span class="level-start">
+                    <span class="level-item">一月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">4</span>
+                </span>
+            </a>
+        </li>
+        
+        </ul>
+        </div>
+    </div>
+</div>
+    
+        <div class="card widget">
+    <div class="card-content">
+        <div class="menu">
+            <h3 class="menu-label">
+                标签
+            </h3>
+            <div class="field is-grouped is-grouped-multiline">
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ElasicSearch/">
+                        <span class="tag">ElasicSearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/ElasticSearch/">
+                        <span class="tag">ElasticSearch</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Kibana/">
+                        <span class="tag">Kibana</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Logstash/">
+                        <span class="tag">Logstash</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Scala/">
+                        <span class="tag">Scala</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spark/">
+                        <span class="tag">Spark</span>
+                        <span class="tag is-grey">2</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/Spark优化/">
+                        <span class="tag">Spark优化</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/大数据/">
+                        <span class="tag">大数据</span>
+                        <span class="tag is-grey">5</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/搜索引擎/">
+                        <span class="tag">搜索引擎</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+</div>
+
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    <div class="container">
+	
+	
+        <div class="level">
+
+            <div class="level-start has-text-centered-mobile">
+             <a class="footer-logo is-block has-mb-6" href="/">
+                
+                    <img src="/images/logo.svg" alt="ElasticSearch入门" height="28">
+                
+                </a> 
+						
+
+				
+                <p class="is-size-7">
+               &copy; 2019 lin
+			  	  
+							<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277959244'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1277959244%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+							
+			  <br>
+									
+			   
+               <!-- 首先引入统计用的js，然后编写相应的统计代码 -->
+               <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+               访问量<span id="busuanzi_value_site_pv"></span>次  <i class="fa fa-user-md"></i>  访客数<span id="busuanzi_value_site_uv"></span>人
+                </p>
+				 <p class="is-size-7">
+					<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+							<script>
+								var now = new Date(); 
+								function createtime() { 
+									var grt= new Date("1/1/2019 12:00:00");//此处修改你的建站时间或者网站上线时间 
+									now.setTime(now.getTime()+250); 
+									days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+									hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+									if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+									mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+									seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+									snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+									document.getElementById("timeDate").innerHTML = "本站已安全运行 "+dnum+" 天 "; 
+									document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒"; 
+								} 
+								setInterval("createtime()",250);
+							</script>
+				 </p>
+            </div>
+
+			
+            <div class="level-end">
+            
+                <div class="field has-addons is-flex-center-mobile has-mt-5-mobile is-flex-wrap is-flex-middle">
+                
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Creative Commons" href="https://creativecommons.org/">
+                        
+                        <i class="fab fa-creative-commons"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/">
+                        
+                        <i class="fab fa-creative-commons-by"></i>
+                        
+                    </a>
+                </p>
+                
+                <p class="control">
+                    <a class="button is-white is-large" target="_blank" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus">
+                        
+                        <i class="fab fa-github"></i>
+                        
+                    </a>
+                </p>
+                
+                </div>
+            
+            </div>
+				
+			
+        </div>
+		
+
+		
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
+<script>moment.locale("zh-CN");</script>
+
+<script>
+var IcarusThemeSettings = {
+    article: {
+        highlight: {
+            clipboard: true,
+            fold: 'unfolded'
+        }
+    }
+};
+</script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script>
+
+
+
+    
+    
+    
+    <script src="/js/animation.js"></script>
+    
+
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/js/lightgallery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+    
+
+    
+    
+
+<div id="outdated">
+    <h6>Your browser is out-of-date!</h6>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update
+            my browser now </a></p>
+    <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/outdatedbrowser@1.1.5/outdatedbrowser/outdatedbrowser.min.js" defer></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        outdatedBrowser({
+            bgColor: '#f25648',
+            color: '#ffffff',
+            lowerThan: 'flex'
+        });
+    });
+</script>
+
+
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>
