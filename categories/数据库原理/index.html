@@ -175,7 +175,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 0 个字)
+                    3 分钟 读完 (大约 426 个字)
                 </span>
                 
                 
@@ -188,7 +188,37 @@
             
         </h1>
         <div class="content">
-            
+            <ul>
+<li><p>第一范式(1NF):要求数据库表的每一列都是不可分割的原子数据项。</p>
+<ul>
+<li>举例说明：</li>
+<li><img src="/gallery/1nf_1.png" alt="1nf_1"></li>
+<li>上表中“家庭信息”和“学校信息”均不满足原子性的要求，即不满足第一范式，调整如下</li>
+<li><img src="/gallery/1nf_2.png" alt="1nf_2"></li>
+<li>每一列都是不可再分的，符合第一范式</li>
+</ul>
+</li>
+<li><p>第二范式(2NF): 在第一范式的基础上，要求数据库中每个表中的属性必须完全依赖于主键，而不是主键的一部分（针对联合主键）</p>
+<ul>
+<li>举例说明：</li>
+<li><img src="/gallery/2nf_1.png" alt="2nf_1"></li>
+<li>上表中，同一个订单中可能包含不同的产品，因此主键必须是“订单号”和“产品号”组成，但是产品数量、产品折扣、产品价格与“订单号”产品号“都相关，但是订单金额和订单时间仅与订单号相关，与产品号无关，这样就不满足第二范式的要求调整如下</li>
+<li><img src="/gallery/2nf_2.png" alt="2nf_2"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>第三范式(3NF): 在第二范式基础上，任何非主属性不依赖于其它非主属性，确保数据包中的每一列数据和主键直接相关，而不能间接相关。</p>
+<ul>
+<li>举例说明：</li>
+<li><img src="/gallery/3nf_1.png" alt="3nf_1"></li>
+<li>上述所有属性完全依赖于学会，满足第二范式，但是班主任姓别和班主任年龄直接依赖的是班主任姓名，而不是主键学号，调整如下</li>
+<li><img src="/gallery/3nf_2.png" alt="3nf_2"></li>
+<li>可以把班主任姓名改为工号更为合理</li>
+</ul>
+</li>
+</ul>
+
         </div>
         
         
@@ -246,7 +276,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        8
+                        11
                     </p>
                 </div>
             </div>
@@ -266,7 +296,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        11
+                        19
                     </p>
                 </div>
             </div>
@@ -335,7 +365,7 @@
                 <span class="level-item">python</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">4</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库原理/">
@@ -357,7 +387,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Scala/" style="font-size: 10px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 10px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
     </div>
 </div>
 
@@ -435,6 +465,44 @@
         
         <article class="media">
             
+            <a href="/2019/08/27/python基础-接口开发/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/python.jpg" alt="python基础  接口开发">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T12:56:26.000Z">2019-08-27</time></div>
+                    <a href="/2019/08/27/python基础-接口开发/" class="title has-link-black-ter is-size-6 has-text-weight-normal">python基础  接口开发</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/python/">python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/27/python基础-连接数据库/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/python.jpg" alt="python基础 连接数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T11:46:47.000Z">2019-08-27</time></div>
+                    <a href="/2019/08/27/python基础-连接数据库/" class="title has-link-black-ter is-size-6 has-text-weight-normal">python基础 连接数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/python/">python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/27/Python基础—-文件读写模式/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/python.jpg" alt="Python基础— 文件读写模式">
@@ -445,6 +513,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T10:17:12.000Z">2019-08-27</time></div>
                     <a href="/2019/08/27/Python基础—-文件读写模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Python基础— 文件读写模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/python/">python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/03/27/Python基础-执行shell命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/python.jpg" alt="Python基础__执行shell命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-27T11:04:52.000Z">2019-03-27</time></div>
+                    <a href="/2019/03/27/Python基础-执行shell命令/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Python基础__执行shell命令</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/python/">python</a>
                     </p>
@@ -471,63 +558,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/02/26/ELK全量日志查询浅析/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/ELK.jpg" alt="ELK全量日志查询浅析">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-26T08:18:18.000Z">2019-02-26</time></div>
-                    <a href="/2019/02/26/ELK全量日志查询浅析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">ELK全量日志查询浅析</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/01/29/ElasticSearch入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/elasticsearch.jpg" alt="ElasticSearch入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-29T12:47:32.000Z">2019-01-29</time></div>
-                    <a href="/2019/01/29/ElasticSearch入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">ElasticSearch入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/01/22/Spark优化/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/Spark.jpg" alt="Spark优化">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-22T13:57:05.000Z">2019-01-22</time></div>
-                    <a href="/2019/01/22/Spark优化/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark优化</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -546,7 +576,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -557,7 +587,7 @@
                     <span class="level-item">三月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -612,6 +642,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Hive/">
+                        <span class="tag">Hive</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Kibana/">
                         <span class="tag">Kibana</span>
                         <span class="tag is-grey">1</span>
@@ -647,8 +684,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql/">
+                        <span class="tag">mysql</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/python/">
                         <span class="tag">python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/shell交互/">
+                        <span class="tag">shell交互</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -656,7 +707,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/大数据/">
                         <span class="tag">大数据</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -668,8 +719,43 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/数据仓库/">
+                        <span class="tag">数据仓库</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/数据库/">
+                        <span class="tag">数据库</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/数据库原理/">
+                        <span class="tag">数据库原理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/数据库范式/">
+                        <span class="tag">数据库范式</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/文件读写/">
                         <span class="tag">文件读写</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/网络接口/">
+                        <span class="tag">网络接口</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -699,6 +785,44 @@
         
         <article class="media">
             
+            <a href="/2019/08/27/python基础-接口开发/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/python.jpg" alt="python基础  接口开发">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T12:56:26.000Z">2019-08-27</time></div>
+                    <a href="/2019/08/27/python基础-接口开发/" class="title has-link-black-ter is-size-6 has-text-weight-normal">python基础  接口开发</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/python/">python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/08/27/python基础-连接数据库/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/python.jpg" alt="python基础 连接数据库">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T11:46:47.000Z">2019-08-27</time></div>
+                    <a href="/2019/08/27/python基础-连接数据库/" class="title has-link-black-ter is-size-6 has-text-weight-normal">python基础 连接数据库</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/python/">python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/27/Python基础—-文件读写模式/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/python.jpg" alt="Python基础— 文件读写模式">
@@ -709,6 +833,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T10:17:12.000Z">2019-08-27</time></div>
                     <a href="/2019/08/27/Python基础—-文件读写模式/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Python基础— 文件读写模式</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/python/">python</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/03/27/Python基础-执行shell命令/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/python.jpg" alt="Python基础__执行shell命令">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-27T11:04:52.000Z">2019-03-27</time></div>
+                    <a href="/2019/03/27/Python基础-执行shell命令/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Python基础__执行shell命令</a>
                     <p class="is-size-7 is-uppercase">
                         <a class="has-link-grey -link" href="/categories/python/">python</a>
                     </p>
@@ -735,63 +878,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/02/26/ELK全量日志查询浅析/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/ELK.jpg" alt="ELK全量日志查询浅析">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-02-26T08:18:18.000Z">2019-02-26</time></div>
-                    <a href="/2019/02/26/ELK全量日志查询浅析/" class="title has-link-black-ter is-size-6 has-text-weight-normal">ELK全量日志查询浅析</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/01/29/ElasticSearch入门/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/elasticsearch.jpg" alt="ElasticSearch入门">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-29T12:47:32.000Z">2019-01-29</time></div>
-                    <a href="/2019/01/29/ElasticSearch入门/" class="title has-link-black-ter is-size-6 has-text-weight-normal">ElasticSearch入门</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
-            <a href="/2019/01/22/Spark优化/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/Spark.jpg" alt="Spark优化">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-01-22T13:57:05.000Z">2019-01-22</time></div>
-                    <a href="/2019/01/22/Spark优化/" class="title has-link-black-ter is-size-6 has-text-weight-normal">Spark优化</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -810,7 +896,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -821,7 +907,7 @@
                     <span class="level-item">三月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -876,6 +962,13 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/Hive/">
+                        <span class="tag">Hive</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/Kibana/">
                         <span class="tag">Kibana</span>
                         <span class="tag is-grey">1</span>
@@ -911,8 +1004,22 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/mysql/">
+                        <span class="tag">mysql</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/python/">
                         <span class="tag">python</span>
+                        <span class="tag is-grey">4</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/shell交互/">
+                        <span class="tag">shell交互</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
@@ -920,7 +1027,7 @@
                 <div class="control">
                     <a class="tags has-addons" href="/tags/大数据/">
                         <span class="tag">大数据</span>
-                        <span class="tag is-grey">6</span>
+                        <span class="tag is-grey">7</span>
                     </a>
                 </div>
                 
@@ -932,8 +1039,43 @@
                 </div>
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/数据仓库/">
+                        <span class="tag">数据仓库</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/数据库/">
+                        <span class="tag">数据库</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/数据库原理/">
+                        <span class="tag">数据库原理</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/数据库范式/">
+                        <span class="tag">数据库范式</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/文件读写/">
                         <span class="tag">文件读写</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
+                    <a class="tags has-addons" href="/tags/网络接口/">
+                        <span class="tag">网络接口</span>
                         <span class="tag is-grey">1</span>
                     </a>
                 </div>
