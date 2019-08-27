@@ -7,13 +7,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: Spark优化 - 林哥博客 |  菜鸟技术聚集地</title>
+<title>标签: python - 林哥博客 |  菜鸟技术聚集地</title>
 
 
     <meta name="description" content="记录学习技术的点点滴滴">
 <meta property="og:type" content="website">
 <meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:url" content="http://iochina.top/tags/Spark优化/index.html">
+<meta property="og:url" content="http://iochina.top/tags/python/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
 <meta property="og:description" content="记录学习技术的点点滴滴">
 <meta property="og:locale" content="zh-CN">
@@ -146,7 +146,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Spark优化</a></li>
+            <li class="is-active"><a href="#" aria-current="page">python</a></li>
         </ul>
         </nav>
     </div>
@@ -155,8 +155,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/2019/01/22/Spark优化/" class="image is-7by1">
-            <img class="thumbnail" src="/t_img/Spark.jpg" alt="Spark优化">
+        <a href="/2019/08/27/Python基础—-文件读写模式/" class="image is-7by1">
+            <img class="thumbnail" src="/t_img/python.jpg" alt="Python基础— 文件读写模式">
         </a>
     </div>
     
@@ -164,13 +164,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-22T13:57:05.000Z">2019-01-22</time>
+                <time class="level-item has-text-grey" datetime="2019-08-27T10:17:12.000Z">2019-08-27</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/python/">python</a>
+                </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 186 个字)
+                    2 分钟 读完 (大约 269 个字)
                 </span>
                 
                 
@@ -179,25 +183,12 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/01/22/Spark优化/">Spark优化</a>
+                <a class="has-link-black-ter" href="/2019/08/27/Python基础—-文件读写模式/">Python基础— 文件读写模式</a>
             
         </h1>
         <div class="content">
-            <h1 id="Spark-性能优化分析"><a href="#Spark-性能优化分析" class="headerlink" title="Spark 性能优化分析"></a>Spark 性能优化分析</h1><ul>
-<li>Spark的性能优化，主要手段包括<ol>
-<li>使用高性能序列化类库，如使用kryo来代替java序列化</li>
-<li>优化数据结构（算子函数内部使用到的局部数据或者算子函数外部的数据都可以进行数据结构的优化，优化以后，都会减少对内存的消耗和占用。）</li>
-<li>对多次使用的RDD进行持久化/Checkpoint，避免后面使用需要重复计算，降低性能</li>
-<li>使用序列化的持久化级别</li>
-<li>Java虚拟机垃圾回收优化</li>
-<li>提高并行度</li>
-<li>广播共享数据</li>
-<li>数据本地化</li>
-<li>reduceByKey和groupByKey的适当使用</li>
-<li>Shuffle调优</li>
-</ol>
-</li>
-</ul>
+            <h1 id="Python2-7-文件读写模式简单介绍"><a href="#Python2-7-文件读写模式简单介绍" class="headerlink" title="Python2.7 文件读写模式简单介绍"></a>Python2.7 文件读写模式简单介绍</h1><figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># coding=utf8</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-comment"># python 不换行2.x 句尾加, 3.x 添加end=''</span></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">funcFileMode</span><span class="hljs-params">(mode=<span class="hljs-string">'r'</span>,file=<span class="hljs-string">'G:/test1.txt'</span>)</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    # r 只读 如果文件不存在则报错</span></span><br><span class="line"><span class="hljs-string">    mode = 'r'</span></span><br><span class="line"><span class="hljs-string">    with open(file,mode) as wo:</span></span><br><span class="line"><span class="hljs-string">        for line in wo:</span></span><br><span class="line"><span class="hljs-string">            print (line.strip())</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    # r+ 可读可写 ，若文件不存在，即报错，写入时采用添加</span></span><br><span class="line"><span class="hljs-string">    mode = 'r+'</span></span><br><span class="line"><span class="hljs-string">    with open(file,mode) as wo1:</span></span><br><span class="line"><span class="hljs-string">        for line in wo1:</span></span><br><span class="line"><span class="hljs-string">            print (line.strip())</span></span><br><span class="line"><span class="hljs-string">        wo1.write("new world ")</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    # w 可写，若文件不存在，即报错，写入时采用覆盖</span></span><br><span class="line"><span class="hljs-string">    mode = 'w'</span></span><br><span class="line"><span class="hljs-string">    with open(file,mode) as wo2:</span></span><br><span class="line"><span class="hljs-string">        wo2.write("new world ")</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    # w+ 可写不可读，若文件不存在，即创建，写入时采用覆盖</span></span><br><span class="line"><span class="hljs-string">    mode = 'w+'</span></span><br><span class="line"><span class="hljs-string">    with open(file,mode) as wo3:</span></span><br><span class="line"><span class="hljs-string">        wo3.write("new world ")</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    # a 可写不可读，若文件不存在，即创建，写入时采用追加</span></span><br><span class="line"><span class="hljs-string">    mode = 'a'</span></span><br><span class="line"><span class="hljs-string">    with open(file,mode) as wo4:</span></span><br><span class="line"><span class="hljs-string">        wo4.write("new world ")</span></span><br><span class="line"><span class="hljs-string"></span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    <span class="hljs-comment"># a+ 可写可读，若文件不存在，即创建，写入时采用追加</span></span><br><span class="line">    mode = <span class="hljs-string">'a+'</span></span><br><span class="line">    <span class="hljs-keyword">with</span> open(file,mode) <span class="hljs-keyword">as</span> wo5:</span><br><span class="line">        wo5.write(<span class="hljs-string">"new world "</span>)</span><br><span class="line">        <span class="hljs-comment"># 设置文件指针指向文件首</span></span><br><span class="line">        wo5.seek(<span class="hljs-number">0</span>)</span><br><span class="line">        <span class="hljs-keyword">print</span> wo5.read()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span> :</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   funcFileMode()</span><br></pre></td></tr></table></figure>
+
 
         </div>
         
