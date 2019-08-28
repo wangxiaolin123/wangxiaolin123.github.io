@@ -7,23 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Python基础__执行shell命令 - 林哥博客 |  菜鸟技术聚集地</title>
+<title>impala - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="Python 执行shell命令 导入os，commands库 os.system(‘java -version’)返回执行结果。0或其他 (status,output) = commands.getstatusoutput(‘java -version’) 返回状态值和输出值。 与用户交互： python获取用户输入参数 python a.py x y z import sys,os sys.a">
-<meta name="keywords" content="python,shell交互">
+    <meta name="description" content="Impala impala是参照谷歌新三篇论文Dremel的开源实现。Impala是Cloudera公司主导开发并开源。基于Hive并使用内存进行计算，兼顾数据仓库，具有实时、批处理、多并发等优点。是使用CDH的首选PB级大数据实时查询(OLAP)分析引擎。有测试表明，Impala的性能较Hive提高了3~90倍。">
+<meta name="keywords" content="大数据,impala,数据仓库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python基础__执行shell命令">
-<meta property="og:url" content="http://iochina.top/2019/03/27/Python基础-执行shell命令/index.html">
+<meta property="og:title" content="impala">
+<meta property="og:url" content="http://iochina.top/2019/08/28/impala/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="Python 执行shell命令 导入os，commands库 os.system(‘java -version’)返回执行结果。0或其他 (status,output) = commands.getstatusoutput(‘java -version’) 返回状态值和输出值。 与用户交互： python获取用户输入参数 python a.py x y z import sys,os sys.a">
+<meta property="og:description" content="Impala impala是参照谷歌新三篇论文Dremel的开源实现。Impala是Cloudera公司主导开发并开源。基于Hive并使用内存进行计算，兼顾数据仓库，具有实时、批处理、多并发等优点。是使用CDH的首选PB级大数据实时查询(OLAP)分析引擎。有测试表明，Impala的性能较Hive提高了3~90倍。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iochina.top/t_img/python.jpg">
-<meta property="og:updated_time" content="2019-08-27T11:28:56.698Z">
+<meta property="og:image" content="http://iochina.top/t_img/impala.jpg">
+<meta property="og:updated_time" content="2019-08-28T07:33:37.518Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python基础__执行shell命令">
-<meta name="twitter:description" content="Python 执行shell命令 导入os，commands库 os.system(‘java -version’)返回执行结果。0或其他 (status,output) = commands.getstatusoutput(‘java -version’) 返回状态值和输出值。 与用户交互： python获取用户输入参数 python a.py x y z import sys,os sys.a">
-<meta name="twitter:image" content="http://iochina.top/t_img/python.jpg">
+<meta name="twitter:title" content="impala">
+<meta name="twitter:description" content="Impala impala是参照谷歌新三篇论文Dremel的开源实现。Impala是Cloudera公司主导开发并开源。基于Hive并使用内存进行计算，兼顾数据仓库，具有实时、批处理、多并发等优点。是使用CDH的首选PB级大数据实时查询(OLAP)分析引擎。有测试表明，Impala的性能较Hive提高了3~90倍。">
+<meta name="twitter:image" content="http://iochina.top/t_img/impala.jpg">
 
 
 
@@ -93,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Python基础__执行shell命令" height="28">
+                <img src="/images/logo.svg" alt="impala" height="28">
             
             </a>
         </div>
@@ -147,7 +147,7 @@
     
     <div class="card-image">
         <span  class="image is-7by1">
-            <img class="thumbnail" src="/t_img/python.jpg" alt="Python基础__执行shell命令">
+            <img class="thumbnail" src="/t_img/impala.jpg" alt="impala">
         </span>
     </div>
     
@@ -155,17 +155,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-27T11:04:52.000Z">2019-03-27</time>
+                <time class="level-item has-text-grey" datetime="2019-08-28T06:59:23.000Z">2019-08-28</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/python/">python</a>
+                <a class="has-link-grey -link" href="/categories/impala/">impala</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 274 个字)
+                    4 分钟 读完 (大约 661 个字)
                 </span>
                 
                 
@@ -174,29 +174,77 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Python基础__执行shell命令
+                impala
             
         </h1>
         <div class="content">
-            <h1 id="Python-执行shell命令"><a href="#Python-执行shell命令" class="headerlink" title="Python 执行shell命令"></a>Python 执行shell命令</h1><ul>
-<li>导入os，commands库<ul>
-<li>os.system(‘java -version’)返回执行结果。0或其他</li>
-<li>(status,output) = commands.getstatusoutput(‘java -version’) 返回状态值和输出值。<ul>
-<li>与用户交互：</li>
-<li>python获取用户输入参数 python a.py x y z</li>
-<li>import sys,os</li>
-<li>sys.argv[0]:a.py,依次取值。len(sys.argv)判断用户输入个数</li>
-<li>os_exit(0)程序退出，以及退出值，在linux用$?获取。</li>
-<li>代码如下</li>
-</ul>
-</li>
-</ul>
-</li>
+            <h1 id="Impala"><a href="#Impala" class="headerlink" title="Impala"></a>Impala</h1><ul>
+<li>impala是参照谷歌新三篇论文Dremel的开源实现。Impala是Cloudera公司主导开发并开源。基于Hive并使用内存进行计算，兼顾数据仓库，具有实时、批处理、多并发等优点。是使用CDH的首选PB级大数据实时查询(OLAP)分析引擎。有测试表明，Impala的性能较Hive提高了3~90倍。</li>
 </ul>
 <a id="more"></a>
 
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># coding=utf8</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> os,commands</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">python 操作shell命令</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    返回命令执行的状态码，无法获取命令执行输出结构</span></span><br><span class="line"><span class="hljs-string">    :return:</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    res = os.system(<span class="hljs-string">'java -version'</span>)</span><br><span class="line">    print(res)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func2</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    使用commands也可以执行命令</span></span><br><span class="line"><span class="hljs-string">    并且可以获取到命令的执行状态码和执行中输出的结果</span></span><br><span class="line"><span class="hljs-string">    status：状态码</span></span><br><span class="line"><span class="hljs-string">    output：输出内容</span></span><br><span class="line"><span class="hljs-string">    :return:</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    (status,output) = commands.getstatusoutput(<span class="hljs-string">'java -version'</span>)</span><br><span class="line">    print(output,status)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func3</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-comment"># len 可以返回集合中元素的个数</span></span><br><span class="line">    print(len(sys.argv))</span><br><span class="line">    <span class="hljs-comment"># 获取集合中第一个元素</span></span><br><span class="line">    print(sys.argv[<span class="hljs-number">0</span>])</span><br><span class="line">    <span class="hljs-comment"># os._exit(1) 结束程序，返回指定的状态码</span></span><br><span class="line">    <span class="hljs-keyword">if</span> len(sys.argv) == <span class="hljs-number">3</span>:</span><br><span class="line">        print(sys.argv[<span class="hljs-number">1</span>])</span><br><span class="line">        print(sys.argv[<span class="hljs-number">2</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    <span class="hljs-comment">#func()</span></span><br><span class="line">    func2()</span><br></pre></td></tr></table></figure>
-
+<h1 id="Impala与hive"><a href="#Impala与hive" class="headerlink" title="Impala与hive"></a>Impala与hive</h1><ul>
+<li>impala和hive的关系<ul>
+<li>impala是基于Hive的大数据实时分析查询引擎，直接使用Hive的元数据库Metadata，意味着impala元数据都存储在Hive的metastore中。并且impala兼容Hive的sql解析，实现了Hive的SQL语义的子集，功能还在不断完善中。</li>
+<li>直接选用impala代替hive，是因为impala快<ol>
+<li>基于内存计算，能够对PB级数据进行交互式实时查询、分析。</li>
+<li>摒弃了MR计算改用C++编写，有针对性的硬件优化，例如使用SSE指令。</li>
+<li>兼容HiveSQL，无缝迁移。</li>
+<li>通过使用LLVM来统一编译运行时代码，避免为了支持通用编译而带来的不必要的开销。</li>
+<li>支持sql92标准，并且有自己的解析器和优化器。</li>
+<li>具有数据仓库的特性，对hive原有数据做数据分析。</li>
+<li>使用了支持Data locality的/O调度机制。</li>
+<li>支持列式存储。</li>
+<li>支持jdbc/odbc远程访问。</li>
+</ol>
+<ul>
+<li>impala不足</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>基于内存进行计算，对内存依赖性较大</li>
+<li>改用C++编写，以为着对C++普通用户不可见。</li>
+<li>基于Hive，与Hive共存亡。</li>
+<li>实践中impala的分区超过一万，性能严重下降，容易出现问题。</li>
+<li>稳定性不如Hive</li>
+</ol>
+</li>
+</ul>
+<h1 id="Impala架构"><a href="#Impala架构" class="headerlink" title="Impala架构"></a>Impala架构</h1><ul>
+<li>三大进程<ul>
+<li>impalad</li>
+<li>statestored</li>
+<li>catalogd<ul>
+<li>impala daemon（服务名称 impalad） -N个实例</li>
+<li>接收client、hue、jdbc或odbc请求、query执行返回给中心协调节点。</li>
+<li>子节点上的守护进程，负责向statestore保持通信，汇报工作。</li>
+<li>Statestore daemon (服务名称statestored) -1个实例</li>
+<li>负责收集分布在集群中各个impalad进程的资源信息，各个节点健康状况、同步节点信息</li>
+<li>负责query的调度</li>
+<li>对于一个正常运转的集群，并不是一个关键进程。</li>
+<li>Catalog daemon（服务名称catalogd） - 1个实例</li>
+<li>把impala表的metadata分发到各个impalad中</li>
+<li>接收来自statestore的所有请求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Impala监控"><a href="#Impala监控" class="headerlink" title="Impala监控"></a>Impala监控</h1><ul>
+<li><p>查看catalog：</p>
+<ul>
+<li><a href="http://host:25020/" target="_blank" rel="noopener">http://host:25020/</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>查看stastore：</p>
+<ul>
+<li><a href="http://host:25010/" target="_blank" rel="noopener">http://host:25010/</a></li>
+</ul>
+</li>
+</ul>
 
         </div>
         
@@ -204,7 +252,7 @@
             <div class="level-start">
                 <div class="level-item">
                     <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/python/">python</a>, <a class="has-link-grey -link" href="/tags/shell交互/">shell交互</a>
+                    <a class="has-link-grey -link" href="/tags/impala/">impala</a>, <a class="has-link-grey -link" href="/tags/大数据/">大数据</a>, <a class="has-link-grey -link" href="/tags/数据仓库/">数据仓库</a>
                 </div>
             </div>
         </div>
@@ -255,16 +303,16 @@
     <div class="level post-navigation is-flex-wrap is-mobile">
         
         <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/27/Python基础—-文件读写模式/">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/28/zookeeper介绍/">
                 <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Python基础— 文件读写模式</span>
+                <span class="level-item">zookeeper介绍</span>
             </a>
         </div>
         
         
         <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/25/数据库三大范式浅析/">
-                <span class="level-item">数据库三大范式浅析</span>
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/27/python基础-接口开发/">
+                <span class="level-item">python基础  接口开发</span>
                 <i class="level-item fas fa-chevron-right"></i>
             </a>
         </div>
@@ -1219,7 +1267,7 @@
             <div class="level-start has-text-centered-mobile">
              <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Python基础__执行shell命令" height="28">
+                    <img src="/images/logo.svg" alt="impala" height="28">
                 
                 </a> 
 						

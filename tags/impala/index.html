@@ -7,23 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Python基础__执行shell命令 - 林哥博客 |  菜鸟技术聚集地</title>
+<title>标签: impala - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="Python 执行shell命令 导入os，commands库 os.system(‘java -version’)返回执行结果。0或其他 (status,output) = commands.getstatusoutput(‘java -version’) 返回状态值和输出值。 与用户交互： python获取用户输入参数 python a.py x y z import sys,os sys.a">
-<meta name="keywords" content="python,shell交互">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Python基础__执行shell命令">
-<meta property="og:url" content="http://iochina.top/2019/03/27/Python基础-执行shell命令/index.html">
+    <meta name="description" content="记录学习技术的点点滴滴">
+<meta property="og:type" content="website">
+<meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
+<meta property="og:url" content="http://iochina.top/tags/impala/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="Python 执行shell命令 导入os，commands库 os.system(‘java -version’)返回执行结果。0或其他 (status,output) = commands.getstatusoutput(‘java -version’) 返回状态值和输出值。 与用户交互： python获取用户输入参数 python a.py x y z import sys,os sys.a">
+<meta property="og:description" content="记录学习技术的点点滴滴">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iochina.top/t_img/python.jpg">
-<meta property="og:updated_time" content="2019-08-27T11:28:56.698Z">
+<meta property="og:image" content="http://iochina.top/images/og_image.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python基础__执行shell命令">
-<meta name="twitter:description" content="Python 执行shell命令 导入os，commands库 os.system(‘java -version’)返回执行结果。0或其他 (status,output) = commands.getstatusoutput(‘java -version’) 返回状态值和输出值。 与用户交互： python获取用户输入参数 python a.py x y z import sys,os sys.a">
-<meta name="twitter:image" content="http://iochina.top/t_img/python.jpg">
+<meta name="twitter:title" content="林哥博客 |  菜鸟技术聚集地">
+<meta name="twitter:description" content="记录学习技术的点点滴滴">
+<meta name="twitter:image" content="http://iochina.top/images/og_image.png">
 
 
 
@@ -93,7 +91,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Python基础__执行shell命令" height="28">
+                <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
             
             </a>
         </div>
@@ -144,28 +142,39 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">impala</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-image">
-        <span  class="image is-7by1">
-            <img class="thumbnail" src="/t_img/python.jpg" alt="Python基础__执行shell命令">
-        </span>
+        <a href="/2019/08/28/impala/" class="image is-7by1">
+            <img class="thumbnail" src="/t_img/impala.jpg" alt="impala">
+        </a>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-27T11:04:52.000Z">2019-03-27</time>
+                <time class="level-item has-text-grey" datetime="2019-08-28T06:59:23.000Z">2019-08-28</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/python/">python</a>
+                <a class="has-link-grey -link" href="/categories/impala/">impala</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    2 分钟 读完 (大约 274 个字)
+                    4 分钟 读完 (大约 661 个字)
                 </span>
                 
                 
@@ -174,126 +183,35 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Python基础__执行shell命令
+                <a class="has-link-black-ter" href="/2019/08/28/impala/">impala</a>
             
         </h1>
         <div class="content">
-            <h1 id="Python-执行shell命令"><a href="#Python-执行shell命令" class="headerlink" title="Python 执行shell命令"></a>Python 执行shell命令</h1><ul>
-<li>导入os，commands库<ul>
-<li>os.system(‘java -version’)返回执行结果。0或其他</li>
-<li>(status,output) = commands.getstatusoutput(‘java -version’) 返回状态值和输出值。<ul>
-<li>与用户交互：</li>
-<li>python获取用户输入参数 python a.py x y z</li>
-<li>import sys,os</li>
-<li>sys.argv[0]:a.py,依次取值。len(sys.argv)判断用户输入个数</li>
-<li>os_exit(0)程序退出，以及退出值，在linux用$?获取。</li>
-<li>代码如下</li>
+            <h1 id="Impala"><a href="#Impala" class="headerlink" title="Impala"></a>Impala</h1><ul>
+<li>impala是参照谷歌新三篇论文Dremel的开源实现。Impala是Cloudera公司主导开发并开源。基于Hive并使用内存进行计算，兼顾数据仓库，具有实时、批处理、多并发等优点。是使用CDH的首选PB级大数据实时查询(OLAP)分析引擎。有测试表明，Impala的性能较Hive提高了3~90倍。</li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<a id="more"></a>
-
-<figure class="highlight python hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment"># coding=utf8</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">import</span> os,commands</span><br><span class="line"></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">python 操作shell命令</span></span><br><span class="line"><span class="hljs-string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">'''</span></span><br><span class="line"><span class="hljs-string">    返回命令执行的状态码，无法获取命令执行输出结构</span></span><br><span class="line"><span class="hljs-string">    :return:</span></span><br><span class="line"><span class="hljs-string">    '''</span></span><br><span class="line">    res = os.system(<span class="hljs-string">'java -version'</span>)</span><br><span class="line">    print(res)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func2</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-string">"""</span></span><br><span class="line"><span class="hljs-string">    使用commands也可以执行命令</span></span><br><span class="line"><span class="hljs-string">    并且可以获取到命令的执行状态码和执行中输出的结果</span></span><br><span class="line"><span class="hljs-string">    status：状态码</span></span><br><span class="line"><span class="hljs-string">    output：输出内容</span></span><br><span class="line"><span class="hljs-string">    :return:</span></span><br><span class="line"><span class="hljs-string">    """</span></span><br><span class="line">    (status,output) = commands.getstatusoutput(<span class="hljs-string">'java -version'</span>)</span><br><span class="line">    print(output,status)</span><br><span class="line"></span><br><span class="line"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">func3</span><span class="hljs-params">()</span>:</span></span><br><span class="line">    <span class="hljs-comment"># len 可以返回集合中元素的个数</span></span><br><span class="line">    print(len(sys.argv))</span><br><span class="line">    <span class="hljs-comment"># 获取集合中第一个元素</span></span><br><span class="line">    print(sys.argv[<span class="hljs-number">0</span>])</span><br><span class="line">    <span class="hljs-comment"># os._exit(1) 结束程序，返回指定的状态码</span></span><br><span class="line">    <span class="hljs-keyword">if</span> len(sys.argv) == <span class="hljs-number">3</span>:</span><br><span class="line">        print(sys.argv[<span class="hljs-number">1</span>])</span><br><span class="line">        print(sys.argv[<span class="hljs-number">2</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">'__main__'</span>:</span><br><span class="line">    <span class="hljs-comment">#func()</span></span><br><span class="line">    func2()</span><br></pre></td></tr></table></figure>
-
-
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/python/">python</a>, <a class="has-link-grey -link" href="/tags/shell交互/">shell交互</a>
+                <a class="button is-size-7 is-light" href="/2019/08/28/impala/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
-        
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？给作者买个糖果吧(✿◕‿◕✿)</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/aliPay.jpg" alt="支付宝"></div>
-</a>
-
-                
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/wxPay.jpg" alt="微信"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/27/Python基础—-文件读写模式/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">Python基础— 文件读写模式</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/03/25/数据库三大范式浅析/">
-                <span class="level-item">数据库三大范式浅析</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="valine-thread" class="content"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-<script>
-    new Valine({
-        el: '#valine-thread' ,
-        notify: false,
-        verify: false,
-        app_id: 'CNIaUCTekqhuwaIw4DYBECp1-MdYXbMMI',
-        app_key: 'jvTg96TjioRr2zOhuCcj3tam',
-        placeholder: '看了这么久不评价一下吗？'
-    });
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -1219,7 +1137,7 @@
             <div class="level-start has-text-centered-mobile">
              <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Python基础__执行shell命令" height="28">
+                    <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
                 
                 </a> 
 						
