@@ -522,7 +522,7 @@
     
     <div class="card-image">
         <a href="/2019/01/10/数据仓库Hive浅析/" class="image is-7by1">
-            <img class="thumbnail" src="/t_img/default.jpg" alt="数据仓库Hive浅析">
+            <img class="thumbnail" src="/t_img/hive.jpg" alt="数据仓库Hive浅析">
         </a>
     </div>
     
@@ -536,7 +536,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    1 分钟 读完 (大约 181 个字)
+                    6 分钟 读完 (大约 878 个字)
                 </span>
                 
                 
@@ -550,7 +550,8 @@
         </h1>
         <div class="content">
             <ul>
-<li>数据加载到数据库的两种模式<ul>
+<li><p>数据加载到数据库的两种模式</p>
+<ul>
 <li>写模式<ul>
 <li>数据在加载的时候对数据合法性进行校验，库中的数据是合乎规范的，有利于快速查询和快速处理。</li>
 <li>Mysql就是用的这种模式</li>
@@ -559,6 +560,141 @@
 <li>读模式<ul>
 <li>在数据读取的时候对数据合法性进行校验，在加载入库的时候不校验。加载速度非常快，适合大量数据的一次性加载。</li>
 <li>Hive是读模式。当上传文件到表中，Hive不会对表中的数据进行校验，对于错误的数据格式查询的时候也不会报错，只是会显示为NULL。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>数据库和数据仓库的区别</p>
+<ul>
+<li>数据库是面向事务处理的。是为捕获数据而设计的。一般存储的是实时的数据。</li>
+<li>数据仓库是面向主题设计的。是为分析数据设计的。存储的是历史的数据。将多个不同数据源的数据整理成统一的标准化数据。数据仓库里面的数据相对文档，数据仓库中的数据一般面向决策，主要面对的是查询和更新，修改和删除操作很少。</li>
+</ul>
+</li>
+<li><p>Hive文件的格式</p>
+<ul>
+<li>TextFile<ul>
+<li>hive默认存储格式</li>
+<li>存储方式为：行存储</li>
+<li>磁盘开销大，数据解析开销大</li>
+<li>压缩的text文件hive无法进行合并和拆分</li>
+</ul>
+</li>
+<li>SequenceFile<ul>
+<li>二进制文件，以k-v形式序列化到文件中</li>
+<li>存储方式： 行存储</li>
+<li>可以分割，支持压缩</li>
+<li>一般选择block压缩</li>
+</ul>
+</li>
+<li>RCFile<ul>
+<li>存储方式：数据按行分块，按列存储</li>
+<li>压缩快，快速列存取</li>
+<li>读记录尽量涉及到的block最少</li>
+<li>读取需要的列只需要读取灭个row group的头部定义</li>
+<li>读取全量的数据操作性能可能比sequencefile没有明显的优势</li>
+</ul>
+</li>
+<li>ORCFile<ul>
+<li>存储方式： 数据按行分块，按列存储</li>
+<li>压缩快，快速列存取</li>
+<li>效率比RCFile高，是RCFile的改良版本。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Hive文件压缩格式以及压缩效率</p>
+<ul>
+<li><p>压缩可以减少存储文件所需要的磁盘空间，加速数据在磁盘和网络上的传输。</p>
+</li>
+<li><p>四种常见压缩算法比较</p>
+<table>
+<thead>
+<tr>
+<th>压缩格式</th>
+<th>split</th>
+<th>native</th>
+<th>压缩率</th>
+<th align="center">速度</th>
+<th>是否Hadoop自带</th>
+<th>换成压缩格式后，原来的应用程序是否需要修改</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gzip</td>
+<td>否</td>
+<td>是</td>
+<td>很高</td>
+<td align="center">快</td>
+<td>是</td>
+<td>和文本处理一样，不需要修改</td>
+</tr>
+<tr>
+<td>lzo</td>
+<td>是</td>
+<td>是</td>
+<td>高</td>
+<td align="center">很快</td>
+<td>否，需要安装</td>
+<td>需要建索引，还要指定输入格式</td>
+</tr>
+<tr>
+<td>snappy</td>
+<td>否</td>
+<td>是</td>
+<td>高</td>
+<td align="center">很快</td>
+<td>否，需要安装</td>
+<td>和文本处理一样，不需要修改</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td>是</td>
+<td>否</td>
+<td>最高</td>
+<td align="center">慢</td>
+<td>是</td>
+<td>和文本处理一样，不需要修改</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>压缩算法效率比较</p>
+<table>
+<thead>
+<tr>
+<th>压缩格式</th>
+<th>压缩比</th>
+<th>压缩速率</th>
+<th>解压速率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gzip</td>
+<td>13.4%</td>
+<td>21MB/s</td>
+<td>118MB/s</td>
+</tr>
+<tr>
+<td>lzo</td>
+<td>20.5%</td>
+<td>135MB/s</td>
+<td>410MB/s</td>
+</tr>
+<tr>
+<td>snappy</td>
+<td>22.2%</td>
+<td>172MB/s</td>
+<td>409MB/s</td>
+</tr>
+<tr>
+<td>bzip2</td>
+<td>13.2%</td>
+<td>2.4MB/s</td>
+<td>9.5MB/s</td>
+</tr>
+</tbody></table>
+<ul>
+<li>gzip 压缩使用的CPU资源比Snappy或LZO更多，但可提供更好的压缩比，GZIP通常是不常访问的冷数据的不错选择，而Snappy或LZO更加适合经常访问的热数据。</li>
+<li>Bzip2还可以为文件提供比gzip2更好的压缩比，但是在压缩和解压时会在一定程度上影响速度。</li>
 </ul>
 </li>
 </ul>
