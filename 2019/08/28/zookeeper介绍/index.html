@@ -19,7 +19,7 @@
 <meta property="og:description" content="zookeeper Zookeeper是一个分布式协调服务。 分布式应用程序可以基于zookeeper实现同步服务，配置维护和命名服务等。 zookeeper可以保证数据在zookeeper集群之间的数据的事务性一致。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://iochina.top/t_img/zookeeper.jpg">
-<meta property="og:updated_time" content="2019-08-28T08:25:21.033Z">
+<meta property="og:updated_time" content="2019-08-28T09:15:57.480Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zookeeper介绍">
 <meta name="twitter:description" content="zookeeper Zookeeper是一个分布式协调服务。 分布式应用程序可以基于zookeeper实现同步服务，配置维护和命名服务等。 zookeeper可以保证数据在zookeeper集群之间的数据的事务性一致。">
@@ -165,7 +165,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1431 个字)
+                    10 分钟 读完 (大约 1501 个字)
                 </span>
                 
                 
@@ -185,6 +185,11 @@
 </ul>
 <a id="more"></a>
 
+<h1 id="zookeeper的特点"><a href="#zookeeper的特点" class="headerlink" title="zookeeper的特点"></a>zookeeper的特点</h1><ul>
+<li>数据一致性：为客户端展示同一视图</li>
+<li>可靠性：如果消息被一台服务器接受，那么它将被所有服务器接受</li>
+<li>原子性：更新只能成功或失败，没有中间状态。</li>
+</ul>
 <h1 id="zookeeper架构"><a href="#zookeeper架构" class="headerlink" title="zookeeper架构"></a>zookeeper架构</h1><p>​    <img src="/gallery/zookeeper%E6%9E%B6%E6%9E%84.jpg" alt="zookeeper架构"></p>
 <h1 id="zookeeper的角色"><a href="#zookeeper的角色" class="headerlink" title="zookeeper的角色"></a>zookeeper的角色</h1><ul>
 <li>领导者(leader)，负责进行投票的发起和决议，更新系统状态</li>
@@ -238,7 +243,7 @@
 <li>我们认为最小的节点具备执行权，也就是获取到了锁。</li>
 <li>大致思路<ul>
 <li>1：当这两个线程去mysql更新数据之前，先到zookeeper的/locks(永久节点)下面注册一个临时有序节点，这样每个线程都注册了一个临时节点，两个临时节点肯定是有序的。</li>
-<li>线程1：/locks/002 线程2：/locks/001</li>
+<li>线程1：/locks/000 000 000 2 线程2：/locks/000 000 000 1</li>
 <li>当每个线程注册完节点之后，需要尝试获取锁，这个时候，哪个节点最小，哪个节点就获取到锁，这个时候。线程2注册的节点最小，所以线程2就获取到锁，执行更新数据库的代码，更新完成之后，删除自己注册的临时节点。</li>
 <li>同时线程1会判断自己是不是最小的，所以会监控比自己小1的那个节点，当发现那个节点消失的话，也就意味着它的节点就是最小的节点，获取锁，执行更新数据的代码。。。</li>
 </ul>

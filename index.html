@@ -164,7 +164,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    10 分钟 读完 (大约 1431 个字)
+                    10 分钟 读完 (大约 1501 个字)
                 </span>
                 
                 
@@ -535,7 +535,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    3 分钟 读完 (大约 426 个字)
+                    3 分钟 读完 (大约 427 个字)
                 </span>
                 
                 
@@ -551,36 +551,19 @@
             <ul>
 <li><p>第一范式(1NF):要求数据库表的每一列都是不可分割的原子数据项。</p>
 <ul>
-<li>举例说明：</li>
-<li><img src="/gallery/1nf_1.png" alt="1nf_1"></li>
-<li>上表中“家庭信息”和“学校信息”均不满足原子性的要求，即不满足第一范式，调整如下</li>
-<li><img src="/gallery/1nf_2.png" alt="1nf_2"></li>
-<li>每一列都是不可再分的，符合第一范式</li>
-</ul>
+<li><p>举例说明：</p>
 </li>
-<li><p>第二范式(2NF): 在第一范式的基础上，要求数据库中每个表中的属性必须完全依赖于主键，而不是主键的一部分（针对联合主键）</p>
-<ul>
-<li>举例说明：</li>
-<li><img src="/gallery/2nf_1.png" alt="2nf_1"></li>
-<li>上表中，同一个订单中可能包含不同的产品，因此主键必须是“订单号”和“产品号”组成，但是产品数量、产品折扣、产品价格与“订单号”产品号“都相关，但是订单金额和订单时间仅与订单号相关，与产品号无关，这样就不满足第二范式的要求调整如下</li>
-<li><img src="/gallery/2nf_2.png" alt="2nf_2"></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>第三范式(3NF): 在第二范式基础上，任何非主属性不依赖于其它非主属性，确保数据包中的每一列数据和主键直接相关，而不能间接相关。</p>
-<ul>
-<li>举例说明：</li>
-<li><img src="/gallery/3nf_1.png" alt="3nf_1"></li>
-<li>上述所有属性完全依赖于学会，满足第二范式，但是班主任姓别和班主任年龄直接依赖的是班主任姓名，而不是主键学号，调整如下</li>
-<li><img src="/gallery/3nf_2.png" alt="3nf_2"></li>
-<li>可以把班主任姓名改为工号更为合理</li>
-</ul>
-</li>
-</ul>
-
+<li><p><img src="/gallery/1nf_1.png" alt="1nf_1"></p></li></ul></li></ul>
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/03/25/数据库三大范式浅析/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
