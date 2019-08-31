@@ -178,7 +178,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 562 个字)
+                    4 分钟 读完 (大约 563 个字)
                 </span>
                 
                 
@@ -195,56 +195,16 @@
 <li>建表语句</li>
 </ul>
 <figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`a_table`</span> (</span><br><span class="line">  <span class="hljs-string">`a_id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`a_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`a_part`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span></span><br><span class="line">) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`b_table`</span> (</span><br><span class="line">  <span class="hljs-string">`b_id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`b_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`b_part`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span></span><br><span class="line">) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>a_table数据</li>
-</ul>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1	张三	化学</span><br><span class="line">2	李四	物理</span><br><span class="line">3	王五	生物</span><br><span class="line">4	赵六	数学</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>b_table 数据</p>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2	李四	物理</span><br><span class="line">3	王五	生物</span><br><span class="line">5	陈七	语文</span><br><span class="line">6	钱八	历史</span><br></pre></td></tr></table></figure>
-
-<h2 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h2><ul>
-<li><p>又叫等值连接，返回两个表中连接字段相等的行</p>
-</li>
-<li><p>inner join on</p>
-</li>
-</ul>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#执行语句</span></span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line"><span class="hljs-comment">#执行结果</span></span><br><span class="line">	<span class="hljs-number">2</span>	李四	物理	<span class="hljs-number">2</span>	李四	物理</span><br><span class="line">	<span class="hljs-number">3</span>	王五	生物	<span class="hljs-number">3</span>	王五	生物</span><br><span class="line"><span class="hljs-comment">#说明</span></span><br><span class="line"><span class="hljs-comment">#组合两个表中的记录，返回符合关联条件的记录（交集）</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="左连接"><a href="#左连接" class="headerlink" title="左连接"></a>左连接</h3><ul>
-<li><p>又叫左外连接，返回包括左表的所有记录和右表中连接字段相等的记录。</p>
-</li>
-<li><p>left join on</p>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#执行语句</span></span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">left</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line"><span class="hljs-comment">#执行结果</span></span><br><span class="line">	<span class="hljs-number">2</span>	李四	物理	<span class="hljs-number">2</span>	李四	物理</span><br><span class="line">	<span class="hljs-number">3</span>	王五	生物	<span class="hljs-number">3</span>	王五	生物</span><br><span class="line">	<span class="hljs-number">1</span>	张三	化学			</span><br><span class="line">	<span class="hljs-number">4</span>	赵六	数学</span><br></pre></td></tr></table></figure>
-
-<h3 id="右连接-右外连接"><a href="#右连接-右外连接" class="headerlink" title="右连接(右外连接)"></a>右连接(右外连接)</h3></li>
-<li><p>返回包括右表中所有记录和左表中连接字段相等的记录</p>
-</li>
-<li><p>right join/right outer join</p>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#执行语句</span></span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">right</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id</span><br><span class="line"><span class="hljs-comment">#执行结果</span></span><br><span class="line">	<span class="hljs-number">2</span>	李四	物理	 <span class="hljs-number">2</span>	 李四	物理</span><br><span class="line"> 	<span class="hljs-number">3</span>	王五	生物	 <span class="hljs-number">3</span>	 王五	生物</span><br><span class="line">					<span class="hljs-number">5</span>	陈七	语文</span><br><span class="line">					<span class="hljs-number">6</span>	钱八	历史</span><br></pre></td></tr></table></figure>
-
-<h3 id="全连接（全外连接）"><a href="#全连接（全外连接）" class="headerlink" title="全连接（全外连接）"></a>全连接（全外连接）</h3><ul>
-<li><p>返回表中所有记录和左右表中连接相等的记录</p>
-</li>
-<li><p>full join on</p>
-</li>
-<li><p>mysql中不支持全连接，可以通过左连接+union+右连接实现</p>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#执行语句</span></span><br><span class="line">  <span class="hljs-comment">#select a.a_id,b.b_id from a_table a full join b_table b on a.a_id = b.b_id </span></span><br><span class="line">    <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line">	<span class="hljs-keyword">union</span></span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id  </span><br><span class="line"><span class="hljs-comment">#执行结果</span></span><br><span class="line"><span class="hljs-number">2</span>	李四	物理	<span class="hljs-number">2</span>	李四	物理</span><br><span class="line"><span class="hljs-number">3</span>	王五	生物	<span class="hljs-number">3</span>	王五	生物</span><br><span class="line"><span class="hljs-number">1</span>	张三	化学			</span><br><span class="line"><span class="hljs-number">4</span>	赵六	数学			</span><br><span class="line">				<span class="hljs-number">5</span>	陈七	语文</span><br><span class="line">				<span class="hljs-number">6</span>	钱八	历史</span><br></pre></td></tr></table></figure>
-
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
         </div>
         
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/08/31/Mysql-内连接与外连接/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
         
         
     </div>
