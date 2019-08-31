@@ -7,23 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>Mysql  内连接与外连接 - 林哥博客 |  菜鸟技术聚集地</title>
+<title>标签: 流式处理和批处理 - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="Mysql 内连接与外连接 建表语句  1234567891011CREATE TABLE `a_table` (  `a_id` int(11) DEFAULT NULL,  `a_name` varchar(50) DEFAULT NULL,  `a_part` varchar(50) DEFAULT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8CREATE">
-<meta name="keywords" content="Mysql,内连接与外连接">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Mysql  内连接与外连接">
-<meta property="og:url" content="http://iochina.top/2019/08/31/Mysql-内连接与外连接/index.html">
+    <meta name="description" content="记录学习技术的点点滴滴">
+<meta property="og:type" content="website">
+<meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
+<meta property="og:url" content="http://iochina.top/tags/流式处理和批处理/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="Mysql 内连接与外连接 建表语句  1234567891011CREATE TABLE `a_table` (  `a_id` int(11) DEFAULT NULL,  `a_name` varchar(50) DEFAULT NULL,  `a_part` varchar(50) DEFAULT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8CREATE">
+<meta property="og:description" content="记录学习技术的点点滴滴">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iochina.top/t_img/sql_connect.jpg">
-<meta property="og:updated_time" content="2019-08-31T13:09:19.717Z">
+<meta property="og:image" content="http://iochina.top/images/og_image.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Mysql  内连接与外连接">
-<meta name="twitter:description" content="Mysql 内连接与外连接 建表语句  1234567891011CREATE TABLE `a_table` (  `a_id` int(11) DEFAULT NULL,  `a_name` varchar(50) DEFAULT NULL,  `a_part` varchar(50) DEFAULT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8CREATE">
-<meta name="twitter:image" content="http://iochina.top/t_img/sql_connect.jpg">
+<meta name="twitter:title" content="林哥博客 |  菜鸟技术聚集地">
+<meta name="twitter:description" content="记录学习技术的点点滴滴">
+<meta name="twitter:image" content="http://iochina.top/images/og_image.png">
 
 
 
@@ -93,7 +91,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="Mysql  内连接与外连接" height="28">
+                <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
             
             </a>
         </div>
@@ -147,28 +145,39 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
+    <div class="card-content">
+        <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="/tags">标签</a></li>
+            <li class="is-active"><a href="#" aria-current="page">流式处理和批处理</a></li>
+        </ul>
+        </nav>
+    </div>
+</div>
+
+    <div class="card">
     
     <div class="card-image">
-        <span  class="image is-7by1">
-            <img class="thumbnail" src="/t_img/sql_connect.jpg" alt="Mysql  内连接与外连接">
-        </span>
+        <a href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/" class="image is-7by1">
+            <img class="thumbnail" src="/t_img/flink.jpg" alt="新一代大数据引Flink(一)——简单介绍">
+        </a>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-31T12:15:00.000Z">2019-08-31</time>
+                <time class="level-item has-text-grey" datetime="2019-08-31T13:12:40.000Z">2019-08-31</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/数据库原理/">数据库原理</a>
+                <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 563 个字)
+                    4 分钟 读完 (大约 545 个字)
                 </span>
                 
                 
@@ -177,160 +186,37 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                Mysql  内连接与外连接
+                <a class="has-link-black-ter" href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/">新一代大数据引Flink(一)——简单介绍</a>
             
         </h1>
         <div class="content">
-            <h1 id="Mysql-内连接与外连接"><a href="#Mysql-内连接与外连接" class="headerlink" title="Mysql 内连接与外连接"></a>Mysql 内连接与外连接</h1><ul>
-<li>建表语句</li>
+            <h2 id="Flink简介"><a href="#Flink简介" class="headerlink" title="Flink简介"></a>Flink简介</h2><ul>
+<li>Apache Flink 是一个开源的分布式、高性能、高可用、准确的流处理框架。</li>
+<li>支持<strong>实时流(Stream)处理和批(Batch)处理</strong>,批处理是流处理的一个极限特例。</li>
+<li>Flink原生支持迭代计算、内存管理和程序优化。</li>
 </ul>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`a_table`</span> (</span><br><span class="line">  <span class="hljs-string">`a_id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`a_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`a_part`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span></span><br><span class="line">) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`b_table`</span> (</span><br><span class="line">  <span class="hljs-string">`b_id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`b_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`b_part`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span></span><br><span class="line">) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<ul>
-<li>a_table数据</li>
-</ul>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1	张三	化学</span><br><span class="line">2	李四	物理</span><br><span class="line">3	王五	生物</span><br><span class="line">4	赵六	数学</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>b_table 数据</p>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2	李四	物理</span><br><span class="line">3	王五	生物</span><br><span class="line">5	陈七	语文</span><br><span class="line">6	钱八	历史</span><br></pre></td></tr></table></figure>
-
-<h2 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h2><ul>
-<li><p>又叫等值连接，返回两个表中连接字段相等的行</p>
-</li>
-<li><p>inner join on</p>
-</li>
-</ul>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#执行语句</span></span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">inner</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line"><span class="hljs-comment">#执行结果</span></span><br><span class="line">	<span class="hljs-number">2</span>	李四	物理	<span class="hljs-number">2</span>	李四	物理</span><br><span class="line">	<span class="hljs-number">3</span>	王五	生物	<span class="hljs-number">3</span>	王五	生物</span><br><span class="line"><span class="hljs-comment">#说明</span></span><br><span class="line"><span class="hljs-comment">#组合两个表中的记录，返回符合关联条件的记录（交集）</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="左连接"><a href="#左连接" class="headerlink" title="左连接"></a>左连接</h3><ul>
-<li><p>又叫左外连接，返回包括左表的所有记录和右表中连接字段相等的记录。</p>
-</li>
-<li><p>left join on</p>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#执行语句</span></span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">left</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line"><span class="hljs-comment">#执行结果</span></span><br><span class="line">	<span class="hljs-number">2</span>	李四	物理	<span class="hljs-number">2</span>	李四	物理</span><br><span class="line">	<span class="hljs-number">3</span>	王五	生物	<span class="hljs-number">3</span>	王五	生物</span><br><span class="line">	<span class="hljs-number">1</span>	张三	化学			</span><br><span class="line">	<span class="hljs-number">4</span>	赵六	数学</span><br></pre></td></tr></table></figure>
-
-<h3 id="右连接-右外连接"><a href="#右连接-右外连接" class="headerlink" title="右连接(右外连接)"></a>右连接(右外连接)</h3></li>
-<li><p>返回包括右表中所有记录和左表中连接字段相等的记录</p>
-</li>
-<li><p>right join/right outer join</p>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#执行语句</span></span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">right</span> <span class="hljs-keyword">outer</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id</span><br><span class="line"><span class="hljs-comment">#执行结果</span></span><br><span class="line">	<span class="hljs-number">2</span>	李四	物理	 <span class="hljs-number">2</span>	 李四	物理</span><br><span class="line"> 	<span class="hljs-number">3</span>	王五	生物	 <span class="hljs-number">3</span>	 王五	生物</span><br><span class="line">					<span class="hljs-number">5</span>	陈七	语文</span><br><span class="line">					<span class="hljs-number">6</span>	钱八	历史</span><br></pre></td></tr></table></figure>
-
-<h3 id="全连接（全外连接）"><a href="#全连接（全外连接）" class="headerlink" title="全连接（全外连接）"></a>全连接（全外连接）</h3><ul>
-<li><p>返回表中所有记录和左右表中连接相等的记录</p>
-</li>
-<li><p>full join on</p>
-</li>
-<li><p>mysql中不支持全连接，可以通过左连接+union+右连接实现</p>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">#执行语句</span></span><br><span class="line">  <span class="hljs-comment">#select a.a_id,b.b_id from a_table a full join b_table b on a.a_id = b.b_id </span></span><br><span class="line">    <span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">left</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id </span><br><span class="line">	<span class="hljs-keyword">union</span></span><br><span class="line">	<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> a_table a <span class="hljs-keyword">right</span> <span class="hljs-keyword">join</span> b_table b <span class="hljs-keyword">on</span> a.a_id = b.b_id  </span><br><span class="line"><span class="hljs-comment">#执行结果</span></span><br><span class="line"><span class="hljs-number">2</span>	李四	物理	<span class="hljs-number">2</span>	李四	物理</span><br><span class="line"><span class="hljs-number">3</span>	王五	生物	<span class="hljs-number">3</span>	王五	生物</span><br><span class="line"><span class="hljs-number">1</span>	张三	化学			</span><br><span class="line"><span class="hljs-number">4</span>	赵六	数学			</span><br><span class="line">				<span class="hljs-number">5</span>	陈七	语文</span><br><span class="line">				<span class="hljs-number">6</span>	钱八	历史</span><br></pre></td></tr></table></figure>
-
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
         </div>
         
-        <div class="level is-size-7 is-uppercase">
+        
+        <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/Mysql/">Mysql</a>, <a class="has-link-grey -link" href="/tags/内连接与外连接/">内连接与外连接</a>
+                <a class="button is-size-7 is-light" href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/#more">阅读更多</a>
                 </div>
             </div>
         </div>
         
         
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
-        
     </div>
 </div>
 
 
 
-<div class="card">
-    <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？给作者买个糖果吧(✿◕‿◕✿)</h3>
-        <div class="buttons is-centered">
-            
-                
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/aliPay.jpg" alt="支付宝"></div>
-</a>
-
-                
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/wxPay.jpg" alt="微信"></div>
-</a>
-
-                
-        </div>
-    </div>
-</div>
 
 
 
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">新一代大数据引Flink(一)——简单介绍</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/28/大数据框架概念初级整合/">
-                <span class="level-item">大数据框架概念初级整合</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
 
 
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="valine-thread" class="content"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-<script>
-    new Valine({
-        el: '#valine-thread' ,
-        notify: false,
-        verify: false,
-        app_id: 'CNIaUCTekqhuwaIw4DYBECp1-MdYXbMMI',
-        app_key: 'jvTg96TjioRr2zOhuCcj3tam',
-        placeholder: '看了这么久不评价一下吗？'
-    });
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -876,7 +762,7 @@
             <div class="level-start has-text-centered-mobile">
              <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="Mysql  内连接与外连接" height="28">
+                    <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
                 
                 </a> 
 						

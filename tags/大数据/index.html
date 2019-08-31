@@ -158,6 +158,68 @@
     <div class="card">
     
     <div class="card-image">
+        <a href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/" class="image is-7by1">
+            <img class="thumbnail" src="/t_img/flink.jpg" alt="新一代大数据引Flink(一)——简单介绍">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-08-31T13:12:40.000Z">2019-08-31</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 545 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/">新一代大数据引Flink(一)——简单介绍</a>
+            
+        </h1>
+        <div class="content">
+            <h2 id="Flink简介"><a href="#Flink简介" class="headerlink" title="Flink简介"></a>Flink简介</h2><ul>
+<li>Apache Flink 是一个开源的分布式、高性能、高可用、准确的流处理框架。</li>
+<li>支持<strong>实时流(Stream)处理和批(Batch)处理</strong>,批处理是流处理的一个极限特例。</li>
+<li>Flink原生支持迭代计算、内存管理和程序优化。</li>
+</ul>
+        </div>
+        
+        
+        <div class="level is-mobile">
+            <div class="level-start">
+                <div class="level-item">
+                <a class="button is-size-7 is-light" href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/#more">阅读更多</a>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
         <a href="/2019/08/28/大数据框架概念初级整合/" class="image is-7by1">
             <img class="thumbnail" src="/t_img/大数据生态圈.jpg" alt="大数据框架概念初级整合">
         </a>
@@ -711,203 +773,25 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/01/10/数据仓库Hive浅析/" class="image is-7by1">
-            <img class="thumbnail" src="/t_img/hive.jpg" alt="数据仓库Hive浅析">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-10T13:16:25.000Z">2019-01-10</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    6 分钟 读完 (大约 878 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/01/10/数据仓库Hive浅析/">数据仓库Hive浅析</a>
-            
-        </h1>
-        <div class="content">
-            <ul>
-<li><p>数据加载到数据库的两种模式</p>
-<ul>
-<li>写模式<ul>
-<li>数据在加载的时候对数据合法性进行校验，库中的数据是合乎规范的，有利于快速查询和快速处理。</li>
-<li>Mysql就是用的这种模式</li>
-</ul>
-</li>
-<li>读模式<ul>
-<li>在数据读取的时候对数据合法性进行校验，在加载入库的时候不校验。加载速度非常快，适合大量数据的一次性加载。</li>
-<li>Hive是读模式。当上传文件到表中，Hive不会对表中的数据进行校验，对于错误的数据格式查询的时候也不会报错，只是会显示为NULL。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>数据库和数据仓库的区别</p>
-<ul>
-<li>数据库是面向事务处理的。是为捕获数据而设计的。一般存储的是实时的数据。</li>
-<li>数据仓库是面向主题设计的。是为分析数据设计的。存储的是历史的数据。将多个不同数据源的数据整理成统一的标准化数据。数据仓库里面的数据相对文档，数据仓库中的数据一般面向决策，主要面对的是查询和更新，修改和删除操作很少。</li>
-</ul>
-</li>
-<li><p>Hive文件的格式</p>
-<ul>
-<li>TextFile<ul>
-<li>hive默认存储格式</li>
-<li>存储方式为：行存储</li>
-<li>磁盘开销大，数据解析开销大</li>
-<li>压缩的text文件hive无法进行合并和拆分</li>
-</ul>
-</li>
-<li>SequenceFile<ul>
-<li>二进制文件，以k-v形式序列化到文件中</li>
-<li>存储方式： 行存储</li>
-<li>可以分割，支持压缩</li>
-<li>一般选择block压缩</li>
-</ul>
-</li>
-<li>RCFile<ul>
-<li>存储方式：数据按行分块，按列存储</li>
-<li>压缩快，快速列存取</li>
-<li>读记录尽量涉及到的block最少</li>
-<li>读取需要的列只需要读取灭个row group的头部定义</li>
-<li>读取全量的数据操作性能可能比sequencefile没有明显的优势</li>
-</ul>
-</li>
-<li>ORCFile<ul>
-<li>存储方式： 数据按行分块，按列存储</li>
-<li>压缩快，快速列存取</li>
-<li>效率比RCFile高，是RCFile的改良版本。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Hive文件压缩格式以及压缩效率</p>
-<ul>
-<li><p>压缩可以减少存储文件所需要的磁盘空间，加速数据在磁盘和网络上的传输。</p>
-</li>
-<li><p>四种常见压缩算法比较</p>
-<table>
-<thead>
-<tr>
-<th>压缩格式</th>
-<th>split</th>
-<th>native</th>
-<th>压缩率</th>
-<th align="center">速度</th>
-<th>是否Hadoop自带</th>
-<th>换成压缩格式后，原来的应用程序是否需要修改</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>gzip</td>
-<td>否</td>
-<td>是</td>
-<td>很高</td>
-<td align="center">快</td>
-<td>是</td>
-<td>和文本处理一样，不需要修改</td>
-</tr>
-<tr>
-<td>lzo</td>
-<td>是</td>
-<td>是</td>
-<td>高</td>
-<td align="center">很快</td>
-<td>否，需要安装</td>
-<td>需要建索引，还要指定输入格式</td>
-</tr>
-<tr>
-<td>snappy</td>
-<td>否</td>
-<td>是</td>
-<td>高</td>
-<td align="center">很快</td>
-<td>否，需要安装</td>
-<td>和文本处理一样，不需要修改</td>
-</tr>
-<tr>
-<td>bzip2</td>
-<td>是</td>
-<td>否</td>
-<td>最高</td>
-<td align="center">慢</td>
-<td>是</td>
-<td>和文本处理一样，不需要修改</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>压缩算法效率比较</p>
-<table>
-<thead>
-<tr>
-<th>压缩格式</th>
-<th>压缩比</th>
-<th>压缩速率</th>
-<th>解压速率</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>gzip</td>
-<td>13.4%</td>
-<td>21MB/s</td>
-<td>118MB/s</td>
-</tr>
-<tr>
-<td>lzo</td>
-<td>20.5%</td>
-<td>135MB/s</td>
-<td>410MB/s</td>
-</tr>
-<tr>
-<td>snappy</td>
-<td>22.2%</td>
-<td>172MB/s</td>
-<td>409MB/s</td>
-</tr>
-<tr>
-<td>bzip2</td>
-<td>13.2%</td>
-<td>2.4MB/s</td>
-<td>9.5MB/s</td>
-</tr>
-</tbody></table>
-<ul>
-<li>gzip 压缩使用的CPU资源比Snappy或LZO更多，但可提供更好的压缩比，GZIP通常是不常访问的冷数据的不错选择，而Snappy或LZO更加适合经常访问的热数据。</li>
-<li>Bzip2还可以为文件提供比gzip2更好的压缩比，但是在压缩和解压时会在一定程度上影响速度。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 
+    
+<div class="card card-transparent">
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        <div class="pagination-previous is-invisible is-hidden-mobile">
+            <a class="is-flex-grow has-text-black-ter" href="/tags/大数据/page/0/">上一页</a>
         </div>
-        
-        
-        
-    </div>
+        <div class="pagination-next">
+            <a class="is-flex-grow has-text-black-ter" href="/tags/大数据/page/2/">下一页</a>
+        </div>
+        <ul class="pagination-list is-hidden-mobile">
+            
+            <li><a class="pagination-link is-current" href="/tags/大数据/">1</a></li>
+            
+            <li><a class="pagination-link has-text-black-ter" href="/tags/大数据/page/2/">2</a></li>
+            
+        </ul>
+    </nav>
 </div>
-
-
-
-
-
-
-
-
 </div>
                 
 
@@ -951,7 +835,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        15
+                        16
                     </p>
                 </div>
             </div>
@@ -971,7 +855,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        29
+                        31
                     </p>
                 </div>
             </div>
@@ -1040,7 +924,7 @@
                     <span class="level-item">八月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">7</span>
+                    <span class="level-item tag">8</span>
                 </span>
             </a>
         </li>
@@ -1113,7 +997,7 @@
                 <span class="level-item">大数据</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/数据库原理/">
@@ -1202,6 +1086,25 @@
         
         <article class="media">
             
+            <a href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/flink.jpg" alt="新一代大数据引Flink(一)——简单介绍">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-31T13:12:40.000Z">2019-08-31</time></div>
+                    <a href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新一代大数据引Flink(一)——简单介绍</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/31/Mysql-内连接与外连接/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/sql_connect.jpg" alt="Mysql  内连接与外连接">
@@ -1276,25 +1179,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/27/python基础-接口开发/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/python.jpg" alt="python基础  接口开发">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T12:56:26.000Z">2019-08-27</time></div>
-                    <a href="/2019/08/27/python基础-接口开发/" class="title has-link-black-ter is-size-6 has-text-weight-normal">python基础  接口开发</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/python/">python</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1305,7 +1189,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
     </div>
 </div>
 
@@ -1330,6 +1214,25 @@
         
         <article class="media">
             
+            <a href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/flink.jpg" alt="新一代大数据引Flink(一)——简单介绍">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-31T13:12:40.000Z">2019-08-31</time></div>
+                    <a href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/" class="title has-link-black-ter is-size-6 has-text-weight-normal">新一代大数据引Flink(一)——简单介绍</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/31/Mysql-内连接与外连接/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/sql_connect.jpg" alt="Mysql  内连接与外连接">
@@ -1404,25 +1307,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/27/python基础-接口开发/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/python.jpg" alt="python基础  接口开发">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-27T12:56:26.000Z">2019-08-27</time></div>
-                    <a href="/2019/08/27/python基础-接口开发/" class="title has-link-black-ter is-size-6 has-text-weight-normal">python基础  接口开发</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/python/">python</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1433,7 +1317,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
     </div>
 </div>
 
