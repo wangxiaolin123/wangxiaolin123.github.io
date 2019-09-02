@@ -7,13 +7,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 内连接与外连接 - 林哥博客 |  菜鸟技术聚集地</title>
+<title>标签: HDFS - 林哥博客 |  菜鸟技术聚集地</title>
 
 
     <meta name="description" content="记录学习技术的点点滴滴">
 <meta property="og:type" content="website">
 <meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:url" content="http://iochina.top/tags/内连接与外连接/index.html">
+<meta property="og:url" content="http://iochina.top/tags/HDFS/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
 <meta property="og:description" content="记录学习技术的点点滴滴">
 <meta property="og:locale" content="zh-CN">
@@ -149,7 +149,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">内连接与外连接</a></li>
+            <li class="is-active"><a href="#" aria-current="page">HDFS</a></li>
         </ul>
         </nav>
     </div>
@@ -158,8 +158,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/2019/08/31/Mysql-内连接与外连接/" class="image is-7by1">
-            <img class="thumbnail" src="/t_img/sql_connect.jpg" alt="Mysql  内连接与外连接">
+        <a href="/2019/09/02/大数据框架Hadoop-二-HDFS/" class="image is-7by1">
+            <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(二)HDFS">
         </a>
     </div>
     
@@ -167,17 +167,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-31T12:15:00.000Z">2019-08-31</time>
+                <time class="level-item has-text-grey" datetime="2019-09-02T13:01:37.000Z">2019-09-02</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/数据库原理/">数据库原理</a>
+                <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 563 个字)
+                    14 分钟 读完 (大约 2053 个字)
                 </span>
                 
                 
@@ -186,21 +186,24 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/31/Mysql-内连接与外连接/">Mysql  内连接与外连接</a>
+                <a class="has-link-black-ter" href="/2019/09/02/大数据框架Hadoop-二-HDFS/">大数据框架Hadoop(二)HDFS</a>
             
         </h1>
         <div class="content">
-            <h1 id="Mysql-内连接与外连接"><a href="#Mysql-内连接与外连接" class="headerlink" title="Mysql 内连接与外连接"></a>Mysql 内连接与外连接</h1><ul>
-<li>建表语句</li>
+            <h1 id="hdfs是是一个分布式的（Distributed）文件（File）系统（System）"><a href="#hdfs是是一个分布式的（Distributed）文件（File）系统（System）" class="headerlink" title="hdfs是是一个分布式的（Distributed）文件（File）系统（System）"></a>hdfs是是一个分布式的（Distributed）文件（File）系统（System）</h1><ul>
+<li>通俗的说，hdfs是一个可以管理多台机器文件的管理系统。</li>
+<li>允许文件通过网络在多台主机上分析的文件系统，可以让多机器上的多用户分享文件和存储空间。</li>
+<li>通透性。让实际上通过网络来访问文件的动作，由程序与用户看来，就像是访问本地磁盘一样。</li>
+<li>容错。若系统中有些节点宕机，整体来说系统可以持续运作而不会有数据损失（通过副本机制实现）</li>
+<li>分布式文件管理系统（hdfs，S3，GFS等）很多，hdfs只是其中一种，hdfs不适合存储小文件。</li>
 </ul>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`a_table`</span> (</span><br><span class="line">  <span class="hljs-string">`a_id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`a_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`a_part`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span></span><br><span class="line">) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`b_table`</span> (</span><br><span class="line">  <span class="hljs-string">`b_id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`b_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`b_part`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span></span><br><span class="line">) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8</span><br></pre></td></tr></table></figure>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/31/Mysql-内连接与外连接/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2019/09/02/大数据框架Hadoop-二-HDFS/#more">阅读更多</a>
                 </div>
             </div>
         </div>

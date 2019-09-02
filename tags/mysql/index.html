@@ -7,13 +7,13 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: Mysql - 林哥博客 |  菜鸟技术聚集地</title>
+<title>标签: mysql - 林哥博客 |  菜鸟技术聚集地</title>
 
 
     <meta name="description" content="记录学习技术的点点滴滴">
 <meta property="og:type" content="website">
 <meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:url" content="http://iochina.top/tags/Mysql/index.html">
+<meta property="og:url" content="http://iochina.top/tags/mysql/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
 <meta property="og:description" content="记录学习技术的点点滴滴">
 <meta property="og:locale" content="zh-CN">
@@ -149,7 +149,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Mysql</a></li>
+            <li class="is-active"><a href="#" aria-current="page">mysql</a></li>
         </ul>
         </nav>
     </div>
@@ -158,8 +158,8 @@
     <div class="card">
     
     <div class="card-image">
-        <a href="/2019/08/31/Mysql-内连接与外连接/" class="image is-7by1">
-            <img class="thumbnail" src="/t_img/sql_connect.jpg" alt="Mysql  内连接与外连接">
+        <a href="/2019/08/27/python基础-连接数据库/" class="image is-7by1">
+            <img class="thumbnail" src="/t_img/python.jpg" alt="python基础 连接数据库">
         </a>
     </div>
     
@@ -167,17 +167,17 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-31T12:15:00.000Z">2019-08-31</time>
+                <time class="level-item has-text-grey" datetime="2019-08-27T11:46:47.000Z">2019-08-27</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/数据库原理/">数据库原理</a>
+                <a class="has-link-grey -link" href="/categories/python/">python</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    4 分钟 读完 (大约 563 个字)
+                    4 分钟 读完 (大约 536 个字)
                 </span>
                 
                 
@@ -186,21 +186,29 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/31/Mysql-内连接与外连接/">Mysql  内连接与外连接</a>
+                <a class="has-link-black-ter" href="/2019/08/27/python基础-连接数据库/">python基础 连接数据库</a>
             
         </h1>
         <div class="content">
-            <h1 id="Mysql-内连接与外连接"><a href="#Mysql-内连接与外连接" class="headerlink" title="Mysql 内连接与外连接"></a>Mysql 内连接与外连接</h1><ul>
-<li>建表语句</li>
+            <h1 id="python-连接数据库"><a href="#python-连接数据库" class="headerlink" title="python 连接数据库"></a>python 连接数据库</h1><ul>
+<li>安装mysql-python驱动模块</li>
+<li>如果你使用的默认安装的python也可以使用 yum 安装 MySQL-python<ul>
+<li>yum install MySQL-python【不推荐】</li>
 </ul>
-<figure class="highlight sql hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`a_table`</span> (</span><br><span class="line">  <span class="hljs-string">`a_id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`a_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`a_part`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span></span><br><span class="line">) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-string">`b_table`</span> (</span><br><span class="line">  <span class="hljs-string">`b_id`</span> <span class="hljs-built_in">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`b_name`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span>,</span><br><span class="line">  <span class="hljs-string">`b_part`</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">NULL</span></span><br><span class="line">) <span class="hljs-keyword">ENGINE</span>=<span class="hljs-keyword">InnoDB</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">CHARSET</span>=utf8</span><br></pre></td></tr></table></figure>
+</li>
+<li>如果你要在linux 下开发python程序要安装一下开发包。否则可以忽略。<ul>
+<li>yum install python-devel mysql-devel zlib-devel openssl-devel</li>
+</ul>
+</li>
+<li>windows下直接使用pip install mysql-python，安装容易出问题：安装VCForPython27.msi  和 MySQL-python-1.2.3.win-amd64-py2.7.exe即可</li>
+</ul>
         </div>
         
         
         <div class="level is-mobile">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/31/Mysql-内连接与外连接/#more">阅读更多</a>
+                <a class="button is-size-7 is-light" href="/2019/08/27/python基础-连接数据库/#more">阅读更多</a>
                 </div>
             </div>
         </div>
@@ -259,7 +267,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        17
+                        18
                     </p>
                 </div>
             </div>
@@ -279,7 +287,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        32
+                        33
                     </p>
                 </div>
             </div>
@@ -348,7 +356,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">1</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -416,7 +424,7 @@
                 <span class="level-item">Hadoop</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">1</span>
+                <span class="level-item tag">2</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/impala/">
@@ -529,6 +537,25 @@
         
         <article class="media">
             
+            <a href="/2019/09/02/大数据框架Hadoop-二-HDFS/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(二)HDFS">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-02T13:01:37.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/大数据框架Hadoop-二-HDFS/" class="title has-link-black-ter is-size-6 has-text-weight-normal">大数据框架Hadoop(二)HDFS</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/大数据框架Hadoop-一/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(一)">
@@ -603,25 +630,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/zookeeper介绍/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/zookeeper.jpg" alt="zookeeper介绍">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T07:31:49.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/zookeeper介绍/" class="title has-link-black-ter is-size-6 has-text-weight-normal">zookeeper介绍</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -632,7 +640,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/HDFS/" style="font-size: 10px;">HDFS</a> <a href="/tags/Hadoop/" style="font-size: 13.33px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
     </div>
 </div>
 
@@ -657,6 +665,25 @@
         
         <article class="media">
             
+            <a href="/2019/09/02/大数据框架Hadoop-二-HDFS/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(二)HDFS">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-02T13:01:37.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/大数据框架Hadoop-二-HDFS/" class="title has-link-black-ter is-size-6 has-text-weight-normal">大数据框架Hadoop(二)HDFS</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/大数据框架Hadoop-一/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(一)">
@@ -731,25 +758,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/zookeeper介绍/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/zookeeper.jpg" alt="zookeeper介绍">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T07:31:49.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/zookeeper介绍/" class="title has-link-black-ter is-size-6 has-text-weight-normal">zookeeper介绍</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -760,7 +768,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/HDFS/" style="font-size: 10px;">HDFS</a> <a href="/tags/Hadoop/" style="font-size: 13.33px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
     </div>
 </div>
 
@@ -920,6 +928,85 @@ var IcarusThemeSettings = {
 <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/unpacked/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    MathJax.Hub.Config({
+        'HTML-CSS': {
+            matchFontHeight: false
+        },
+        SVG: {
+            matchFontHeight: false
+        },
+        CommonHTML: {
+            matchFontHeight: false
+        },
+        tex2jax: {
+            inlineMath: [
+                ['$','$'],
+                ['\\(','\\)']
+            ]
+        }
+    });
+});
+</script>
+
+    
+    
+
+<a id="back-to-top" title="回到顶端" href="javascript:;">
+    <i class="fas fa-chevron-up"></i>
+</a>
+<script src="/js/back-to-top.js" defer></script>
+
+
+    
+    
+
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+
+<script src="/js/main.js" defer></script>
+
+    
+    <div class="searchbox ins-search">
+    <div class="searchbox-container ins-search-container">
+        <div class="searchbox-input-wrapper">
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
+            <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="searchbox-result-wrapper ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+    (function (window) {
+        var INSIGHT_CONFIG = {
+            TRANSLATION: {
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
+            },
+            CONTENT_URL: '/content.json',
+        };
+        window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+    })(window);
+</script>
+<script src="/js/insight.js" defer></script>
+<link rel="stylesheet" href="/css/search.css">
+<link rel="stylesheet" href="/css/insight.css">
+    
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
+</html>ContentLoaded', function () {
     MathJax.Hub.Config({
         'HTML-CSS': {
             matchFontHeight: false
