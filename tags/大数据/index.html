@@ -158,6 +158,160 @@
     <div class="card">
     
     <div class="card-image">
+        <a href="/2019/09/02/大数据框架Hadoop-一/" class="image is-7by1">
+            <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(一)">
+        </a>
+    </div>
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-09-02T12:09:55.000Z">2019-09-02</time>
+                
+                <div class="level-item">
+                <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                </div>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    4 分钟 读完 (大约 654 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/09/02/大数据框架Hadoop-一/">大数据框架Hadoop(一)</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="Hadoop是一个适合海量数据的分布式存储和分布式计算的平台。"><a href="#Hadoop是一个适合海量数据的分布式存储和分布式计算的平台。" class="headerlink" title="Hadoop是一个适合海量数据的分布式存储和分布式计算的平台。"></a>Hadoop是一个适合海量数据的分布式存储和分布式计算的平台。</h1><h2 id="Hadoop特点"><a href="#Hadoop特点" class="headerlink" title="Hadoop特点"></a>Hadoop特点</h2><ul>
+<li>扩容能力：可以横向扩容</li>
+<li>成本低：普通机器就可以组件集群</li>
+<li>高效率：分发计算到数据节点</li>
+<li>可靠性：数据多副本，失败后可自动恢复.</li>
+</ul>
+<h2 id="Hadoop由三个组件构成（HDFS，MapReduce，Yarn）"><a href="#Hadoop由三个组件构成（HDFS，MapReduce，Yarn）" class="headerlink" title="Hadoop由三个组件构成（HDFS，MapReduce，Yarn）"></a>Hadoop由三个组件构成（HDFS，MapReduce，Yarn）</h2><ul>
+<li><p>hdfs：是一个分布式存储框架，适合海量数据存储。</p>
+<ul>
+<li>负责数据分布式存储</li>
+<li>主从结构<ul>
+<li>主节点，最多有2个 namenode</li>
+<li>从节点，可以有多个 datanode</li>
+</ul>
+</li>
+<li>namenode负责<ul>
+<li>接收用户请求，是用户操作的入口</li>
+<li>维护文件系统的目录结构，称作命名空间</li>
+</ul>
+</li>
+<li>datanode负责<ul>
+<li>存储数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>mapreduce：分布式计算框架，适合海量数据计算。</p>
+<ul>
+<li>Mapredue是一个编程模型，它是分布式运行的，由两个阶段组成： Map和Reduce<ul>
+<li>Map阶段是一个独立程序，有很多节点同时运行，每个节点处理一部分数据。</li>
+<li>Reduce阶段也是一个独立的程序，在这先把reduce理解为一个单独的聚合程序即可。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>yarn：资源调度平台，负责给计算框架分配计算资源。</p>
+<ul>
+<li>资源调度和管理平台</li>
+<li>主从结构<ul>
+<li>主节点，最多可以2个：ResourceManager</li>
+<li>从节点，有很多个： NodeManager</li>
+</ul>
+</li>
+<li>ResourceManager负责<ul>
+<li>集群资源的分配与调度。</li>
+<li>MapReduce、Storm、Spark等应用，必须实现ApplicationMaster接口，才能被RM管理。</li>
+</ul>
+</li>
+<li>NodeManager负责<ul>
+<li>单节点资源的管理。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hadoop目前已经有三个大版本"><a href="#Hadoop目前已经有三个大版本" class="headerlink" title="Hadoop目前已经有三个大版本"></a>Hadoop目前已经有三个大版本</h2><ul>
+<li>Hadoop1.x 和hadoop2.x架构对比<ul>
+<li>Hadoop1.x里面的计算任务和资源管理都是由mapreduce完成的，Hadoop2.x把资源管理分离出来设计了Yarn，Mapreduce仅负责计算</li>
+<li><img src="/gallery/hadoop1vs2.png" alt="hadoop1vs2"></li>
+<li>Hadoop2.x和Hadoop3.x架构没有多大改变</li>
+</ul>
+</li>
+</ul>
+<h2 id="Hadoop-安装部署部分参数介绍"><a href="#Hadoop-安装部署部分参数介绍" class="headerlink" title="Hadoop 安装部署部分参数介绍"></a>Hadoop 安装部署部分参数介绍</h2><ul>
+<li><p>core-site.xml</p>
+<ul>
+<li><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!-- hdfs的数据接口--&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>fs.defaultFS<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hdfs://hadoop100:9000<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!-- hadoop在节点的临时数据目录--&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>hadoop.tmp.dir<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">        <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>/data/hadoop_repo<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">   <span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>hdfs-site.xml</p>
+<ul>
+<li><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!-- 伪分布式只有一个从节点,副本参数只能设置为1--&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!-- 分布式副本参数默认为3--&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>dfs.replication<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="hljs-comment">&lt;!-- HA机制,分布式才可使用secondNameNode--&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>dfs.namenode.secondary.http-address<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hadoop100:50090<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>yarn-site.xml</p>
+<ul>
+<li><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!-- 自定义shuffle服务 --&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>mapreduce_shuffle<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="hljs-comment">&lt;!-- 指定Yarn主节点(ResourceManager)--&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>hadoop100<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>mapred-site.xml</p>
+<ul>
+<li><figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">        <span class="hljs-comment">&lt;!-- 指定资源管理框架--&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>mapreduce.framework.name<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">		<span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>yarn<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line">	<span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>slaves</p>
+<ul>
+<li><p>伪分布式<code>localhost</code></p>
+</li>
+<li><p>分布式  </p>
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node1Host</span><br><span class="line">node2Host</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    <div class="card">
+    
+    <div class="card-image">
         <a href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/" class="image is-7by1">
             <img class="thumbnail" src="/t_img/flink.jpg" alt="新一代大数据引Flink(一)——简单介绍">
         </a>
@@ -714,65 +868,6 @@
 
 
 
-    <div class="card">
-    
-    <div class="card-image">
-        <a href="/2019/01/20/Spark-Streaming-一/" class="image is-7by1">
-            <img class="thumbnail" src="/t_img/Spark.jpg" alt="Spark Streaming(一)">
-        </a>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-01-20T01:13:08.000Z">2019-01-20</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    28 分钟 读完 (大约 4238 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/01/20/Spark-Streaming-一/">Spark Streaming(一)</a>
-            
-        </h1>
-        <div class="content">
-            <h1 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h1><ul>
-<li><p>SparkStreaming是Spark CoreAPI的一种扩展，它可以用于进行大规模、高吞吐量、容错的实时数据流的处理。</p>
-</li>
-<li><p>支持从很多数据源中读取数据，比如Kafka、Flume、Twitter、ZeroMQ、Kinesis或者TCP Socket。</p>
-</li>
-<li><p>可以使用类似高阶函数的复杂算法来进行数据处理，比如map、reduce、join、window。处理后的数据可以被保存到文件系统、数据库、Dashboard等存储中。</p></li></ul>
-        </div>
-        
-        
-        <div class="level is-mobile">
-            <div class="level-start">
-                <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/01/20/Spark-Streaming-一/#more">阅读更多</a>
-                </div>
-            </div>
-        </div>
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
 
     
 <div class="card card-transparent">
@@ -835,7 +930,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        17
                     </p>
                 </div>
             </div>
@@ -845,7 +940,7 @@
                         分类
                     </p>
                     <p class="title has-text-weight-normal">
-                        4
+                        5
                     </p>
                 </div>
             </div>
@@ -855,7 +950,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        31
+                        32
                     </p>
                 </div>
             </div>
@@ -919,6 +1014,17 @@
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2019/09/">
+                <span class="level-start">
+                    <span class="level-item">九月 2019</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2019/08/">
                 <span class="level-start">
                     <span class="level-item">八月 2019</span>
@@ -976,6 +1082,14 @@
             </h3>
             <ul class="menu-list">
             <li>
+        <a class="level is-marginless" href="/categories/Hadoop/">
+            <span class="level-start">
+                <span class="level-item">Hadoop</span>
+            </span>
+            <span class="level-end">
+                <span class="level-item tag">1</span>
+            </span>
+        </a></li><li>
         <a class="level is-marginless" href="/categories/impala/">
             <span class="level-start">
                 <span class="level-item">impala</span>
@@ -1086,6 +1200,25 @@
         
         <article class="media">
             
+            <a href="/2019/09/02/大数据框架Hadoop-一/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(一)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-02T12:09:55.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/大数据框架Hadoop-一/" class="title has-link-black-ter is-size-6 has-text-weight-normal">大数据框架Hadoop(一)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/flink.jpg" alt="新一代大数据引Flink(一)——简单介绍">
@@ -1160,25 +1293,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/impala/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/impala.jpg" alt="impala">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T06:59:23.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/impala/" class="title has-link-black-ter is-size-6 has-text-weight-normal">impala</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/impala/">impala</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1189,7 +1303,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
     </div>
 </div>
 
@@ -1214,6 +1328,25 @@
         
         <article class="media">
             
+            <a href="/2019/09/02/大数据框架Hadoop-一/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(一)">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-02T12:09:55.000Z">2019-09-02</time></div>
+                    <a href="/2019/09/02/大数据框架Hadoop-一/" class="title has-link-black-ter is-size-6 has-text-weight-normal">大数据框架Hadoop(一)</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/08/31/新一代大数据引Flink(一)——简单介绍/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/flink.jpg" alt="新一代大数据引Flink(一)——简单介绍">
@@ -1288,25 +1421,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/impala/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/impala.jpg" alt="impala">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T06:59:23.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/impala/" class="title has-link-black-ter is-size-6 has-text-weight-normal">impala</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/impala/">impala</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -1317,7 +1431,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
     </div>
 </div>
 

@@ -7,23 +7,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>zookeeper介绍 - 林哥博客 |  菜鸟技术聚集地</title>
+<title>归档: 2019/9 - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="zookeeper Zookeeper是一个分布式协调服务。 分布式应用程序可以基于zookeeper实现同步服务，配置维护和命名服务等。 zookeeper可以保证数据在zookeeper集群之间的数据的事务性一致。">
-<meta name="keywords" content="大数据,zookeeper,分布式管理">
-<meta property="og:type" content="article">
-<meta property="og:title" content="zookeeper介绍">
-<meta property="og:url" content="http://iochina.top/2019/08/28/zookeeper介绍/index.html">
+    <meta name="description" content="记录学习技术的点点滴滴">
+<meta property="og:type" content="website">
+<meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
+<meta property="og:url" content="http://iochina.top/archives/2019/09/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="zookeeper Zookeeper是一个分布式协调服务。 分布式应用程序可以基于zookeeper实现同步服务，配置维护和命名服务等。 zookeeper可以保证数据在zookeeper集群之间的数据的事务性一致。">
+<meta property="og:description" content="记录学习技术的点点滴滴">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iochina.top/t_img/zookeeper.jpg">
-<meta property="og:updated_time" content="2019-08-28T09:15:57.480Z">
+<meta property="og:image" content="http://iochina.top/images/og_image.png">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="zookeeper介绍">
-<meta name="twitter:description" content="zookeeper Zookeeper是一个分布式协调服务。 分布式应用程序可以基于zookeeper实现同步服务，配置维护和命名服务等。 zookeeper可以保证数据在zookeeper集群之间的数据的事务性一致。">
-<meta name="twitter:image" content="http://iochina.top/t_img/zookeeper.jpg">
+<meta name="twitter:title" content="林哥博客 |  菜鸟技术聚集地">
+<meta name="twitter:description" content="记录学习技术的点点滴滴">
+<meta name="twitter:image" content="http://iochina.top/images/og_image.png">
 
 
 
@@ -93,7 +91,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="zookeeper介绍" height="28">
+                <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
             
             </a>
         </div>
@@ -146,212 +144,45 @@
     <section class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    
-    <div class="card-image">
-        <span  class="image is-7by1">
-            <img class="thumbnail" src="/t_img/zookeeper.jpg" alt="zookeeper介绍">
-        </span>
-    </div>
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-28T07:31:49.000Z">2019-08-28</time>
-                
-                <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
-                </div>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    10 分钟 读完 (大约 1501 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                zookeeper介绍
-            
-        </h1>
-        <div class="content">
-            <h1 id="zookeeper"><a href="#zookeeper" class="headerlink" title="zookeeper"></a>zookeeper</h1><ul>
-<li>Zookeeper是一个分布式协调服务。</li>
-<li>分布式应用程序可以基于zookeeper实现同步服务，配置维护和命名服务等。</li>
-<li>zookeeper可以保证数据在zookeeper集群之间的数据的事务性一致。</li>
-</ul>
-<a id="more"></a>
+                <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main">
 
-<h1 id="zookeeper的特点"><a href="#zookeeper的特点" class="headerlink" title="zookeeper的特点"></a>zookeeper的特点</h1><ul>
-<li>数据一致性：为客户端展示同一视图</li>
-<li>可靠性：如果消息被一台服务器接受，那么它将被所有服务器接受</li>
-<li>原子性：更新只能成功或失败，没有中间状态。</li>
-</ul>
-<h1 id="zookeeper架构"><a href="#zookeeper架构" class="headerlink" title="zookeeper架构"></a>zookeeper架构</h1><p>​    <img src="/gallery/zookeeper%E6%9E%B6%E6%9E%84.jpg" alt="zookeeper架构"></p>
-<h1 id="zookeeper的角色"><a href="#zookeeper的角色" class="headerlink" title="zookeeper的角色"></a>zookeeper的角色</h1><ul>
-<li>领导者(leader)，负责进行投票的发起和决议，更新系统状态</li>
-<li>学习者（learner），包括跟随者(follower)和观察者(observer)，follower用于接受客户端请求并向客户端返回结果，在选主过程中参与投票。observer可以接受客户端连接，将写请求转发给leader，但observer不参加投票过程，只同步leader的状态，observer的目的是为了扩展系统，提高读取速度。</li>
-<li>客户端（client):请求发起方</li>
-</ul>
-<h1 id="zookeeper命令行"><a href="#zookeeper命令行" class="headerlink" title="zookeeper命令行"></a>zookeeper命令行</h1><ul>
-<li>常用命令<ul>
-<li>查看节点下面信息    ls /</li>
-<li>创建节点   create /test data</li>
-<li>获取节点上保存的数据    get /test</li>
-<li>修改节点数据       set /test databak</li>
-<li>递归删除节点     rmr /test</li>
-<li>使用delete命令删除节点，但是节点下面不能有子节点</li>
-</ul>
-</li>
-</ul>
-<h1 id="zookeeper的数据模型"><a href="#zookeeper的数据模型" class="headerlink" title="zookeeper的数据模型"></a>zookeeper的数据模型</h1><ul>
-<li>层次化的目录结构，命名符合常规文件系统规范。</li>
-<li>每个节点在zookeeper中叫做znode，并且其有一个唯一的路径标识。</li>
-<li>节点znode可以包含数据和子节点，但是ephemeral（临时节点）类型的节点不能有子节点</li>
-<li>znode中的数据可以有多个版本，比如某一个路径下存有多个数据版本，那么查询这个路径下的数据就需要带上版本。</li>
-<li>客户端应用可以在节点上设置监视器。</li>
-<li>节点不支持部分读写，而是一次性完整读写。</li>
-</ul>
-<p>zookeeper的节点</p>
-<ul>
-<li>znode的两种类型，临时节点(ephemeral)和永久节点(persistent)</li>
-<li>znode的类型在创建时确定并且之后不能再更改</li>
-<li>临时znode的客户端会话结束时，zookeeper会将该临时znode删除，临时znode不可以有子节点。</li>
-<li>永久znode不依赖于客户端会话，只有当客户端明确要删除该node时，才会被删除。</li>
-<li>znode有四种形式的目录节点，persistent、persistent_sequential、ephemeral、ephemeral_sequential.</li>
-</ul>
-<p>^(*￣(oo)￣)^： znode可以是临时节点，一旦创建这个znode的客户端与服务器失去联系，这个znode也将自动删除，zookeeper的客户端和服务器通信采用长连接方式，每个客户端和服务器通过心跳来保持连接，这个连接状态成为session，如果znode是临时节点，这个session失效，znode也就删除了，持久化目录节点这个目录节点存储的数据不会丢失。</p>
-<h1 id="zookeeper实现分布式监控"><a href="#zookeeper实现分布式监控" class="headerlink" title="zookeeper实现分布式监控"></a>zookeeper实现分布式监控</h1><ul>
-<li><p>假设要监控多台服务器上的A程序运行状态，当发现有服务器上的A程序下线的时候，给管理员发短信，并尝试重启A程序</p>
-</li>
-<li><p>主要利用zk的临时节点和watcher监视器特性</p>
-<ol>
-<li>首先在A程序启动的时候在zookeeper的/monitor节点下创建一个临时节点的名称，可以用这个服务器的主机名或者ip信息，只要A程序一直正常运行，这个临时节点就会一直存在。</li>
-<li>给zk的/monitor节点注册一个watcher监视器，监视monitor节点下面的所有子节点的变化情况，当有子节点变化的时候，获取到具体是哪个子节点发生了变化，就知道哪台机器上的A程序有问题了。</li>
-<li>可以给管理员发短信，打电话，发邮件之类的，并且还可以实现对那一台服务器上的A程序进行重启。</li>
-</ol>
-<h1 id="zookeeper实现分布式共享锁"><a href="#zookeeper实现分布式共享锁" class="headerlink" title="zookeeper实现分布式共享锁"></a>zookeeper实现分布式共享锁</h1></li>
-</ul>
-<ul>
-<li><p>首先假设有两个线程，两个线程要同时到mysql中更新一条数据，对数据库中的数据进行累加更新。由于在分布式环境下，这两个线程可能存在于不同的机器上的不同jvm进程中，所以这两个线程的关系就是垮主机跨进程，使用java中的synchronized锁是搞不定的</p>
-</li>
-<li><p>主要利用了zookeeper的临时有序节点特性和watcher监视器。</p>
-<ul>
-<li>我们认为最小的节点具备执行权，也就是获取到了锁。</li>
-<li>大致思路<ul>
-<li>1：当这两个线程去mysql更新数据之前，先到zookeeper的/locks(永久节点)下面注册一个临时有序节点，这样每个线程都注册了一个临时节点，两个临时节点肯定是有序的。</li>
-<li>线程1：/locks/000 000 000 2 线程2：/locks/000 000 000 1</li>
-<li>当每个线程注册完节点之后，需要尝试获取锁，这个时候，哪个节点最小，哪个节点就获取到锁，这个时候。线程2注册的节点最小，所以线程2就获取到锁，执行更新数据库的代码，更新完成之后，删除自己注册的临时节点。</li>
-<li>同时线程1会判断自己是不是最小的，所以会监控比自己小1的那个节点，当发现那个节点消失的话，也就意味着它的节点就是最小的节点，获取锁，执行更新数据的代码。。。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>​    </p>
-
-        </div>
-        
-        <div class="level is-size-7 is-uppercase">
-            <div class="level-start">
-                <div class="level-item">
-                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
-                    <a class="has-link-grey -link" href="/tags/zookeeper/">zookeeper</a>, <a class="has-link-grey -link" href="/tags/分布式管理/">分布式管理</a>, <a class="has-link-grey -link" href="/tags/大数据/">大数据</a>
-                </div>
-            </div>
-        </div>
-        
-        
-        
-        <div class="social-share"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
-<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
-        
-    </div>
-</div>
-
-
-
-<div class="card">
+<div class="card widget">
     <div class="card-content">
-        <h3 class="menu-label has-text-centered">喜欢这篇文章？给作者买个糖果吧(✿◕‿◕✿)</h3>
-        <div class="buttons is-centered">
-            
+        <h3 class="tag is-link">
+        九月 2019
+        </h3>
+        <div class="timeline">
+        
+            <article class="media">
                 
-<a class="button is-info donate">
-    <span class="icon is-small">
-        <i class="fab fa-alipay"></i>
-    </span>
-    <span>支付宝</span>
-    <div class="qrcode"><img src="/images/aliPay.jpg" alt="支付宝"></div>
-</a>
-
+                <a href="/2019/09/02/大数据框架Hadoop-一/" class="media-left">
+                    <p class="image is-64x64">
+                        <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(一)">
+                    </p>
+                </a>
                 
-                
-<a class="button is-success donate">
-    <span class="icon is-small">
-        <i class="fab fa-weixin"></i>
-    </span>
-    <span>微信</span>
-    <div class="qrcode"><img src="/images/wxPay.jpg" alt="微信"></div>
-</a>
-
-                
+                <div class="media-content">
+                    <div class="content">
+                        <time class="has-text-grey is-size-7 is-block is-uppercase" datetime="2019-09-02T12:09:55.000Z">2019-09-02</time>
+                        <a href="/2019/09/02/大数据框架Hadoop-一/" class="title has-link-black-ter is-size-6 has-text-weight-normal">大数据框架Hadoop(一)</a>
+                        <div class="level article-meta is-mobile">
+                            <div class="level-left">
+                                
+                                <div class="level-item is-size-7 is-uppercase">
+                                <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        
         </div>
     </div>
 </div>
 
 
-
-<div class="card card-transparent">
-    <div class="level post-navigation is-flex-wrap is-mobile">
-        
-        <div class="level-start">
-            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/08/28/大数据框架概念初级整合/">
-                <i class="level-item fas fa-chevron-left"></i>
-                <span class="level-item">大数据框架概念初级整合</span>
-            </a>
-        </div>
-        
-        
-        <div class="level-end">
-            <a class="level level-item has-link-grey  article-nav-next" href="/2019/08/28/impala/">
-                <span class="level-item">impala</span>
-                <i class="level-item fas fa-chevron-right"></i>
-            </a>
-        </div>
-        
-    </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-content">
-        <h3 class="title is-5 has-text-weight-normal">评论</h3>
-        
-<div id="valine-thread" class="content"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-<script>
-    new Valine({
-        el: '#valine-thread' ,
-        notify: false,
-        verify: false,
-        app_id: 'CNIaUCTekqhuwaIw4DYBECp1-MdYXbMMI',
-        app_key: 'jvTg96TjioRr2zOhuCcj3tam',
-        placeholder: '看了这么久不评价一下吗？'
-    });
-</script>
-
-    </div>
-</div>
 </div>
                 
 
@@ -916,7 +747,7 @@
             <div class="level-start has-text-centered-mobile">
              <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="zookeeper介绍" height="28">
+                    <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
                 
                 </a> 
 						
