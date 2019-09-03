@@ -7,21 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: 网络接口 - 林哥博客 |  菜鸟技术聚集地</title>
+<title>大数据框架Hadoop(三)  HDFS的HA和联邦 - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="记录学习技术的点点滴滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:url" content="http://iochina.top/tags/网络接口/index.html">
+    <meta name="description" content="hdfs 2的HA机制 HDFS的HA，指的是在一个集群中存在两个NameNode，分别运行在独立的物理节点上。在任何时间点，只有一个NameNode是处于Active状态，另一种是standby状态。Activite NameNode负责所有客户端操作，而standby NameNode用来同步Active NameNode的状态信息来提高快速的故障恢复能力。">
+<meta name="keywords" content="大数据,Haoop,HDFS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据框架Hadoop(三)  HDFS的HA和联邦">
+<meta property="og:url" content="http://iochina.top/2019/09/03/大数据框架Hadoop-三-HDFS的HA和联邦/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="记录学习技术的点点滴滴">
+<meta property="og:description" content="hdfs 2的HA机制 HDFS的HA，指的是在一个集群中存在两个NameNode，分别运行在独立的物理节点上。在任何时间点，只有一个NameNode是处于Active状态，另一种是standby状态。Activite NameNode负责所有客户端操作，而standby NameNode用来同步Active NameNode的状态信息来提高快速的故障恢复能力。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iochina.top/images/og_image.png">
+<meta property="og:image" content="http://iochina.top/t_img/hadoop.jpg">
+<meta property="og:updated_time" content="2019-09-03T12:19:17.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta name="twitter:description" content="记录学习技术的点点滴滴">
-<meta name="twitter:image" content="http://iochina.top/images/og_image.png">
+<meta name="twitter:title" content="大数据框架Hadoop(三)  HDFS的HA和联邦">
+<meta name="twitter:description" content="hdfs 2的HA机制 HDFS的HA，指的是在一个集群中存在两个NameNode，分别运行在独立的物理节点上。在任何时间点，只有一个NameNode是处于Active状态，另一种是standby状态。Activite NameNode负责所有客户端操作，而standby NameNode用来同步Active NameNode的状态信息来提高快速的故障恢复能力。">
+<meta name="twitter:image" content="http://iochina.top/t_img/hadoop.jpg">
 
 
 
@@ -91,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                <img src="/images/logo.svg" alt="大数据框架Hadoop(三)  HDFS的HA和联邦" height="28">
             
             </a>
         </div>
@@ -145,39 +147,28 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">网络接口</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/08/27/python基础-接口开发/" class="image is-7by1">
-            <img class="thumbnail" src="/t_img/python.jpg" alt="python基础  接口开发">
-        </a>
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(三)  HDFS的HA和联邦">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-27T12:56:26.000Z">2019-08-27</time>
+                <time class="level-item has-text-grey" datetime="2019-09-03T11:52:27.000Z">2019-09-03</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/python/">python</a>
+                <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    几秒 读完 (大约 5 个字)
+                    4 分钟 读完 (大约 540 个字)
                 </span>
                 
                 
@@ -186,25 +177,135 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/27/python基础-接口开发/">python基础  接口开发</a>
+                大数据框架Hadoop(三)  HDFS的HA和联邦
             
         </h1>
         <div class="content">
-            <h1 id="api-调用实例"><a href="#api-调用实例" class="headerlink" title="api 调用实例"></a>api 调用实例</h1>
+            <h2 id="hdfs-2的HA机制"><a href="#hdfs-2的HA机制" class="headerlink" title="hdfs 2的HA机制"></a>hdfs 2的HA机制</h2><ul>
+<li><p>HDFS的HA，指的是在一个集群中存在两个NameNode，分别运行在独立的物理节点上。在任何时间点，只有一个NameNode是处于Active状态，另一种是standby状态。Activite NameNode负责所有客户端操作，而standby NameNode用来同步Active NameNode的状态信息来提高快速的故障恢复能力。</p>
+<a id="more"></a>
+</li>
+<li><p>为了保证Active NN和Standby NN节点状态同步，即元数据保持一致。除了DataNode需要向两个NN发送block位置信息外，还构建了一组独立的守护进程——JournalNodes，用来同步Edits信息。当Active NN执行任何有关命名空间的修改，它需要持久化到一般以上的JournalNodes上。而StandBy NN负责观察JNs的变化，从JNs读取从Active 发送过来的Edits信息并更新自己的内部空间，一旦ActiveNN遇到错误，StandBy NN需要保证从JNs中读出了全部的Edits，然后切换成Active状态。</p>
+<p><img src="/gallery/hdfs_ha.jpg" alt="hdfs_ha"></p>
+</li>
+<li><p>使用HA的时候，不能启动SecondNameNode，会出错。</p>
+</li>
+</ul>
+<h2 id="HDFS2-的Federation（联邦）"><a href="#HDFS2-的Federation（联邦）" class="headerlink" title="HDFS2 的Federation（联邦）"></a>HDFS2 的Federation（联邦）</h2><ul>
+<li><p>HDFS Federation设计可解决单一命名空间存在的以下几个问题：</p>
+<ol>
+<li>hdfs集群扩展性。多个NameNode分管一部分目录，使得一个集群可以扩展到更多节点，不再像1.0呢样由于内存的限制制约文件存储数目。</li>
+<li>性能更高效。多个NameNode管理不同的数据，而且同时对外提高服务，将为用户提高更高的读写吞吐率。</li>
+<li>良好的隔离性。用户可根据需要将不同业务数据交由不同的NameNode管理，这样不同业务至今啊影响很小。</li>
+</ol>
+<p><img src="/gallery/hdfs_federation_ha.jpg" alt="hdfs_federation_ha"></p>
+</li>
+</ul>
+<h2 id="hdfs常见问题"><a href="#hdfs常见问题" class="headerlink" title="hdfs常见问题"></a>hdfs常见问题</h2><ul>
+<li>集群启动失败<ul>
+<li>查看日志</li>
+</ul>
+</li>
+<li>hdfs 文件无法操作<ul>
+<li>一般是处于安全模式<ul>
+<li>离开安全模式 hdfs dfsadmin -safemode leave</li>
+<li>进入安全模式 hdfs dfsadmin -safemode enter</li>
+<li>查看安全模式 hdfs dfsadmin -safemode get</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        
+        <div class="level is-size-7 is-uppercase">
+            <div class="level-start">
+                <div class="level-item">
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/HDFS/">HDFS</a>, <a class="has-link-grey -link" href="/tags/Haoop/">Haoop</a>, <a class="has-link-grey -link" href="/tags/大数据/">大数据</a>
+                </div>
+            </div>
         </div>
         
         
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？给作者买个糖果吧(✿◕‿◕✿)</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/aliPay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wxPay.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/02/大数据框架Hadoop-二-HDFS/">
+                <span class="level-item">大数据框架Hadoop(二)HDFS</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
+
+<div class="card">
+    <div class="card-content">
+        <h3 class="title is-5 has-text-weight-normal">评论</h3>
+        
+<div id="valine-thread" class="content"></div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script>
+    new Valine({
+        el: '#valine-thread' ,
+        notify: false,
+        verify: false,
+        app_id: 'CNIaUCTekqhuwaIw4DYBECp1-MdYXbMMI',
+        app_key: 'jvTg96TjioRr2zOhuCcj3tam',
+        placeholder: '看了这么久不评价一下吗？'
+    });
+</script>
+
+    </div>
+</div>
 </div>
                 
 
@@ -769,7 +870,7 @@
             <div class="level-start has-text-centered-mobile">
              <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                    <img src="/images/logo.svg" alt="大数据框架Hadoop(三)  HDFS的HA和联邦" height="28">
                 
                 </a> 
 						

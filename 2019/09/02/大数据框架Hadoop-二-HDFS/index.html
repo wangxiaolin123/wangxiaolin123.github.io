@@ -11,7 +11,7 @@
 
 
     <meta name="description" content="hdfs是是一个分布式的（Distributed）文件（File）系统（System） 通俗的说，hdfs是一个可以管理多台机器文件的管理系统。 允许文件通过网络在多台主机上分析的文件系统，可以让多机器上的多用户分享文件和存储空间。 通透性。让实际上通过网络来访问文件的动作，由程序与用户看来，就像是访问本地磁盘一样。 容错。若系统中有些节点宕机，整体来说系统可以持续运作而不会有数据损失（通过副本机">
-<meta name="keywords" content="大数据,Hadoop,HDFS">
+<meta name="keywords" content="大数据,HDFS,Hadoop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大数据框架Hadoop(二)HDFS">
 <meta property="og:url" content="http://iochina.top/2019/09/02/大数据框架Hadoop-二-HDFS/index.html">
@@ -19,7 +19,7 @@
 <meta property="og:description" content="hdfs是是一个分布式的（Distributed）文件（File）系统（System） 通俗的说，hdfs是一个可以管理多台机器文件的管理系统。 允许文件通过网络在多台主机上分析的文件系统，可以让多机器上的多用户分享文件和存储空间。 通透性。让实际上通过网络来访问文件的动作，由程序与用户看来，就像是访问本地磁盘一样。 容错。若系统中有些节点宕机，整体来说系统可以持续运作而不会有数据损失（通过副本机">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://iochina.top/t_img/hadoop.jpg">
-<meta property="og:updated_time" content="2019-09-02T14:53:23.854Z">
+<meta property="og:updated_time" content="2019-09-03T11:51:02.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据框架Hadoop(二)HDFS">
 <meta name="twitter:description" content="hdfs是是一个分布式的（Distributed）文件（File）系统（System） 通俗的说，hdfs是一个可以管理多台机器文件的管理系统。 允许文件通过网络在多台主机上分析的文件系统，可以让多机器上的多用户分享文件和存储空间。 通透性。让实际上通过网络来访问文件的动作，由程序与用户看来，就像是访问本地磁盘一样。 容错。若系统中有些节点宕机，整体来说系统可以持续运作而不会有数据损失（通过副本机">
@@ -168,7 +168,7 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    14 分钟 读完 (大约 2053 个字)
+                    19 分钟 读完 (大约 2920 个字)
                 </span>
                 
                 
@@ -322,6 +322,47 @@
 </li>
 <li>该设计方向就是客户端直接连接datanode来检索数据并且namenode来负责为每一个block提供最优的datanode，namenode仅仅处理block location的请求，这些信息都加载在namenode的内存中，hdfs通过datanode集群可以承受大量客户端的并发访问。</li>
 </ul>
+<h3 id="hdfs-写文件"><a href="#hdfs-写文件" class="headerlink" title="hdfs 写文件"></a>hdfs 写文件</h3><p><img src="/gallery/hdfs_write.jpg" alt="hdfs_write"></p>
+<ul>
+<li><p>写文件流程分析</p>
+<ol>
+<li><p>客户端通过调用DistributedFileSystem的create方法创建新文件。</p>
+</li>
+<li><p>DistributedFileSystem通过RPC调用NameNode去创建一个没有blocks关联的新文件，创建前，NameNode会做各种校验，比如文件是否存在，客户端有无权限去创建等。如果校验通过，NameNode就会记录下新文件，否则就会抛出IO异常。</p>
+</li>
+<li><p>前两步结束后会返回FSDataOutputStream的对象，和读文件的时候类似，FSDataOutputStream被封装成DFSOutputStream.DFSOutputStream可以协调NameNode和DataNode。客户端开始写数据到DFSOutputStream，DFSOutputStream会把数据切成一个个小packet，然后排成队列data quene.</p>
+</li>
+<li><p>DataStreamer会处理接收data quene，他询问NameNode这个新的Block最适合存储到哪几个DataNode里，比如副本数是3.那么就找到3个最适合的DataNode，把他们排成一个pipeline。DataStreamer把packet按队列输出到管道的第一个DataNode中，第一个DataNode又把packet输出到第二个DataNode中，以此类推。</p>
+</li>
+<li><p>DFSOutputStream还有一个队列叫ack quene，也是由packet组成，等待DataNode收到响应，当pipeline中所有的DataNode都表示已经收到的时候，这时候ack queue才会把对应的packet包移除掉。</p>
+<p>如果在写的过程中某个DataNode发生错误，会采取以下几步：</p>
+<pre><code>1. pipeline被关闭掉。
+2. 为了防止丢包ack queue里的packet会同步到data queue里。
+3. 把产生错误的DataNode上当前在写但未完成的block删掉。
+4. block剩下的部分被写到剩下的两个正常的DataNode中。
+5. NameNode找到另外的DataNode去创建这个块的复制。当然这些操作对客户端是无感知的。</code></pre></li>
+<li><p>客户但完成写数据后调用close方法关闭写入流。</p>
+</li>
+<li><p>DataStreamer把剩余的包都刷到pipeline里然后等待ack信息，收到最后一个ack后，通知DataNode把文件标识为已完成。</p>
+</li>
+</ol>
+</li>
+<li><p>注意：客户端执行write操作后，写完得block才是可见的，正在写的block对客户端是不可见的，只有调用sync方法，客户端才确保该文件被写操作已经全部完成，当客户端调用close方法时会默认调用sync方法。是否需要手动调用取决你根据程序需要在数据健壮性和吞吐率之间的权衡。</p>
+</li>
+</ul>
+<h2 id="hdfs-的Trash回收站"><a href="#hdfs-的Trash回收站" class="headerlink" title="hdfs 的Trash回收站"></a>hdfs 的Trash回收站</h2><ul>
+<li><p>Hdfs为每一个用户创建一个回收站目录： /user/用户名/.Trash/,</p>
+</li>
+<li><p>每个被用户通过Shell删除的文件/目录，在系统回收站中都有一个时间周期，也就是当系统回收站中的文件/目录在一段时间之后没有被用户恢复的话，HDFS就会自动的把这个文件/目录彻底删除，之后用户就永远也找不回这个文件/目录了。</p>
+</li>
+<li><p>配置：在每个节点（不仅仅是主节点）上添加配置core-site.xml增加内容如下（单位：分钟）</p>
+<figure class="highlight xml hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-tag">&lt;<span class="hljs-name">property</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>fs.trash.interval<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span></span><br><span class="line">    <span class="hljs-tag">&lt;<span class="hljs-name">value</span>&gt;</span>1440<span class="hljs-tag">&lt;/<span class="hljs-name">value</span>&gt;</span></span><br><span class="line"><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<ul>
+<li>注意：如果删除的文件过大，超过回收站大小的话会提示删除失败。需要指定参数 -skipTrash跳过回收站直接彻底删除。</li>
+</ul>
 
         </div>
         
@@ -378,6 +419,13 @@
 
 <div class="card card-transparent">
     <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        <div class="level-start">
+            <a class="level level-item has-link-grey  article-nav-prev" href="/2019/09/03/大数据框架Hadoop-三-HDFS的HA和联邦/">
+                <i class="level-item fas fa-chevron-left"></i>
+                <span class="level-item">大数据框架Hadoop(三)  HDFS的HA和联邦</span>
+            </a>
+        </div>
         
         
         <div class="level-end">
@@ -455,7 +503,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        18
+                        19
                     </p>
                 </div>
             </div>
@@ -475,7 +523,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        33
+                        34
                     </p>
                 </div>
             </div>
@@ -544,7 +592,7 @@
                     <span class="level-item">九月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">2</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -612,7 +660,7 @@
                 <span class="level-item">Hadoop</span>
             </span>
             <span class="level-end">
-                <span class="level-item tag">2</span>
+                <span class="level-item tag">3</span>
             </span>
         </a></li><li>
         <a class="level is-marginless" href="/categories/impala/">
@@ -725,6 +773,25 @@
         
         <article class="media">
             
+            <a href="/2019/09/03/大数据框架Hadoop-三-HDFS的HA和联邦/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(三)  HDFS的HA和联邦">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-03T11:52:27.000Z">2019-09-03</time></div>
+                    <a href="/2019/09/03/大数据框架Hadoop-三-HDFS的HA和联邦/" class="title has-link-black-ter is-size-6 has-text-weight-normal">大数据框架Hadoop(三)  HDFS的HA和联邦</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/大数据框架Hadoop-二-HDFS/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(二)HDFS">
@@ -799,25 +866,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/大数据框架概念初级整合/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/大数据生态圈.jpg" alt="大数据框架概念初级整合">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T14:24:40.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/大数据框架概念初级整合/" class="title has-link-black-ter is-size-6 has-text-weight-normal">大数据框架概念初级整合</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -828,7 +876,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/HDFS/" style="font-size: 10px;">HDFS</a> <a href="/tags/Hadoop/" style="font-size: 13.33px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/HDFS/" style="font-size: 13.33px;">HDFS</a> <a href="/tags/Hadoop/" style="font-size: 13.33px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Haoop/" style="font-size: 10px;">Haoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
     </div>
 </div>
 
@@ -853,6 +901,25 @@
         
         <article class="media">
             
+            <a href="/2019/09/03/大数据框架Hadoop-三-HDFS的HA和联邦/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(三)  HDFS的HA和联邦">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-09-03T11:52:27.000Z">2019-09-03</time></div>
+                    <a href="/2019/09/03/大数据框架Hadoop-三-HDFS的HA和联邦/" class="title has-link-black-ter is-size-6 has-text-weight-normal">大数据框架Hadoop(三)  HDFS的HA和联邦</a>
+                    <p class="is-size-7 is-uppercase">
+                        <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
             <a href="/2019/09/02/大数据框架Hadoop-二-HDFS/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/t_img/hadoop.jpg" alt="大数据框架Hadoop(二)HDFS">
@@ -927,25 +994,6 @@
             </div>
         </article>
         
-        <article class="media">
-            
-            <a href="/2019/08/28/大数据框架概念初级整合/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/t_img/大数据生态圈.jpg" alt="大数据框架概念初级整合">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-08-28T14:24:40.000Z">2019-08-28</time></div>
-                    <a href="/2019/08/28/大数据框架概念初级整合/" class="title has-link-black-ter is-size-6 has-text-weight-normal">大数据框架概念初级整合</a>
-                    <p class="is-size-7 is-uppercase">
-                        <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
-                    </p>
-                </div>
-            </div>
-        </article>
-        
     </div>
 </div>
 
@@ -956,7 +1004,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/HDFS/" style="font-size: 10px;">HDFS</a> <a href="/tags/Hadoop/" style="font-size: 13.33px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
+        <a href="/tags/ElasicSearch/" style="font-size: 10px;">ElasicSearch</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Flink/" style="font-size: 10px;">Flink</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/HDFS/" style="font-size: 13.33px;">HDFS</a> <a href="/tags/Hadoop/" style="font-size: 13.33px;">Hadoop</a> <a href="/tags/Hadoop，Spark-Storm-Hive-Hbase-Redis/" style="font-size: 10px;">Hadoop，Spark, Storm,Hive, Hbase,Redis</a> <a href="/tags/Haoop/" style="font-size: 10px;">Haoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Kibana/" style="font-size: 10px;">Kibana</a> <a href="/tags/Logstash/" style="font-size: 10px;">Logstash</a> <a href="/tags/Mysql/" style="font-size: 10px;">Mysql</a> <a href="/tags/Scala/" style="font-size: 13.33px;">Scala</a> <a href="/tags/Spark/" style="font-size: 13.33px;">Spark</a> <a href="/tags/Spark优化/" style="font-size: 10px;">Spark优化</a> <a href="/tags/Sqoop/" style="font-size: 10px;">Sqoop</a> <a href="/tags/Zookeeper/" style="font-size: 10px;">Zookeeper</a> <a href="/tags/impala/" style="font-size: 10px;">impala</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/shell交互/" style="font-size: 10px;">shell交互</a> <a href="/tags/zookeeper/" style="font-size: 10px;">zookeeper</a> <a href="/tags/内连接与外连接/" style="font-size: 10px;">内连接与外连接</a> <a href="/tags/分布式管理/" style="font-size: 10px;">分布式管理</a> <a href="/tags/大数据/" style="font-size: 20px;">大数据</a> <a href="/tags/搜索引擎/" style="font-size: 10px;">搜索引擎</a> <a href="/tags/数据仓库/" style="font-size: 13.33px;">数据仓库</a> <a href="/tags/数据库/" style="font-size: 10px;">数据库</a> <a href="/tags/数据库原理/" style="font-size: 10px;">数据库原理</a> <a href="/tags/数据库范式/" style="font-size: 10px;">数据库范式</a> <a href="/tags/文件读写/" style="font-size: 10px;">文件读写</a> <a href="/tags/流式处理和批处理/" style="font-size: 10px;">流式处理和批处理</a> <a href="/tags/网络接口/" style="font-size: 10px;">网络接口</a>
     </div>
 </div>
 
