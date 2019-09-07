@@ -7,21 +7,23 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-<title>标签: Flume - 林哥博客 |  菜鸟技术聚集地</title>
+<title>大数据框架Hadoop(四)-MapReduce1 - 林哥博客 |  菜鸟技术聚集地</title>
 
 
-    <meta name="description" content="记录学习技术的点点滴滴">
-<meta property="og:type" content="website">
-<meta property="og:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:url" content="http://iochina.top/tags/Flume/index.html">
+    <meta name="description" content="MapReduce概述 MapReduce是一种分布式计算模型，由Google提出，主要用于搜索领域，解决海量数据的计算问题。 MapReduce是分布式运行的，由两个阶段组成：Map和Reduce，Map阶段是一个独立程序，有很多节点同时运行，每个节点处理一部分数据。Reduce阶段是一个独立的程序，有很多节点同时运行，每个节点处理一部分数据。 MapReduce框架都有默认实现，用户只需要覆盖">
+<meta name="keywords" content="大数据,Hadoop,MapReduce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据框架Hadoop(四)-MapReduce1">
+<meta property="og:url" content="http://iochina.top/2019/09/04/大数据框架Hadoop-四-MapReduce1/index.html">
 <meta property="og:site_name" content="林哥博客 |  菜鸟技术聚集地">
-<meta property="og:description" content="记录学习技术的点点滴滴">
+<meta property="og:description" content="MapReduce概述 MapReduce是一种分布式计算模型，由Google提出，主要用于搜索领域，解决海量数据的计算问题。 MapReduce是分布式运行的，由两个阶段组成：Map和Reduce，Map阶段是一个独立程序，有很多节点同时运行，每个节点处理一部分数据。Reduce阶段是一个独立的程序，有很多节点同时运行，每个节点处理一部分数据。 MapReduce框架都有默认实现，用户只需要覆盖">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://iochina.top/images/og_image.png">
+<meta property="og:image" content="http://iochina.top/t_img/Hadoop.jpg">
+<meta property="og:updated_time" content="2019-09-05T08:10:43.166Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="林哥博客 |  菜鸟技术聚集地">
-<meta name="twitter:description" content="记录学习技术的点点滴滴">
-<meta name="twitter:image" content="http://iochina.top/images/og_image.png">
+<meta name="twitter:title" content="大数据框架Hadoop(四)-MapReduce1">
+<meta name="twitter:description" content="MapReduce概述 MapReduce是一种分布式计算模型，由Google提出，主要用于搜索领域，解决海量数据的计算问题。 MapReduce是分布式运行的，由两个阶段组成：Map和Reduce，Map阶段是一个独立程序，有很多节点同时运行，每个节点处理一部分数据。Reduce阶段是一个独立的程序，有很多节点同时运行，每个节点处理一部分数据。 MapReduce框架都有默认实现，用户只需要覆盖">
+<meta name="twitter:image" content="http://iochina.top/t_img/Hadoop.jpg">
 
 
 
@@ -91,7 +93,7 @@
         <div class="navbar-brand is-flex-center">
             <a class="navbar-item navbar-logo" href="/">
             
-                <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                <img src="/images/logo.svg" alt="大数据框架Hadoop(四)-MapReduce1" height="28">
             
             </a>
         </div>
@@ -145,39 +147,28 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-8-tablet is-8-desktop is-6-widescreen has-order-2 column-main"><div class="card">
-    <div class="card-content">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-            <li><a href="/tags">标签</a></li>
-            <li class="is-active"><a href="#" aria-current="page">Flume</a></li>
-        </ul>
-        </nav>
-    </div>
-</div>
-
-    <div class="card">
     
     <div class="card-image">
-        <a href="/2019/08/28/大数据框架概念初级整合/" class="image is-7by1">
-            <img class="thumbnail" src="/t_img/大数据生态圈.jpg" alt="大数据框架概念初级整合">
-        </a>
+        <span  class="image is-7by1">
+            <img class="thumbnail" src="/t_img/Hadoop.jpg" alt="大数据框架Hadoop(四)-MapReduce1">
+        </span>
     </div>
     
     <div class="card-content article ">
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-08-28T14:24:40.000Z">2019-08-28</time>
+                <time class="level-item has-text-grey" datetime="2019-09-04T12:34:45.000Z">2019-09-04</time>
                 
                 <div class="level-item">
-                <a class="has-link-grey -link" href="/categories/大数据/">大数据</a>
+                <a class="has-link-grey -link" href="/categories/Hadoop/">Hadoop</a>
                 </div>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    12 分钟 读完 (大约 1858 个字)
+                    28 分钟 读完 (大约 4249 个字)
                 </span>
                 
                 
@@ -186,41 +177,425 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2019/08/28/大数据框架概念初级整合/">大数据框架概念初级整合</a>
+                大数据框架Hadoop(四)-MapReduce1
             
         </h1>
         <div class="content">
-            <h1 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h1><ul>
-<li><p>Hadoop是一个适合海量数据的分布式存储和分布式计算平台。</p>
+            <h2 id="MapReduce概述"><a href="#MapReduce概述" class="headerlink" title="MapReduce概述"></a>MapReduce概述</h2><ul>
+<li>MapReduce是一种分布式计算模型，由Google提出，主要用于搜索领域，解决海量数据的计算问题。</li>
+<li>MapReduce是分布式运行的，由两个阶段组成：Map和Reduce，Map阶段是一个独立程序，有很多节点同时运行，每个节点处理一部分数据。Reduce阶段是一个独立的程序，有很多节点同时运行，每个节点处理一部分数据。</li>
+<li>MapReduce框架都有默认实现，用户只需要覆盖map（）和reduce()两个函数，即可实现分布式计算。两个函数的形参和返回值都是&lt;key,value&gt;</li>
+</ul>
+<a id="more"></a>
+
+<h2 id="MR执行过程-map阶段"><a href="#MR执行过程-map阶段" class="headerlink" title="MR执行过程-map阶段"></a>MR执行过程-map阶段</h2><ul>
+<li><p>map任务处理</p>
+<ol>
+<li><p>框架使用InputFormat类的子类把输入文件（夹）划分为很多InputSplit，默认每个HDFS的block对应一个InputSplit。通过RecordReader类，把每一个InputSplit解析成一个个&lt;k1,v1&gt;。默认框架对每一个InputSplit中的每一行，解析成一个&lt;k1,v1&gt;。</p>
 </li>
-<li><p>Hadoop由HDFS，Map Reduce，Yarn三大组件组成。</p>
+<li><p>框架调用Mapper类中的map（…）函数，map函数的形参是&lt;k1,v1&gt;对，输出是&lt;k2,v2&gt;对。一个InputSplit对应一个map task。我们可以覆盖map函数，实现自己的逻辑。</p>
+</li>
+<li><p>（假设reduce存在）框架对map输出的&lt;k2,v2&gt;进行分区。不同的分区中的&lt;k2,v2&gt;由不同的reduce task处理。默认只有1个分区。</p>
+<p>（假设reduce不存在）框架对map结果直接输出到HDFS中。</p>
+</li>
+<li><p>（假设reduce存在）框架对每个分区中的数据，按照k2进行排序分组。分组指的是相同k2的v2分成一组。分组不会减少&lt;k2,v2&gt;的数量。</p>
+</li>
+<li><p>（假设reduce存在，可选）在map节点，框架可以执行reduce规约(combine)</p>
+</li>
+<li><p>(假设reduce存在)框架会把map task输出的&lt;k2,v2&gt;写入到Linux的磁盘文件中。</p>
+</li>
+</ol>
+</li>
+<li><p>至此，map阶段结束。</p>
+</li>
+<li><p>reduce阶段</p>
+<ol>
+<li><p>框架对多个map任务的输出，按照不同的分区，通过网络copy到不同的reduce节点。这个过程称作shuffle。</p>
+</li>
+<li><p>框架对reduce端接收的map任务输出的相同分区的&lt;k2,v2&gt;数据进行合并、排序、分组。</p>
+</li>
+<li><p>框架调用Reducer类中的reduce方法，reduce方法的形参是&lt;k2,{v2,…}&gt;，输出是&lt;k3,v3&gt;。一个&lt;k2,{v2,…}调用一次reduce函数。我们可以覆盖reduce函数，实现自己的逻辑。</p>
+</li>
+<li><p>把reduce的输出保存到HDFS中。</p>
+</li>
+</ol>
+</li>
+<li><p>至此，整个reduce阶段结束。</p>
+</li>
+</ul>
+<h2 id="shuffle过程"><a href="#shuffle过程" class="headerlink" title="shuffle过程"></a>shuffle过程</h2><p><img src="/gallery/mapreduce_shuffle.jpg" alt="mapreduce_shuffle"></p>
+<h2 id="MapReduce执行流程总结"><a href="#MapReduce执行流程总结" class="headerlink" title="MapReduce执行流程总结"></a>MapReduce执行流程总结</h2><ul>
+<li>Map Task<ul>
+<li>读取：框架调用InputFormat类的子类读取HDFS中文件数据，把文件转换为InputSplit。默认，文件的一个block对应一个InputSplit，一个InputSplit对应一个map task。一个InputSplit中的数据会被RecordReader解析成&lt;k1,v1&gt;。默认，InputSplit中的一行解析成一个&lt;k1,v1&gt;。默认v1表示一行的内容，k1表示偏移量。</li>
+<li>map：框架调用Mapper类中的(k1,v1)方法，接收&lt;k1,v1&gt;，输出&lt;k2,v2&gt;。有多少个&lt;k1,v1&gt;,map会被执行多少次。我们可以覆盖map(),实现自己的业务逻辑。</li>
+<li>分区：框架对map的输出进行分区。分区的目的是确定哪些&lt;k2,v2&gt;进入哪个reduce task。默认只有一个分区。</li>
+<li>排序分组：框架对不同分区中的&lt;k2,v2&gt;进行排序、分组。<ul>
+<li>排序是按照k2进行排序。</li>
+<li>分组是指相同k2的v2分到一个组中。</li>
+</ul>
+</li>
+<li>combiner：可以在map task中对&lt;K2,v2&gt;执行reduce规约。</li>
+<li>写入本地：框架对map的输出写入到Linux本地磁盘。</li>
+</ul>
+</li>
+<li>Reduce Task<ul>
+<li>shuffle：框架根据map不同分区，将数据，通过网络copy到不同的reduce节点。</li>
+<li>合并排序分组：每个reduce会把多个map传来的&lt;k2,v2&gt;进行合并、排序、分组。</li>
+<li>reduce：框架调用reduce(k2,v2s).有多少个分组，就会执行多少次reduce函数。</li>
+<li>写入HDFS：框架对reduce的输出写入到HDFS中。</li>
+</ul>
+</li>
+</ul>
+<h2 id="查看MapReduce任务输出日志"><a href="#查看MapReduce任务输出日志" class="headerlink" title="查看MapReduce任务输出日志"></a>查看MapReduce任务输出日志</h2><ul>
+<li>historyserver进程作用<ul>
+<li>把收集散落在弄得manager节点上的日志</li>
+</ul>
+</li>
+</ul>
+<h2 id="停止Yarn上的任务"><a href="#停止Yarn上的任务" class="headerlink" title="停止Yarn上的任务"></a>停止Yarn上的任务</h2><ul>
+<li>yarn application -kill <aaplication_id></aaplication_id></li>
+<li>在shell中ctrl+c无法停止程序，因为程序已经提交到yarn集群运行了。</li>
+<li>yarn application -kill 不仅可以停止mr任务，只要是在yarn上运行的任务都可以使用这个命令杀掉进程。</li>
+</ul>
+<h2 id="MapReduce在Yarn上执行流程"><a href="#MapReduce在Yarn上执行流程" class="headerlink" title="MapReduce在Yarn上执行流程"></a>MapReduce在Yarn上执行流程</h2><ul>
+<li>首先，Resource Manager会为每一个application（比如一个用户提交的MapReduce Job）在NodeManager里面申请一个container，然后在该container里面启动一个Application Master。container在Yarn中是分配资源的容器（内存、cpu、硬盘等），它启动时便会相应启动一个JVM。</li>
+<li>然后，Aplication Master便陆续为application包含的每一个task（一个Map Task或Reduce task）向Resource Manager申请一个container。等每得到一个container后，便要求该container所属的NodeManager将此container启动，然后就在这个container里面执行相应的task。</li>
+<li>等这个task执行完后，这个container便会被NodeManager收回，而container所拥有的JVM也相应地被退出。</li>
+</ul>
+<h2 id="Yarn核心组件功能"><a href="#Yarn核心组件功能" class="headerlink" title="Yarn核心组件功能"></a>Yarn核心组件功能</h2><ul>
+<li>Yarn Client<ul>
+<li>Yarn Client提交Application到RM，它会首先创建一个Application上下文对象，并设置AM必须的资源请求信息，然后提交到RM。Yarn client也可以与RM通信，获取一个已经提交并运行的Application的状态信息等。</li>
+</ul>
+</li>
+<li>ResourceManager（RM）<ul>
+<li>RM是Yarn集群的Master，负责管理整个集群的资源和资源分配。RM作为集群资源的管理和调度的角色，如果存在单点故障，则整个集群的资源都无法使用。在2.4.0版本才新增RM HA的特性，这样就增加了RM的可用性。</li>
+</ul>
+</li>
+<li>NodeManager（NM）<ul>
+<li>NM是Yarn集群的Slave，是集群中实际拥有实际资源的工作节点。我们提交Job以后，会将组成Job的多个Task调度到对应的NM上进行执行。Hadoop集群中，为了获得分布式计算中的Locality特性，会将DN和NM在同一个节点上运行，这样对应的HDFS上的Block可能就在本地，而无需在网络间进行数据的传输。</li>
+</ul>
+</li>
+<li>Container<ul>
+<li>Container是Yarn集群中资源的抽象，将NM上的资源进行量化，根据需要组成一个个Container，然后服务于已授权资源的计算任务。计算任务在完成计算后，系统会回收资源，以供后续计算任务申请使用。Container包含两种资源：内存和CPU，后续Hadoop版本可能会增加硬盘、网络等资源。</li>
+</ul>
+</li>
+<li>ApplicationMaster（AM）<ul>
+<li>AM主要管理监控部署在Yarn集群上的Application，以MapReduce为例，MapReduce ApplicationMaster是一个用来处理MapReduce计算的服务框架程序，为用户编写的MapReduce程序提供运行时支持。通常我们在编写的一个MapReduce程序可能包含多个Map Task或Reduce Task，而各个Task的运行管理与监控都是由这个MapReduce ApplicationMaster来负责，比如运行Task的资源申请，由AM向RM申请；启动/停止NM上某Task的对应的Container，由AM向NM请求来完成。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Map中的shuffle"><a href="#Map中的shuffle" class="headerlink" title="Map中的shuffle"></a>Map中的shuffle</h2><ol>
+<li>每个map有一个环形内存缓存区，用于存储map的输出。默认大小100MB（io.sort.mb属性），一旦达到阈值0.8（io.sort.spill.percent）,一个后台线程把内容溢写到（spill）磁盘的指定目录（mapred.local.dir）下的一个新建文件中。</li>
+<li>写磁盘前，要partition，sort。如果有combiner，combine排序后数据。</li>
+<li>等最后记录写完，合并全部文件为一个分区且排序的文件。</li>
+</ol>
 <ul>
-<li>HDFS是一个分布式文件系统</li>
-<li>MapReduce是一个海量数据计算框架</li>
-<li>Yarn是一个资源管理和任务调度框架</li>
+<li>Reduce通过Http方式得到输出文件的特点分区的数据。</li>
+<li>排序阶段合map输出。然后走Reduce阶段。</li>
+<li>reduce执行完之后，写入到HDFS中。</li>
+</ul>
+<h2 id="Hadoop序列化的特点"><a href="#Hadoop序列化的特点" class="headerlink" title="Hadoop序列化的特点"></a>Hadoop序列化的特点</h2><ul>
+<li>hadoop序列化的特点：<ol>
+<li>紧凑：高效使用存储空间。</li>
+<li>快速：读写数据的额外开销小。</li>
+<li>可扩展：可透明地读取老格式的数据。</li>
+<li>互操作：支持多语言的交互</li>
+</ol>
+</li>
+<li>Java序列化的不足：<ol>
+<li>不精简。附加信息多。不大适合随机访问。</li>
+<li>存储空间大。递归地输出类的超类描述直到不再有超类。</li>
+<li>扩展性差。而Writable方便用户自定义</li>
+</ol>
+</li>
+<li>Hadoop的序列化格式：Writable。</li>
+</ul>
+<h2 id="Writable接口"><a href="#Writable接口" class="headerlink" title="Writable接口"></a>Writable接口</h2><ul>
+<li>Writable接口，是根据DataInput和DataOutput实现的简单、有效的序列化对象。</li>
+<li>MR的任意Key和value必须实现Writable接口</li>
+<li>MR的任意key必须实现WritableComparable接口</li>
+</ul>
+<h2 id="常用的Writable实现类"><a href="#常用的Writable实现类" class="headerlink" title="常用的Writable实现类"></a>常用的Writable实现类</h2><table>
+<thead>
+<tr>
+<th>Java基本类型</th>
+<th>Writable</th>
+<th>序列化大小（字节）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>布尔型（boolean）</td>
+<td>BooleanWritable</td>
+<td>1</td>
+</tr>
+<tr>
+<td>字节型（byte）</td>
+<td>ByteWritable</td>
+<td>1</td>
+</tr>
+<tr>
+<td>整型（int）</td>
+<td>IntWritable/VIntWritable</td>
+<td>4/1~5</td>
+</tr>
+<tr>
+<td>浮点型（float）</td>
+<td>FloatWritable</td>
+<td>4</td>
+</tr>
+<tr>
+<td>长整型（long）</td>
+<td>LongWritable/VLongWritable</td>
+<td>8/1~9</td>
+</tr>
+<tr>
+<td>双精度浮点型（double）</td>
+<td>DoubleWritable</td>
+<td>8</td>
+</tr>
+</tbody></table>
+<ul>
+<li>Text一般认为它等价于java.lang.String的Writable。针对UTF-8序列。</li>
+<li>NullWritable是单例，获取实例使用NullWritable.get()。</li>
+</ul>
+<h2 id="MapReduce默认输入处理类"><a href="#MapReduce默认输入处理类" class="headerlink" title="MapReduce默认输入处理类"></a>MapReduce默认输入处理类</h2><ul>
+<li>InputFormat<ul>
+<li>抽象类，只是定义了两个方法</li>
+</ul>
+</li>
+<li>FileInputFormat<ul>
+<li>FileInputFormat是所有以文件作为数据源的InputFormat实现的基类，FileInputFormat保存作为Job输入的所有文件，并实现了对输入文件计算splits的方法。至于获得记录的方法是有不同的子类——TextIntFormat进行实现的。</li>
+</ul>
+</li>
+<li>TextInputFormat<ul>
+<li>是默认的处理类，处理普通文本文件。</li>
+<li>把文件中每一行作为一个记录，它将每一行在文件中的起始偏移量作为key，每一行的内容作为value。</li>
+<li>默认以\n或回车作为一行记录。</li>
 </ul>
 </li>
 </ul>
+<h2 id="InputSplit"><a href="#InputSplit" class="headerlink" title="InputSplit"></a>InputSplit</h2><ul>
+<li>在执行mapreduce之前，原始数据被分割成若干split，每个split作为一个map任务的输入。</li>
+<li>当Hadoop处理很多小文件（文件大小小于hdfs block大小）的时候，由于FileInputFormat不会对小文件进行划分，所以每一个小文件都会被当作一个InputSplit并分配一个map任务，会有大量的map task运行，导致效率低下。</li>
+<li>例如：一个1G的文件会被划分成8个128MB的split，并分配8个map任务处理，而10000个100kb的文件会被10000个map任务处理</li>
+<li>map任务的数量<ul>
+<li>一个InputSplit对应一个Map task</li>
+<li>InputSplit的大小是由Math.max(minSize,Math.min(maxSize,blockSize))决定</li>
+<li>单节点建议运行10——100个map task</li>
+<li>map task执行时长不建议低于1分钟，否则效率低</li>
+</ul>
+</li>
+<li>特殊：一个输入文件大小为140M，会有几个map task？1个<ul>
+<li>FileInputFormat类中的getSplits</li>
+</ul>
+</li>
+</ul>
+<h2 id="RecordReader"><a href="#RecordReader" class="headerlink" title="RecordReader"></a>RecordReader</h2><ul>
+<li>每一个InputSplit都有一个RecordReader，作用是把InputSplit中的数据解析成Record，即&lt;k1,v1&gt;。</li>
+<li>在TextInputFormat中的RecordReader是LineRecordReader，每一行解析成一个&lt;k1,v1&gt;。其中，k1表示偏移量，v1表示文本内容。</li>
+</ul>
+<h2 id="MapReduce其他输入类"><a href="#MapReduce其他输入类" class="headerlink" title="MapReduce其他输入类"></a>MapReduce其他输入类</h2><ul>
+<li><p>DBInputFormat</p>
+<ul>
+<li>一般不用，实际工作中会把数据库的数据导出到hdfs上，然后再进行计算。</li>
+</ul>
+</li>
+<li><p>CombineFileInputFormat</p>
+<ul>
+<li>将多个小文件合成一个split作为输入</li>
+<li>相对于大量的小文件来说，Hadoop更适合处理少量的大文件</li>
+<li>CombineFileInputFormat可用缓解这个问题，它是针对小文件而设计的</li>
+<li>针对小文件的解决思路<ul>
+<li>一种是使用这个CombineFileInputFormat</li>
+<li>另一种是使用SequenceFileFormat</li>
+</ul>
+</li>
+<li>实际工作中针对小文件建议使用下面方案处理<ol>
+<li>源头尽量避免产生很多小文件，因为小文件会导致namenode内存消耗过高【默认每一个文件在namenode中大致占用150字节】</li>
+<li>源头无法避免的话，可以定时对小文件进行合并，建议合并为SequenceFile</li>
+<li>如果上述两种方法都无法解决的话再使用这种方案。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>KeyValueTextInputFormat</p>
+<ul>
+<li><p>当输入数据的每一行是两列，并用tab分离的形式的时候，KeyValueTextInputFormat处理这种数据非常合适</p>
+</li>
+<li><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//	如果行中有分隔符，那么分隔符前面的作为key，后面的作为value；如果行中没有分隔符，那么整行作为key，value为空</span></span><br><span class="line">job.setInputFormatClass(KeyValueTextInputFormat.class);</span><br><span class="line"><span class="hljs-comment">//	默认分隔符就是制表符，可以使用其他分隔符</span></span><br><span class="line"><span class="hljs-comment">//	conf.setStrings(KeyValueLineRecordReader.KEY_VALUE_SEPERATOE,"\t");</span></span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+</li>
+<li><p>NLineInputFormat</p>
+<ul>
+<li><p>NLineInputFormat可以控制在每个split中数据的行数</p>
+</li>
+<li><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="hljs-comment">//设置具体输入类</span></span><br><span class="line">job.setInputFormatClass(NLineInputFormat.class);</span><br><span class="line"><span class="hljs-comment">//	设置每个split的行数</span></span><br><span class="line">NLineInputFormat.setNumLinesPerSplit(job,Integer.parseInt(args[<span class="hljs-number">2</span>]));</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+</li>
+<li><p>SequenceFileInputFormat</p>
+<ul>
+<li>当输入文件格式是sequenceFile的时候，要使用SequenceFileInputFormat作为输入。</li>
+</ul>
+</li>
+<li><p>MultipleInputs</p>
+<ul>
+<li><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">FileSystem fileSystem = FileSystem.newInstance(conf)</span><br><span class="line"> fileSystem.delete(<span class="hljs-keyword">new</span> Path(outPath),<span class="hljs-keyword">true</span>);</span><br><span class="line"></span><br><span class="line">Path path1 = <span class="hljs-keyword">new</span> Path(inputPath1);</span><br><span class="line">MultipleInputs.addInputPath(job,path1,TextInputFormat.class,Mapper1.class);</span><br><span class="line">Path path2 = <span class="hljs-keyword">new</span> Path(intputPath2);</span><br><span class="line">MultipleInputs.addInputPath(job,path2,SequenceFileInputFormat.class,Mapper2.class);</span><br><span class="line"></span><br><span class="line">job.setReduceClass(WordCountReducer.class);</span><br><span class="line">job.setOutputKeyClass(Text.class);</span><br><span class="line">job.setOutputValueClass(LongWritable.class)</span><br><span class="line">FileOutputFormat.setOutputPath(job,<span class="hljs-keyword">new</span> Path(outputPath));</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="OutputFormat"><a href="#OutputFormat" class="headerlink" title="OutputFormat"></a>OutputFormat</h2><ul>
+<li>MapReduce的输出</li>
+<li>TextOutputFormat<ul>
+<li>默认输出格式，key和value中间用tab隔开</li>
+</ul>
+</li>
+<li>DBOutputFormat<ul>
+<li>一般不用，实际工作中会把数据库的数据保存到hdfs上，然后再导入到db中。</li>
+</ul>
+</li>
+<li>SequenceFileOutputFormat<ul>
+<li>将key和value以sequenceFile格式输出。</li>
+</ul>
+</li>
+<li>SequenceFileAsOutputFormat<ul>
+<li>将key和value以原始二进制的格式输出。</li>
+</ul>
+</li>
+<li>MapFileOutputFormat<ul>
+<li>将key和value写入MapFile中。由于MapFile中的key是有序的，所以写入的时候必须保证记录时按key值顺序写入的。</li>
+</ul>
+</li>
+<li>MultipleOutputFormat（多路输出）<ul>
+<li>默认情况下一个reducer会产生一个输出，但是有些时候我们想一个reduce产生多个输出，MultipleOutputFormat和MultipleOutputs可以实现这个功能。</li>
+</ul>
+</li>
+</ul>
+<h2 id="SequenceFile和MapFile"><a href="#SequenceFile和MapFile" class="headerlink" title="SequenceFile和MapFile"></a>SequenceFile和MapFile</h2><ul>
+<li>小文件存在的问题<ul>
+<li>Hadoop的HDFS和MapReduce子框架主要是针对大数据文件来设计的，再小文件的处理上不但效率低下，而且十分消耗内存资源（每个小文件占用一个Block，每一个block的元数据都存储再namenode的内存里，每个文件信息和块信息大约都要占150字节）。</li>
+<li>解决办法通常是选择一个容器，将这些小文件组织起来统一存储。HDFS提供了两种类型的容易，分别是SequenceFile和MapFile。</li>
+</ul>
+</li>
+<li>SequenceFile<ul>
+<li>SequenceFile是Hadoop API提供的一种二进制文件。这种二进制文件直接将&lt;key,value&gt;对序列化到文件中。一般对小文件可以使用这种文件合并，即将文件名作为key。文件内容作为value序列化到大文件中。这种文件格式有以下好处：<ul>
+<li>支持压缩，且可定制为基于Record或Block压缩（Block级压缩性能较优）</li>
+<li>本地化任务支持：因为文件可以被切分，因此MapReduce执行任务时数据的本地化情况应该是非常好的。</li>
+<li>对key、value的长度进行了定义，（反）序列化速度比较快</li>
+<li>缺点时需要一个合并文件的过程，文件较大，且合并后的文件不方面查看，必须通过遍历查看每一个小文件。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>MapFile<ul>
+<li>MapFile是排序后的SequenceFile，通过观察其目录结构可以看到MapFile由两部分组成，分别是index和data。</li>
+<li>index作为文件的数据索引，主要记录了每个Record的key值，以及该Record在文件中的便宜位置。在MapFile被访问的时候，索引文件会被加载到内存，通过索引映射关系可迅速定位到指定Record所在文件位置，因此，相对SequenceFile而言，MapFile的检索效率是高效的，缺点是消耗一部分内存来存储index数据。</li>
+</ul>
+</li>
+</ul>
+<h2 id="MapReduce引用第三方jar包"><a href="#MapReduce引用第三方jar包" class="headerlink" title="MapReduce引用第三方jar包"></a>MapReduce引用第三方jar包</h2><ul>
+<li><p>第一种：将第三方jar包和你的MapReduce程序打成一个jar包。</p>
+<ul>
+<li>优点：使用的时候方便，只需要指定mapreduce的jar包即可</li>
+<li>缺点：如果依赖的jar包很多，会造成打的依赖包很大，上传服务器会比较慢</li>
+</ul>
+</li>
+<li><p>第二种： 使用libjars这个参数</p>
+<ul>
+<li><p>Hadoop jar hello.jar packagename.className -libjars /data/fastjson-1.2.47.jar /inputpath /outputpath</p>
+</li>
+<li><p>优点：mapreduce的jar包中包含业务代码，打包以及上传都很快。多个依赖jar之间用逗号隔开</p>
+<ul>
+<li>jar包的路径可以使用hdfs路径</li>
+</ul>
+</li>
+<li><p>缺点：每次启动jar包的时候都需要在后面指定一堆依赖的jar名称</p>
+<ul>
+<li><p>解决方案：可以使用shell脚本保存命令</p>
+</li>
+<li><p>想要使用 -libjars需要调整一下代码</p>
+</li>
+<li><figure class="highlight java hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Configuration conf = <span class="hljs-keyword">new</span> Configuration();</span><br><span class="line"><span class="hljs-comment">// 处理命令行传递的参数</span></span><br><span class="line">String[] remainArgs = <span class="hljs-keyword">new</span> GenericOptionsPaser(conf,args).getRemainArgs();</span><br><span class="line"><span class="hljs-comment">//	此时这两个参数不能直接从main函数的args参数中获取，需要从remainingArgs中获取</span></span><br><span class="line">String inputPath = remainingArgs[<span class="hljs-number">0</span>];</span><br><span class="line">String outPutPath = remainingArgs[<span class="hljs-number">1</span>];</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>​    </p>
+
         </div>
         
-        
-        <div class="level is-mobile">
+        <div class="level is-size-7 is-uppercase">
             <div class="level-start">
                 <div class="level-item">
-                <a class="button is-size-7 is-light" href="/2019/08/28/大数据框架概念初级整合/#more">阅读更多</a>
+                    <span class="is-size-6 has-text-grey has-mr-7">#</span>
+                    <a class="has-link-grey -link" href="/tags/Hadoop/">Hadoop</a>, <a class="has-link-grey -link" href="/tags/MapReduce/">MapReduce</a>, <a class="has-link-grey -link" href="/tags/大数据/">大数据</a>
                 </div>
             </div>
         </div>
         
+        
+        
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
         
     </div>
 </div>
 
 
 
+<div class="card">
+    <div class="card-content">
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？给作者买个糖果吧(✿◕‿◕✿)</h3>
+        <div class="buttons is-centered">
+            
+                
+<a class="button is-info donate">
+    <span class="icon is-small">
+        <i class="fab fa-alipay"></i>
+    </span>
+    <span>支付宝</span>
+    <div class="qrcode"><img src="/images/aliPay.jpg" alt="支付宝"></div>
+</a>
+
+                
+                
+<a class="button is-success donate">
+    <span class="icon is-small">
+        <i class="fab fa-weixin"></i>
+    </span>
+    <span>微信</span>
+    <div class="qrcode"><img src="/images/wxPay.jpg" alt="微信"></div>
+</a>
+
+                
+        </div>
+    </div>
+</div>
 
 
 
+<div class="card card-transparent">
+    <div class="level post-navigation is-flex-wrap is-mobile">
+        
+        
+        <div class="level-end">
+            <a class="level level-item has-link-grey  article-nav-next" href="/2019/09/03/大数据框架Hadoop-三-HDFS的HA和联邦/">
+                <span class="level-item">大数据框架Hadoop(三)  HDFS的HA和联邦</span>
+                <i class="level-item fas fa-chevron-right"></i>
+            </a>
+        </div>
+        
+    </div>
+</div>
 
 
 </div>
@@ -787,7 +1162,7 @@
             <div class="level-start has-text-centered-mobile">
              <a class="footer-logo is-block has-mb-6" href="/">
                 
-                    <img src="/images/logo.svg" alt="林哥博客 |  菜鸟技术聚集地" height="28">
+                    <img src="/images/logo.svg" alt="大数据框架Hadoop(四)-MapReduce1" height="28">
                 
                 </a> 
 						
