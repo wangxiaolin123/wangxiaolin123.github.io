@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://iochina.top/about/index.html</loc>
+    
+    <lastmod>2019-10-30T13:00:13.116Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://iochina.top/2019/09/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%A1%86%E6%9E%B6Hadoop-%E5%9B%9B-MapReduce1/</loc>
     
     <lastmod>2019-09-30T01:58:00.941Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>http://iochina.top/friends/index.html</loc>
     
     <lastmod>2019-08-31T13:15:02.393Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://iochina.top/about/index.html</loc>
-    
-    <lastmod>2019-08-31T13:13:38.600Z</lastmod>
     
   </url>
   
